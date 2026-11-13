@@ -65,6 +65,7 @@ AI as a tutor, not an answer machine. Study plans that survive a bad week, revis
 
 ## Free tools
 
+- [Form 3CD to Form No. 26 crosswalk](https://aiforseries.github.io/tools/form-3cd-to-form-26-crosswalk.html): every Form 3CD clause mapped to Form No. 26 (Income-tax Act 2025, s.63, rule 47), with the change type and data needed; CSV at https://aiforseries.github.io/tools/form-3cd-to-form-26-crosswalk.csv
 - [Free GSTR-2B Reconciliation Tool (Runs in Your Browser)](https://aiforseries.github.io/ai-for-cas/tools/gstr2b-reconciler.html): Reconcile GSTR-2B with your purchase register free, in your browser: nothing is uploaded. Matches on GSTIN and invoice number, ties control totals and builds the ITC bridge.
 - [AI Use Policy Template for CA Firms in India](https://aiforseries.github.io/ai-for-cas/tools/ca-firm-ai-policy-template.html): A free AI use policy template for Indian CA firms: what client data may be shared, consent, review, documentation, an engagement letter clause and an acknowledgement form.
 
