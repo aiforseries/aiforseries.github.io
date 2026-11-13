@@ -54,6 +54,15 @@ AI as a tutor, not an answer machine. Study plans that survive a bad week, revis
 - Does it help in articleship too? Yes. Part 3 covers vouching, ledger scrutiny, Excel and Tally exports, bank, 26AS/AIS and GSTR-2B reconciliations, and working papers.
 - Do I need a paid plan? Claude Code needs a paid Claude plan. Chapter 2 shows what you can do on the free app and how to set up on a student budget.
 
+## Free guides
+
+- [Duplicate Payment Testing with AI: Full AP Population](https://aiforseries.github.io/guides/duplicate-payment-testing-with-ai.html): Test every AP invoice for duplicate payments and three-way match exceptions with AI, without uploading the ledger. Prompts, checks and limits.
+- [Segregation of Duties Analysis with AI: User Access Review](https://aiforseries.github.io/guides/segregation-of-duties-analysis-with-ai.html): Find SoD conflicts, mitigated cases and leavers with active accounts across a full ERP access listing using AI, with user data kept on your laptop.
+- [Journal Entry Testing with AI: Completeness and Risk Scoring](https://aiforseries.github.io/guides/journal-entry-testing-with-ai.html): Roll the trial balance forward, score every manual journal against criteria you can defend, and keep GL data on your laptop. Prompts and checks.
+- [Bank Reconciliation with AI: A Month-End Method](https://aiforseries.github.io/guides/bank-reconciliation-with-ai.html): Use Claude Code to write a bank reconciliation script that runs on your own computer, ties both balances to zero and lists every exception for review.
+- [Claude for Excel vs Claude Code for Finance Teams](https://aiforseries.github.io/guides/claude-for-excel-vs-claude-code.html): When to use the Claude for Excel add-in and when to use Claude Code for finance work: what each does, what each sends, and a job-by-job rule.
+- [Audit an Inherited Excel Model with AI: A Review Method](https://aiforseries.github.io/guides/auditing-an-inherited-excel-model-with-ai.html): Review a forecast model you didn't build: use Claude Code to list hardcodes, broken links, hidden sheets and unit errors by cell, without editing it.
+
 ## Free tools
 
 - [Free GSTR-2B Reconciliation Tool (Runs in Your Browser)](https://aiforseries.github.io/ai-for-cas/tools/gstr2b-reconciler.html): Reconcile GSTR-2B with your purchase register free, in your browser: nothing is uploaded. Matches on GSTIN and invoice number, ties control totals and builds the ITC bridge.
