@@ -69,5 +69,6 @@ AI as a tutor, not an answer machine. Study plans that survive a bad week, revis
 - [AI Use Policy Template for CA Firms in India](https://aiforseries.github.io/ai-for-cas/tools/ca-firm-ai-policy-template.html): A free AI use policy template for Indian CA firms: what client data may be shared, consent, review, documentation, an engagement letter clause and an acknowledgement form.
 
 ## More
+- [Free prompt library on GitHub](https://github.com/aiforseries/ai-prompts-for-audit-and-finance): 100 copy-ready prompts from the books, 20 per book, CC BY 4.0
 - [AI for CAs site, with its own llms.txt](https://aiforseries.github.io/ai-for-cas/llms.txt)
 - [Author page on Amazon](https://www.amazon.com/author/chandan-gupta)
