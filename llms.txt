@@ -1,17 +1,64 @@
 # The AI For Series
 
-> Practical AI guides for accountants, auditors and finance teams: tested walkthroughs on practice files, answer keys, client-data routines and free tools. Written by Chandan Gupta, CA, CIA.
+> Practical AI books for internal auditors, finance teams, Chartered Accountants, tax practitioners and CA students: tested walkthroughs on practice files, answer keys, ready prompts and routines for keeping client and company data on your own computer. Written by Chandan Gupta, CA, CIA. Sold as ebooks on Google Play Books and Amazon Kindle.
 
 ## Books
-- [AI for CAs](https://aiforseries.github.io/ai-for-cas/): A practical guide to Claude Code for tax, audit, advisory and compliance work. For CAs in India.
-- AI for Tax Practitioners: Run a faster, safer GST, ITR and bookkeeping practice with Claude Code. For Tax practitioners in India. Coming soon.
-- AI for CA Students: Use Claude Code to study smarter for CA Foundation, Inter and Final, and shine in articleship, without cutting corners. For CA students. Coming soon.
-- AI for Internal Auditors: A practical guide to Claude Code for risk-based audits, control testing, data analytics and reporting. For Internal auditors. Coming soon.
-- Excel + AI for Finance Teams: Use Claude for Excel and Claude Code to clean, reconcile, model and report, and keep your spreadsheets auditable. For Finance teams. Coming soon.
+- [Which AI, Which Plan?](https://aiforseries.github.io/which-ai-which-plan/): How AI chat tools work, and how to choose one, in everyday analogies. Audience: Anyone who uses AI chat tools at work. 65 pages. Google Play (free).
+- [AI for CAs](https://aiforseries.github.io/ai-for-cas/): A practical guide to Claude Code for tax, audit, advisory and compliance work. Audience: Chartered Accountants in India. 162 pages. Google Play (https://play.google.com/store/books/details?id=zT8lEgAAQBAJ); Kindle (https://www.amazon.in/dp/B0HQ4Q68D3).
+- [AI for Internal Auditors](https://aiforseries.github.io/ai-for-internal-auditors/): A practical guide to Claude Code for risk-based audits, control testing, data analytics and reporting. Audience: Internal auditors, SOX and ICFR testers, audit managers and CAEs. 180 pages. Google Play (https://play.google.com/store/books/details?id=jIAmEgAAQBAJ); Kindle (https://www.amazon.com/dp/B0HR9ZCCJ2).
+- [Excel + AI for Finance Teams](https://aiforseries.github.io/excel-ai-for-finance/): Use Claude for Excel and Claude Code to clean, reconcile, model and report, and keep your spreadsheets auditable. Audience: Accountants, controllers, FP&A analysts and AP/AR teams. 156 pages. Google Play (https://play.google.com/store/books/details?id=soAmEgAAQBAJ); Kindle (https://www.amazon.com/dp/B0HR9XC4TV).
+- [AI for Tax Practitioners](https://aiforseries.github.io/ai-for-tax-practitioners/): Run a faster, safer GST, ITR and bookkeeping practice with Claude Code. Audience: GST practitioners, income-tax consultants and small tax practices in India. 151 pages. Google Play (https://play.google.com/store/books/details?id=MoAmEgAAQBAJ); Kindle coming soon.
+- [AI for CA Students](https://aiforseries.github.io/ai-for-ca-students/): Use Claude Code to study smarter for CA Foundation, Inter and Final, and shine in articleship, without cutting corners. Audience: CA Foundation, Inter and Final students and articled assistants. 119 pages. Google Play (https://play.google.com/store/books/details?id=XoAmEgAAQBAJ); Kindle coming soon.
+
+## What the books cover
+
+### Which AI, Which Plan?
+A short, plain-English guide to how ChatGPT, Claude, Gemini and Copilot actually work, and what free and paid plans really buy. Each idea gets one everyday analogy, one myth, and a two-minute experiment you can try. Free on Google Play.
+
+- Is it really free? Yes. The ebook is free on Google Play Books worldwide.
+- Do I need to be technical? No. Every idea is explained with an everyday analogy: a taxi meter for tokens, the size of a desk for the context window, a courier parcel for privacy.
+- Does it recommend one AI tool? No. It explains how the tools work and gives five questions to ask of any new tool, so you can choose for your own work and budget.
+
+### AI for CAs
+For Chartered Accountants in India: income tax, GST, statutory and internal audit, reporting, advisory, compliance and forensic work. Three tested walkthroughs on practice files with answer keys, 109 ready prompts, and a routine that keeps client data on your laptop.
+
+### AI for Internal Auditors
+The whole internal audit lifecycle with Claude Code: risk assessment, planning, walkthroughs, control testing and sampling, full-population analytics, fraud red flags, working papers, observations, audit committee reporting and follow-up. Instead of pasting an AP extract into a chat window, the AI writes a small script that runs on your laptop against the full population, so only column headers and results leave your machine, and a reviewer can re-perform the test.
+
+- Who is this book for? Internal auditors, SOX and ICFR testers, audit managers and chief audit executives who want to use AI on real engagements, not just for drafting emails.
+- Do I need to know how to code? No. Claude Code writes and runs the scripts; the book shows you how to ask for them, read the result and check it against control totals.
+- What about company data and confidentiality? Chapter 1 explains what an AI tool actually sends and what stays on your laptop. The method keeps the data local: the AI sees column headers and results, and the analysis runs on your machine.
+- What do I need to follow along? A Windows or Mac laptop and a paid Claude plan, since Claude Code is not in the free plan. The book links to its practice files and answer keys.
+- Is it affiliated with Anthropic or The IIA? No. It is an independent book by a Chartered Accountant and Certified Internal Auditor.
+
+### Excel + AI for Finance Teams
+Claude for Excel and Claude Code on real finance work: cleaning ERP exports, bank and intercompany reconciliations, month-end close, budgets, forecasts and 13-week cash, auditing an inherited model, and management reporting packs. When to use the Excel add-in, when to use Claude Code, and how to keep every workbook auditable.
+
+- Who is this book for? Accountants, controllers, FP&A analysts and AP/AR teams who live in Excel and want AI help they can check.
+- Claude for Excel or Claude Code: which one? Chapter 4 compares them. The add-in works inside an open workbook; Claude Code works on files and folders and suits repeatable jobs such as a monthly bank reconciliation.
+- Do I need to code or know Python? No. You describe the job, the AI writes the script, and the book shows how to check the output with tie-outs and control totals.
+- What do I need to follow along? Excel on Windows or Mac and a paid Claude plan. The book links to its practice workbooks and answer keys.
+
+### AI for Tax Practitioners
+For the high-volume work of an Indian tax practice: GSTR-1 from sales registers, GSTR-2B and 3B checks across many clients, ITR season with AIS, 26AS and Form 16, TDS return data, Tally and bank statement clean-up, notice reply files, a compliance calendar and fee register, and client messages in English and Hindi.
+
+- Who is this book for? GST practitioners, income-tax consultants, accountants and small tax offices in India that file for many clients.
+- Will the AI file returns for me? No. It prepares and checks the working files; you review and file on the portal yourself. Chapter 13 covers checking the output and the limits.
+- Is client data safe? Chapter 1 sets out a routine that keeps client files in the office: the AI writes scripts that run on your computer instead of reading every invoice.
+- What do I need to follow along? A Windows or Mac computer and a paid Claude plan. The book links to its practice files and answer keys.
+
+### AI for CA Students
+AI as a tutor, not an answer machine. Study plans that survive a bad week, revision sheets and self-tests from your own notes, check-my-working practice, and mock-paper review. In articleship: vouching, ledger scrutiny, Excel and Tally clean-up, reconciliations and working papers, with the client's data kept safe.
+
+- Is this a shortcut for exams? No. Every prompt keeps you doing the thinking: the AI checks your working, quizzes you and explains, rather than handing over answers.
+- Does it help in articleship too? Yes. Part 3 covers vouching, ledger scrutiny, Excel and Tally exports, bank, 26AS/AIS and GSTR-2B reconciliations, and working papers.
+- Do I need a paid plan? Claude Code needs a paid Claude plan. Chapter 2 shows what you can do on the free app and how to set up on a student budget.
 
 ## Free tools
+
 - [Free GSTR-2B Reconciliation Tool (Runs in Your Browser)](https://aiforseries.github.io/ai-for-cas/tools/gstr2b-reconciler.html): Reconcile GSTR-2B with your purchase register free, in your browser: nothing is uploaded. Matches on GSTIN and invoice number, ties control totals and builds the ITC bridge.
 - [AI Use Policy Template for CA Firms in India](https://aiforseries.github.io/ai-for-cas/tools/ca-firm-ai-policy-template.html): A free AI use policy template for Indian CA firms: what client data may be shared, consent, review, documentation, an engagement letter clause and an acknowledgement form.
 
 ## More
 - [AI for CAs site, with its own llms.txt](https://aiforseries.github.io/ai-for-cas/llms.txt)
+- [Author page on Amazon](https://www.amazon.com/author/chandan-gupta)
