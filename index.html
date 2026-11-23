@@ -145,7 +145,7 @@ color:var(--accent);background:#fff;white-space:nowrap}.stores a:hover{border-co
 .hero .hgrid{display:grid;grid-template-columns:minmax(0,1fr);gap:30px;align-items:start;padding-top:38px;padding-bottom:34px}
 .hero .hgrid>*{min-width:0}
 .run{--r:26px;margin:0;font:13px/1.4 var(--sans);color:#f3e3e6}
-.run h2{margin:0 0 12px;color:#FFF4E2;font-size:1.65em;letter-spacing:-.4px;line-height:1.2;text-wrap:balance}
+.run-note{margin:0 0 10px;font-size:13px;color:#ecd6da}.run h2{margin:0 0 3px;color:#FFF4E2;font-size:1.65em;letter-spacing:-.4px;line-height:1.2;text-wrap:balance}
 .khata{position:relative;display:grid;grid-template-columns:minmax(0,1fr);padding:9px 9px 9px 20px;border-radius:5px 9px 9px 5px;
 background:#3A0714;box-shadow:0 18px 40px #0007;color:#1F2A55;overflow:hidden}
 .khata::before{content:"";position:absolute;left:8px;top:10px;bottom:10px;border-left:2px dashed #FFD875}
@@ -173,12 +173,12 @@ border-bottom:1px solid #efe4d8;font-size:12px;white-space:nowrap}
 .k-code li{padding-left:10px;border-left:3px solid #FFB933}
 .k-sum{display:flex;flex-wrap:wrap;gap:0 12px;margin-top:8px;font-size:12.5px}.k-sum b{font-variant-numeric:tabular-nums}
 .k-odo{display:inline-block;height:17px;overflow:hidden;vertical-align:top;line-height:17px;font-weight:700}
-.k-odo span{display:block;transform:translateY(-119px)}.k-odo em{display:block;font-style:normal;height:17px}
+.k-odo span{display:block;transform:translateY(-119px)}.k-odo em{display:block;font-style:normal;height:17px;text-align:right}
 .k-tie{color:#136b4d;font-weight:600}
 .k-ttl{display:flex;justify-content:space-between;align-items:baseline;border-bottom:3px double #b3263a;padding-bottom:4px;font-weight:700;font-size:14px}
 .k-tray{list-style:none;margin:0;padding:0}
 .k-tray li{display:grid;grid-template-columns:20px minmax(0,1fr) auto;gap:6px;align-items:center;height:var(--r);border-bottom:1px solid #efe4d8;font-size:12.5px;white-space:nowrap}
-.k-tray b{font-variant-numeric:tabular-nums;color:#b3263a}.k-tray i{font:italic 13px Georgia,serif;color:#5f5757}
+.k-tray span{overflow:hidden;text-overflow:ellipsis}.k-tray b{font-variant-numeric:tabular-nums;color:#b3263a}.k-tray i{font:italic 13px Georgia,serif;color:#5f5757}
 .k-slip{position:relative;margin-top:9px;background:#fff;border:1px solid #e6dbd2;padding:8px 10px;font-size:12.5px}
 .k-slip p{position:relative;margin:0;line-height:1.5}.k-slip p+p{margin-top:3px}
 .k-no{position:relative;white-space:nowrap}.k-no::after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:#b3263a;transform-origin:left}
@@ -197,10 +197,11 @@ text-align:center;color:#7A1A2B;font:700 10px/1.1 var(--sans);transform:rotate(-
 .hero .fan{flex:none;width:100%;height:auto;display:flex;gap:12px;transform:none;margin:0;justify-content:flex-start}
 .hero .fan img:nth-child(n){position:static;width:calc((100% - 48px)/5);max-width:74px;transform:none;box-shadow:0 6px 14px #0006;height:auto}
 @media (min-width:620px){.khata{grid-template-columns:minmax(0,1.14fr) minmax(0,1fr)}.leaf+.leaf{border-top:0;border-left:3px double #b3263a;box-shadow:inset 14px 0 14px -14px #0005}}
-@media (min-width:1100px){.top .wrap,.hero .hgrid{max-width:1260px}.hero .hgrid{grid-template-columns:minmax(0,1fr) 762px;gap:0 34px;grid-template-rows:auto 1fr}
+@media (min-width:1180px){.top .wrap,.hero .hgrid{max-width:1260px}.hero .hgrid{grid-template-columns:minmax(0,1fr) 762px;gap:0 34px;grid-template-rows:auto 1fr}
 .hero .hgrid h1{font-size:2.75em}.run{--r:31px}.run h2{font-size:1.85em}.k-hand{height:33px}.k-slip{margin-top:12px}.k-sign{margin-top:12px}
 
 .hero .hgrid .txt{grid-area:1/1}.hero .run{grid-area:1/2/3/3}.hero .fan{grid-area:2/1;margin-top:24px}}
+@media (max-width:619px){.run{--r:24px;display:flex;flex-direction:column}.run h2{order:-3}.run-note{order:-2;margin:0}.run-ctl{order:-1;margin:0 0 6px}.k-tabs small{display:none}.run figcaption{margin-top:10px}}
 @media (max-width:640px){.hero .hgrid{padding-top:24px;gap:22px}.hero .hgrid .sub{line-height:1.5}}
 @media (max-width:460px){.leaf{padding:9px 8px}.khata{padding-left:17px}.khata::before{left:6px}.k-row{grid-template-columns:22px minmax(0,.98fr) minmax(0,.72fr) minmax(0,1.3fr) 20px;gap:5px;font-size:11.5px}.k-row b{font-size:12.5px}}
 @media (prefers-reduced-motion:no-preference){
@@ -253,7 +254,7 @@ details[open]>p{animation:k-in .22s ease-out}}
 data safe, and check every result before they sign.</p>
 <a class="cta" href="#books">Browse the books</a><a class="cta alt" href="https://aiforseries.github.io/which-ai-which-plan/">Start with the free book</a>
 <ul class="pills"><li>6 books</li><li>Google Play + Kindle</li><li>Tested walkthroughs</li><li>No coding</li></ul>
-</div><figure class="run" id="run"><h2>Still on row 1? This desk is already on the exceptions.</h2>
+</div><figure class="run" id="run"><h2>Still on row 1? This desk is already on the exceptions.</h2><p class="run-note">Illustration on made-up practice data.</p>
 <div class="khata" aria-hidden="true"><div class="leaf">
 <div class="k-hand"><small>By hand</small><span class="k-type">Aundh Office, AOS/1613</span><small>row 1 of 358</small></div>
 <div class="k-tabs"><span style="--i:0">Books<small>358 rows</small></span><span style="--i:1">GSTR-2B<small>358 rows</small></span><span class="py" style="--i:4.5">recon_2b.py<small>the script</small></span></div>
@@ -291,7 +292,7 @@ data safe, and check every result before they sign.</p>
 <div class="k-sign"><strong>Check before you sign.</strong><svg viewBox="0 0 66 30"><path pathLength="1" stroke-dasharray="1" d="M3 22C10 4 17 2 15 14s-7 14 1 6 10-12 11-5-3 9 4 3 8-8 10-2 5 3 10-2 6-2 9 1"/></svg><span class="k-seal">Checked<br>first</span></div></div></div>
 <p class="vh">What the illustration shows: you are typing row 1 of 358 by hand. An AI agent reads the headers and three sample rows of a purchase register and a GSTR-2B, writes a matching script and runs it. 348 pairs match and 3 match within one rupee, and both sides add back to 358 rows. It stops at 11 items for a person: 5 where the values or GSTIN differ, 1 in books but not in 2B, 2 in 2B but not in books, 1 possible duplicate, and 2 that match but may be blocked credit. Its chat then gives the wrong figures for one invoice: books 5,790 and 2B 11,580. The output file says books 11,580 and 2B 17,370. The person checks the file, strikes out the chat figures, and only then signs. Check before you sign.</p>
 <div class="run-ctl"><div class="k-say" aria-hidden="true"><span>Reads the headers and three rows of each file.</span><span>Writes a script with your matching rules.</span><span>Matches the rows on your own computer.</span><span>Stops. 11 items need a person.</span><span>Now you check its chat against the file.</span><span>The file was right. The chat was not. You caught it.</span></div><button type="button" hidden>Pause</button></div>
-<figcaption>Illustration on made-up practice data. Counts and the chat mistake are from our tested run of the GSTR-2B walkthrough in <i>AI for CAs</i>. The pace is not a speed claim. <a href="https://aiforseries.github.io/ai-for-cas/tools/gstr2b-reconciler.html">Reconcile a 2B yourself, free</a></figcaption></figure>
+<figcaption>Counts and the chat mistake are from our tested run of the GSTR-2B walkthrough in <i>AI for CAs</i>. The pace is not a speed claim. <a href="https://aiforseries.github.io/ai-for-cas/tools/gstr2b-reconciler.html">Reconcile a 2B yourself, free</a></figcaption></figure>
 <script>(function(){var r=document.getElementById('run'),b=r.querySelector('button'),m=matchMedia('(prefers-reduced-motion: reduce)'),
 user=false,seen=false,done=false;if(m.matches||!window.IntersectionObserver)return;
 function sync(){r.classList.toggle('hold',user||!seen||document.hidden);b.textContent=done?'Replay':user?'Play':'Pause'}
