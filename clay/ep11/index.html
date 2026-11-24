@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Purana Act, naya zamana: Say which Act and which year | Bhasad &amp; Associates, Episode 11</title><meta name="description" content="Bhasad &amp; Associates, episode 11. Say the Act and the year first; then match the section in the new Act using the official mapping. A free, copy-ready prompt, what to give the AI and what to check."><link rel="canonical" href="https://aiforseries.github.io/clay/ep11/">
-<meta property="og:type" content="article"><meta property="og:title" content="Purana Act, naya zamana: Say which Act and which year | Bhasad &amp; Associates, Episode 11"><meta property="og:description" content="Bhasad &amp; Associates, episode 11. Say the Act and the year first; then match the section in the new Act using the official mapping. A free, copy-ready prompt, what to give the AI and what to check.">
+<title>Purana Act, naya zamana: Tax year first, then the Act, then the section | Bhasad &amp; Associates, Episode 11</title><meta name="description" content="Bhasad &amp; Associates, episode 11. Check the tax year first, then the Act, then the section. A free, copy-ready prompt, what to give the AI and what to check."><link rel="canonical" href="https://aiforseries.github.io/clay/ep11/">
+<meta property="og:type" content="article"><meta property="og:title" content="Purana Act, naya zamana: Tax year first, then the Act, then the section | Bhasad &amp; Associates, Episode 11"><meta property="og:description" content="Bhasad &amp; Associates, episode 11. Check the tax year first, then the Act, then the section. A free, copy-ready prompt, what to give the AI and what to check.">
 <meta property="og:url" content="https://aiforseries.github.io/clay/ep11/"><meta property="og:site_name" content="The AI For Series"><meta property="og:image" content="https://aiforseries.github.io/og-card.jpg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40' width='30' height='30' aria-hidden='true'%3E%3Crect width='40' height='40' rx='9' fill='%237A1A2B'/%3E%3Ctext x='20' y='24' text-anchor='middle' font-family='system-ui,-apple-system,Segoe UI,sans-serif' font-size='17' font-weight='800' fill='%23fff'%3EAI%3C/text%3E%3Crect x='9' y='28.5' width='22' height='2.2' rx='1' fill='%23e9b949'/%3E%3Crect x='9' y='32.2' width='22' height='2.2' rx='1' fill='%23e9b949'/%3E%3C/svg%3E"><link rel="alternate" type="text/plain" title="llms.txt" href="https://aiforseries.github.io/llms.txt"><style>
@@ -146,27 +146,29 @@ padding:14px 16px;text-decoration:none;color:var(--ink);transition:border-color 
 <nav aria-label="Main"><a href="https://aiforseries.github.io/#books">Books</a><a href="https://aiforseries.github.io/guides/">Guides</a><a href="https://aiforseries.github.io/#free">Free tools</a>
 <a href="https://aiforseries.github.io/#about">About</a><a class="buy" href="https://play.google.com/store/books/details?id=UogmEgAAQBAJ">Free book →</a></nav></div></header><main id="main" class="article"><nav class="crumbs" aria-label="Breadcrumb"><a href="https://aiforseries.github.io/">The AI For Series</a> › <a href="https://aiforseries.github.io/clay/">Bhasad &amp; Associates</a> › Episode 11</nav>
 <p class="ep-k">Episode 11 <span class="tag firm">Firm</span></p>
-<h1>Purana Act, naya zamana<span class="en">Say which Act and which year</span></h1>
+<h1>Purana Act, naya zamana<span class="en">Tax year first, then the Act, then the section</span></h1>
 <p class="hook">“AI kaunsa Act padh raha hai?”</p>
-<div class="mh"><div class="no"><b>The mistake</b><p>Asking the AI for a section without saying which Act. It answers from the old Act it learnt.</p></div><div class="yes"><b>The habit</b><p>Say the Act and the year first; then match the section in the new Act using the official mapping.</p></div></div>
+<div class="mh"><div class="no"><b>The mistake</b><p>Asking the AI for a section without the tax year. It answers from whichever Act it learnt.</p></div><div class="yes"><b>The habit</b><p>Check the tax year first, then the Act, then the section.</p></div></div>
 <h2>What to give the AI</h2>
-<p>Your question, the Act and the tax year or period it is about, and, if you have it, the official mapping table published by the government, as a file. No client facts are needed.</p>
+<p>Your question and the tax year or period it is about. If you have it, the official mapping table between the old and new Act, as a file. No client facts are needed.</p>
 <p class="when"><strong>Never paste client or company data into a chat.</strong> Give the headings and the structure; the work runs on your own computer.</p>
 <h2 id="the-prompt">The prompt</h2>
-<p class="when"><strong>When to use:</strong> Before you ask an AI for any section number, especially after a law has been replaced or renumbered.</p>
+<p class="when"><strong>When to use:</strong> Before you ask an AI for any section number, especially when a law has been replaced and the old one still governs earlier years.</p>
 <div class="pbox"><button type="button" class="cbtn" id="copy" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg><span>Copy prompt</span></button>
-<pre id="prompt">My question is about Indian income tax for &lt;tax year or period&gt;. Before you answer, tell me which Act and which year or version your answer is based on, and whether you are reading it from a document I gave you or recalling it from memory.
-If that Act has since been replaced or renumbered, do not give me an old section number as if it were current. Instead give me:
-1. The section you recall, marked FROM MEMORY, with the Act it belongs to.
-2. What it covers, in plain words.
-3. The matching section in the current Act, only if you can quote the row from the official mapping table I have given you. If I have not given you one, write &quot;Check the official mapping&quot; and do not guess.
+<pre id="prompt">My question is about Indian income tax for this tax year or period: &lt;tax year or period&gt;.
+Before you answer:
+1. Tell me which Act governs that tax year, and why. Do not assume the newest Act applies: an earlier Act still governs earlier years. If you are not sure which Act applies to this year, say so and stop.
+2. Say whether you are reading the law from a document I gave you or recalling it from memory. Mark anything from memory UNVERIFIED.
+Then answer:
+3. The section of that Act that applies, marked FROM MEMORY if recalled, and what it covers, in plain words.
+4. If I also need the matching section in the other Act, give it only by quoting the row from the official mapping table I have given you. If I have not given you one, write &quot;Check the official mapping&quot; and do not guess.
 My question: &lt;your question&gt;</pre></div>
 <p class="sr" id="copy-status" role="status" aria-live="polite" style="position:absolute;left:-9999px"></p>
 <p class="credit">A new prompt for this episode, in the style of the <a href="https://github.com/aiforseries/ai-prompts-for-audit-and-finance">free prompt library</a>. The AI For Series, Chandan Gupta. Licence: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Replace the parts in &lt;angle brackets&gt;.</p>
 <h2>What you get back</h2>
-<p>Which Act and version the answer is based on, the old section marked FROM MEMORY, what it covers in plain words, and the matching row from the official mapping only if you gave it one.</p>
+<p>Which Act governs that tax year and why, the section that applies (marked FROM MEMORY if recalled) in plain words, and a matching section in the other Act only if quoted from the official mapping you gave it.</p>
 <h2>Check before you rely on it</h2>
-<ul class="chk"><li>Find the section in the official mapping yourself, then read the new section&#x27;s current text.</li><li>Renumbered does not mean unchanged: the wording, conditions or limits may differ.</li></ul>
+<ul class="chk"><li>Check the tax year yourself, then confirm which Act governs it from the official source.</li><li>Read the section&#x27;s current text in that Act. Where you need the other Act, find the row in the official mapping yourself: renumbered does not mean unchanged.</li></ul>
 <p class="every"><strong>Every time:</strong> the control totals agree, rows in equal rows out, the law is checked in the official source, and the judgement stays with you.</p>
 <a class="bk" href="https://aiforseries.github.io/ai-for-tax-practitioners/"><img src="https://aiforseries.github.io/covers/ai-for-tax-practitioners.jpg" alt="" width="72" height="115" loading="lazy"><div><small>The book for this habit</small><strong>AI for Tax Practitioners</strong><span>GST, ITR and TDS work across many clients, with the review kept with you.</span></div></a>
 <ul class="links"><li><a href="https://aiforseries.github.io/clay/">All episodes of Bhasad &amp; Associates</a></li><li><a href="https://github.com/aiforseries/ai-prompts-for-audit-and-finance">The free prompt library on GitHub</a> <small>(100 prompts, CC BY 4.0)</small></li><li><a href="https://aiforseries.github.io/tools/form-3cd-to-form-26-crosswalk.html">Free tool: Form 3CD to Form No. 26 crosswalk</a></li></ul>

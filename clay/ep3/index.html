@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Audit kar do: Brief the AI like a junior | Bhasad &amp; Associates, Episode 3</title><meta name="description" content="Bhasad &amp; Associates, episode 3. Say what to check, where, the condition and the output, as you would brief an article. A free, copy-ready prompt, what to give the AI and what to check."><link rel="canonical" href="https://aiforseries.github.io/clay/ep3/">
-<meta property="og:type" content="article"><meta property="og:title" content="Audit kar do: Brief the AI like a junior | Bhasad &amp; Associates, Episode 3"><meta property="og:description" content="Bhasad &amp; Associates, episode 3. Say what to check, where, the condition and the output, as you would brief an article. A free, copy-ready prompt, what to give the AI and what to check.">
+<title>Audit kar do: Brief the AI like a junior | Bhasad &amp; Associates, Episode 3</title><meta name="description" content="Bhasad &amp; Associates, episode 3. Give a scoped brief: match the big bank payments to the voucher register; the unmatched ones go into Excel. A free, copy-ready prompt, what to give the AI and what to check."><link rel="canonical" href="https://aiforseries.github.io/clay/ep3/">
+<meta property="og:type" content="article"><meta property="og:title" content="Audit kar do: Brief the AI like a junior | Bhasad &amp; Associates, Episode 3"><meta property="og:description" content="Bhasad &amp; Associates, episode 3. Give a scoped brief: match the big bank payments to the voucher register; the unmatched ones go into Excel. A free, copy-ready prompt, what to give the AI and what to check.">
 <meta property="og:url" content="https://aiforseries.github.io/clay/ep3/"><meta property="og:site_name" content="The AI For Series"><meta property="og:image" content="https://aiforseries.github.io/og-card.jpg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40' width='30' height='30' aria-hidden='true'%3E%3Crect width='40' height='40' rx='9' fill='%237A1A2B'/%3E%3Ctext x='20' y='24' text-anchor='middle' font-family='system-ui,-apple-system,Segoe UI,sans-serif' font-size='17' font-weight='800' fill='%23fff'%3EAI%3C/text%3E%3Crect x='9' y='28.5' width='22' height='2.2' rx='1' fill='%23e9b949'/%3E%3Crect x='9' y='32.2' width='22' height='2.2' rx='1' fill='%23e9b949'/%3E%3C/svg%3E"><link rel="alternate" type="text/plain" title="llms.txt" href="https://aiforseries.github.io/llms.txt"><style>
@@ -148,30 +148,25 @@ padding:14px 16px;text-decoration:none;color:var(--ink);transition:border-color 
 <p class="ep-k">Episode 3 <span class="tag firm">Firm</span></p>
 <h1>Audit kar do<span class="en">Brief the AI like a junior</span></h1>
 <p class="hook">“AI ko aadha kaam bataya?”</p>
-<div class="mh"><div class="no"><b>The mistake</b><p>A one-line brief: &quot;Gyaani, audit kar do.&quot;</p></div><div class="yes"><b>The habit</b><p>Say what to check, where, the condition and the output, as you would brief an article.</p></div></div>
+<div class="mh"><div class="no"><b>The mistake</b><p>A one-line brief: &quot;Gyaani, audit kar do.&quot;</p></div><div class="yes"><b>The habit</b><p>Give a scoped brief: match the big bank payments to the voucher register; the unmatched ones go into Excel.</p></div></div>
 <h2>What to give the AI</h2>
-<p>The file name, its column headings and your own rules. The amounts, dates and words in this prompt are a worked example from the book: replace them with your rules for this client and year. The ledger stays on your computer.</p>
+<p>The two file names and their column headings, the amount you call &quot;big&quot; and how many days apart a payment and its voucher may be. The statement and the register stay on your computer.</p>
 <p class="when"><strong>Never paste client or company data into a chat.</strong> Give the headings and the structure; the work runs on your own computer.</p>
 <h2 id="the-prompt">The prompt</h2>
-<p class="when"><strong>When to use:</strong> General ledger scrutiny of every row against fixed rules, with an exception workbook for the file.</p>
+<p class="when"><strong>When to use:</strong> When you would otherwise say &quot;check the payments&quot;: brief the AI as you would brief an article, with where, what, the condition and the output.</p>
 <div class="pbox"><button type="button" class="cbtn" id="copy" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg><span>Copy prompt</span></button>
-<pre id="prompt">I am auditing the general ledger in GL_FY2025-26.xlsx. It is client data.
-Do not open or print the data rows. Read only the column headers, then write a Python script gl_scrutiny.py that runs on this computer and does the following on every row:
-1. Round amounts: debit or credit of ₹1,00,000 or more that is an exact multiple of ₹10,000.
-2. Postings dated on a Sunday, or on any date in Holidays_FY26.xlsx.
-3. Entries dated 25 March 2026 to 31 March 2026, and 1 April 2026 to 10 April 2026 if present.
-4. Narration blank, or containing: adjustment, reversal, suspense, as per MD, cash, misc.
-5. Ledgers with fewer than 5 entries in the whole year.
-Write GL_Exceptions.xlsx with: a Summary sheet (test, rule used, count, total value);
-one sheet per test with Date, Voucher Type, Voucher No, Ledger, Debit, Credit, Narration;
-a Combined sheet listing each voucher once with the number of tests it hit, highest first;
-and a Parameters sheet recording the file name, row count, debit and credit totals, and the rules above. Show me only the Summary counts on screen. Ask before running anything.</pre></div>
+<pre id="prompt">This folder has a client&#x27;s bank statement (&lt;bank file&gt;) and payment voucher register (&lt;voucher file&gt;). It is client data: read only the column headers, and do not open or print any data rows.
+Write a script that runs on this computer and:
+1. Takes every bank payment of &lt;amount you set&gt; or more.
+2. Matches each one to the voucher register on amount, with the date within &lt;number&gt; days, and on the payee name if both files have it. Each voucher can be used only once.
+3. Writes Unmatched_Payments.xlsx with three sheets: Unmatched (every big payment with no voucher: date, amount, narration), Matched (each payment with the voucher it matched), and Control (rows read from each file, and the count and total of big payments, matched and unmatched).
+Show me only the counts and totals from the Control sheet.</pre></div>
 <p class="sr" id="copy-status" role="status" aria-live="polite" style="position:absolute;left:-9999px"></p>
-<p class="credit">Prompt: “General ledger scrutiny that produces an exception workbook”, from the <a href="https://github.com/aiforseries/ai-prompts-for-audit-and-finance/blob/main/ca-practice.md">free prompt library</a> by The AI For Series, Chandan Gupta. Licence: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Replace the example file names and figures with your own.</p>
+<p class="credit">A new prompt for this episode, in the style of the <a href="https://github.com/aiforseries/ai-prompts-for-audit-and-finance">free prompt library</a>. The AI For Series, Chandan Gupta. Licence: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Replace the parts in &lt;angle brackets&gt;.</p>
 <h2>What you get back</h2>
-<p>A script, a summary of counts on screen, and an exception workbook: one sheet per test, a combined sheet ranked by the number of tests each voucher hit, and a Parameters sheet with the row count and totals.</p>
+<p>A script that runs on your computer, the counts and totals on screen, and a workbook listing every big payment with no voucher, the matched ones, and a control sheet.</p>
 <h2>Check before you rely on it</h2>
-<ul class="chk"><li>The debit and credit totals on the Parameters sheet agree with the trial balance. If they don&#x27;t, the export is incomplete or the script misread a column.</li><li>The row count on the Parameters sheet agrees with the number of rows in the export.</li><li>Trace a few exceptions back to the ledger. Whether one matters is your call, not the script&#x27;s.</li></ul>
+<ul class="chk"><li>Rows read from the bank file agree with the statement, and matched plus unmatched equals the number of big payments, in count and in total.</li><li>Pick a few matched payments and check the voucher really is for that payment. Then look at every unmatched one yourself: whether it matters is your call.</li></ul>
 <p class="every"><strong>Every time:</strong> the control totals agree, rows in equal rows out, the law is checked in the official source, and the judgement stays with you.</p>
 <a class="bk" href="https://aiforseries.github.io/ai-for-cas/"><img src="https://aiforseries.github.io/covers/ai-for-cas.jpg" alt="" width="72" height="115" loading="lazy"><div><small>The book for this habit</small><strong>AI for CAs</strong><span>Tax, GST, audit and advisory work, with client data kept on your laptop.</span></div></a>
 <ul class="links"><li><a href="https://aiforseries.github.io/clay/">All episodes of Bhasad &amp; Associates</a></li><li><a href="https://github.com/aiforseries/ai-prompts-for-audit-and-finance">The free prompt library on GitHub</a> <small>(100 prompts, CC BY 4.0)</small></li></ul>

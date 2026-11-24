@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Saaf kar do: Never give an agent the originals | Bhasad &amp; Associates, Episode 7</title><meta name="description" content="Bhasad &amp; Associates, episode 7. A new folder with copies only. The agent never touches the originals. A free, copy-ready prompt, what to give the AI and what to check."><link rel="canonical" href="https://aiforseries.github.io/clay/ep7/">
-<meta property="og:type" content="article"><meta property="og:title" content="Saaf kar do: Never give an agent the originals | Bhasad &amp; Associates, Episode 7"><meta property="og:description" content="Bhasad &amp; Associates, episode 7. A new folder with copies only. The agent never touches the originals. A free, copy-ready prompt, what to give the AI and what to check.">
+<title>Saaf kar do: Never the originals: backup first, copies only | Bhasad &amp; Associates, Episode 7</title><meta name="description" content="Bhasad &amp; Associates, episode 7. Never the originals: take a backup, then work only on copies. A free, copy-ready prompt, what to give the AI and what to check."><link rel="canonical" href="https://aiforseries.github.io/clay/ep7/">
+<meta property="og:type" content="article"><meta property="og:title" content="Saaf kar do: Never the originals: backup first, copies only | Bhasad &amp; Associates, Episode 7"><meta property="og:description" content="Bhasad &amp; Associates, episode 7. Never the originals: take a backup, then work only on copies. A free, copy-ready prompt, what to give the AI and what to check.">
 <meta property="og:url" content="https://aiforseries.github.io/clay/ep7/"><meta property="og:site_name" content="The AI For Series"><meta property="og:image" content="https://aiforseries.github.io/og-card.jpg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40' width='30' height='30' aria-hidden='true'%3E%3Crect width='40' height='40' rx='9' fill='%237A1A2B'/%3E%3Ctext x='20' y='24' text-anchor='middle' font-family='system-ui,-apple-system,Segoe UI,sans-serif' font-size='17' font-weight='800' fill='%23fff'%3EAI%3C/text%3E%3Crect x='9' y='28.5' width='22' height='2.2' rx='1' fill='%23e9b949'/%3E%3Crect x='9' y='32.2' width='22' height='2.2' rx='1' fill='%23e9b949'/%3E%3C/svg%3E"><link rel="alternate" type="text/plain" title="llms.txt" href="https://aiforseries.github.io/llms.txt"><style>
@@ -146,16 +146,17 @@ padding:14px 16px;text-decoration:none;color:var(--ink);transition:border-color 
 <nav aria-label="Main"><a href="https://aiforseries.github.io/#books">Books</a><a href="https://aiforseries.github.io/guides/">Guides</a><a href="https://aiforseries.github.io/#free">Free tools</a>
 <a href="https://aiforseries.github.io/#about">About</a><a class="buy" href="https://play.google.com/store/books/details?id=UogmEgAAQBAJ">Free book →</a></nav></div></header><main id="main" class="article"><nav class="crumbs" aria-label="Breadcrumb"><a href="https://aiforseries.github.io/">The AI For Series</a> › <a href="https://aiforseries.github.io/clay/">Bhasad &amp; Associates</a> › Episode 7</nav>
 <p class="ep-k">Episode 7 <span class="tag company">Company</span></p>
-<h1>Saaf kar do<span class="en">Never give an agent the originals</span></h1>
+<h1>Saaf kar do<span class="en">Never the originals: backup first, copies only</span></h1>
 <p class="hook">“AI agent ko original diye?”</p>
-<div class="mh"><div class="no"><b>The mistake</b><p>Letting an AI agent loose on the shared files with &quot;delete whatever is extra&quot;.</p></div><div class="yes"><b>The habit</b><p>A new folder with copies only. The agent never touches the originals.</p></div></div>
+<div class="mh"><div class="no"><b>The mistake</b><p>Letting an AI agent loose on the shared files with &quot;delete whatever is extra&quot;.</p></div><div class="yes"><b>The habit</b><p>Never the originals: take a backup, then work only on copies.</p></div></div>
 <h2>What to give the AI</h2>
-<p>A new folder holding copies of only the files this job needs. Not the shared drive, not the originals, and no wider access than the job needs.</p>
+<p>First take a backup of the originals. Then a new folder holding copies of only the files this job needs. Not the shared drive, not the originals, and no wider access than the job needs.</p>
 <p class="when"><strong>Never paste client or company data into a chat.</strong> Give the headings and the structure; the work runs on your own computer.</p>
 <h2 id="the-prompt">The prompt</h2>
 <p class="when"><strong>When to use:</strong> Before an AI tool that can open, change or delete files works on anything of the company&#x27;s.</p>
 <div class="pbox"><button type="button" class="cbtn" id="copy" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg><span>Copy prompt</span></button>
-<pre id="prompt">Work only inside this folder. It holds copies; the originals are somewhere else and you must not look for them.
+<pre id="prompt">Before anything else, ask me to confirm that a backup of the originals has been taken. Do not start until I say yes.
+Work only inside this folder. It holds copies; the originals are somewhere else and you must not look for them.
 Do not delete, move, rename or overwrite any file.
 1. List every file here with its size and last-modified date, and tell me in plain words what you plan to do with each. Then stop and wait for my OK.
 2. When I say OK, write every result to a new sub-folder called Output, and keep a log in Output/changes_log.xlsx: file, what you did, and why.
