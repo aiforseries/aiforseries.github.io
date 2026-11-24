@@ -223,16 +223,35 @@
     var head = score === R.length ? 'All five caught. Senior reviewer material.' : score >= 3 ? 'Sharp eyes. ' + (R.length - score) + ' slipped past.' : 'Gyaani is very convincing.';
     panel.innerHTML = '<div class="g-end"><span class="g-score">You caught ' + score + ' of ' + R.length + '</span>' + dots() .replace('g-dots', 'g-dots vh2') +
       '<h3 tabindex="-1">' + head + '</h3><p>Every round is one habit: headings, not data. Count before you trust. A source for every section. Totals from Excel. Copies, never originals. Each one comes with a free prompt you can use at work tomorrow.</p>' +
-      '<div class="g-act"><a class="cta" href="/clay/">Get the prompts</a><a class="cta alt" href="#books">Meet the books</a><button type="button" class="cta alt g-again">Play again</button></div>' +
+      '<div class="g-act"><a class="cta" href="/clay/">Get the prompts</a><button type="button" class="cta alt g-card">Make my card</button><a class="cta alt" href="#books">Meet the books</a><button type="button" class="cta alt g-again">Play again</button></div>' +
       '<p style="font:14px var(--sans);color:var(--muted);margin-top:14px">Want more? <a href="https://github.com/aiforseries/ai-prompts-for-audit-and-finance">100 free prompts for audit and finance</a>, each with a check to run before you rely on the result.</p></div>';
     $('.g-end h3', panel).focus({ preventScroll: true });
+    cardJs();
+  }
+  // "Make my card": the share-card maker lives in /lab/card.js (Gyaani's Desk); fetched once, when the score screen shows
+  function cardJs(cb) {
+    if (window.GyaaniCard) { if (cb) cb(); return; }
+    var t = document.getElementById('gy-cardjs');
+    if (!t) { t = document.createElement('script'); t.id = 'gy-cardjs'; t.src = '/lab/card.js'; t.async = true; document.head.appendChild(t); }
+    if (cb) t.addEventListener('load', cb);
+  }
+  function card(btn) {
+    var all = score === R.length;
+    cardJs(function () {
+      window.GyaaniCard.open({ kicker: 'Spot Gyaani’s mistake', head: 'I caught Gyaani ' + score + '/' + R.length, score: score + '/' + R.length, scoreLabel: 'Caught',
+        pose: all ? '01' : score >= 3 ? '06' : '03', fx: all ? 'star' : score >= 3 ? 'heart' : null,
+        line: all ? 'Aap mere reviewer ban jao!' : score >= 3 ? 'Achha review! Main seekh raha hoon.' : 'Main toh sahi tha! …Na?',
+        habit: 'Headings, not data. Count before you trust. Copies, never originals.', sub: 'Can you catch him?',
+        file: 'gyaani-caught-' + score + 'of' + R.length, shareText: 'I caught Gyaani ' + score + '/' + R.length + ' in Spot Gyaani’s mistake.' }, btn);
+    });
   }
   panel.addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b) return;
     if (b.hasAttribute('data-j')) answer(+b.getAttribute('data-j'));
     else if (b.classList.contains('g-next')) {
       if (n === R.length - 1) end(); else { show(n + 1); $('.g-round', panel).focus({ preventScroll: true }); scene.scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' }); }
-    } else if (b.classList.contains('g-again')) { score = 0; res = []; show(0); $('.g-round', panel).focus({ preventScroll: true }); }
+    } else if (b.classList.contains('g-card')) card(b);
+    else if (b.classList.contains('g-again')) { score = 0; res = []; show(0); $('.g-round', panel).focus({ preventScroll: true }); }
   });
   game.addEventListener('keydown', function (e) {
     if (e.altKey || e.ctrlKey || e.metaKey || n >= R.length || res.length > n) return;

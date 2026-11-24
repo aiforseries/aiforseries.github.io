@@ -88,3 +88,8 @@ AI as a tutor, not an answer machine. Study plans that survive a bad week, revis
 - [Free prompt library on GitHub](https://github.com/aiforseries/ai-prompts-for-audit-and-finance): 100 copy-ready prompts from the books, 20 per book, CC BY 4.0
 - [AI for CAs site, with its own llms.txt](https://aiforseries.github.io/ai-for-cas/llms.txt)
 - [Author page on Amazon](https://www.amazon.com/author/chandan-gupta)
+
+## Gyaani's Desk (hands-on tools, run in the browser)
+- [Gyaani's Desk](https://aiforseries.github.io/lab/): five one-minute tools for finance work: brief an AI like a junior, check what is safe to paste, match counts and totals, write a safe brief for an AI agent, and spot Gyaani's mistake. Nothing typed leaves the browser.
+- [Brief Gyaani](https://aiforseries.github.io/lab/brief/): pick a finance task (bank reco, ledger scrutiny, GSTR-2B match, TDS check, vouching sample, AR ageing, notice citations, exam study, duplicate payments, bank narrations) and score a brief to an AI on six visible checks: the task, the data and where it is (headings only), the rule, the output, the checks, and safety and judgement. Includes a strong example brief for each task.
+- [Agent brief builder](https://aiforseries.github.io/lab/agent/): pick a job for an AI agent working on files and switch on eight guardrails (copies, backup, never delete or overwrite originals, plan first, change log, stop on errors, counts and totals, deletions as a list only) to get a copyable, tool-neutral brief.

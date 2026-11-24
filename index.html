@@ -382,6 +382,20 @@ border:2px solid #eadfd5;border-radius:14px;padding:12px 14px;cursor:pointer;box
 .g-opts button{font-size:15px;padding:11px 12px}.g-q{font-size:16.5px}.g-setup{font-size:1em}.g-bubble{max-width:52%;padding:7px 10px;border-radius:14px}
 .band-txt h2{font-size:1.6em}}
 @media (max-width:380px){.gh h1{font-size:2.1em}}
+/* try it yourself: the Gyaani's Desk band below the game */
+.try{position:relative;background:linear-gradient(#f3e5d6,#efdcc8);padding:0 0 46px;margin-top:-1px;border-bottom:1px solid var(--line)}
+.try-in{max-width:1120px;margin:0 auto;background:#fff;border-radius:26px;padding:20px 22px 22px;box-shadow:0 2px 0 #fff inset,0 18px 44px #7a1a2b1f,0 0 0 1px #e6dbd2}
+.try-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 16px;margin:0 0 14px}
+.try h2{margin:0;font-size:1.5em;letter-spacing:-.5px}.try h2 a{color:var(--ink);text-decoration:none}.try h2 a:hover{color:var(--accent)}
+.try-h p{margin:0;font:14px var(--sans);color:var(--muted)}
+.try ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.try li a{display:flex;gap:12px;align-items:center;height:100%;padding:10px 12px;border-radius:16px;background:#fffaf4;border:2px solid #eadfd5;box-shadow:0 3px 0 #eadfd5;
+text-decoration:none;color:var(--ink);font:14px/1.4 var(--sans);transition:transform .15s,border-color .15s}
+.try li a:hover{border-color:var(--accent);transform:translateY(-2px);color:var(--ink)}.try li a:focus-visible{outline:3px solid #b8892a;outline-offset:3px}
+.try li img{flex:none;width:56px;height:56px;object-fit:cover;object-position:50% 6%;border-radius:14px;background:var(--tb,#f6dca8);box-shadow:inset 0 -3px 0 #0001}
+@media (min-width:1180px){.try .wrap{max-width:1260px}}
+.try b{display:block;font-size:15.5px;color:var(--accent)}.try small{display:block;color:var(--muted);font-size:13.5px}
+@media (max-width:640px){.try{padding-bottom:34px}.try-in{margin:0 -8px;padding:16px 14px}.try h2{font-size:1.3em}}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "@id": "https://aiforseries.github.io/#org", "name": "The AI For Series", "url": "https://aiforseries.github.io/", "logo": "https://aiforseries.github.io/logo.png", "description": "Practical AI guides for finance professionals.", "sameAs": ["https://www.linkedin.com/in/chandan-gupta-b8a108192/", "https://www.amazon.com/author/chandan-gupta", "https://www.youtube.com/@theaiforseries", "https://www.instagram.com/theaiforseries/"]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "The AI For Series", "url": "https://aiforseries.github.io/", "inLanguage": "en", "publisher": {"@id": "https://aiforseries.github.io/#org"}}</script>
@@ -390,7 +404,7 @@ border:2px solid #eadfd5;border-radius:14px;padding:12px 14px;cursor:pointer;box
 </head><body><a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap"><a class="brand" href="https://aiforseries.github.io/"><svg class="mark" viewBox="0 0 40 40" width="30" height="30" aria-hidden="true"><rect width="40" height="40" rx="9" fill="#7A1A2B"/><text x="20" y="24" text-anchor="middle" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="17" font-weight="800" fill="#fff">AI</text><rect x="9" y="28.5" width="22" height="2.2" rx="1" fill="#e9b949"/><rect x="9" y="32.2" width="22" height="2.2" rx="1" fill="#e9b949"/></svg><span>The AI For Series</span></a>
 <nav aria-label="Main"><a href="https://aiforseries.github.io/#books">Books</a><a href="https://aiforseries.github.io/guides/">Guides</a><a href="https://aiforseries.github.io/#free">Free tools</a>
-<a href="https://aiforseries.github.io/#skits">Skits</a><a href="https://aiforseries.github.io/#about">About</a><a class="buy" href="https://play.google.com/store/books/details?id=UogmEgAAQBAJ">Free book →</a></nav></div></header>
+<a href="https://aiforseries.github.io/#skits">Skits</a><a href="https://aiforseries.github.io/lab/">Gyaani’s Desk</a><a href="https://aiforseries.github.io/#about">About</a><a class="buy" href="https://play.google.com/store/books/details?id=UogmEgAAQBAJ">Free book →</a></nav></div></header>
 <section class="gh" aria-labelledby="gh-title"><div class="wrap gh-grid">
 <div class="gh-txt"><p class="kicker-top">The AI For Series · AI for finance work</p>
 <h1 id="gh-title">Your new colleague is <em>very</em> confident.</h1>
@@ -432,6 +446,11 @@ border:2px solid #eadfd5;border-radius:14px;padding:12px 14px;cursor:pointer;box
 </div>
 </div>
 </div></section>
+<section class="try" aria-labelledby="try-title"><div class="wrap"><div class="try-in"><div class="try-h"><h2 id="try-title"><a href="/lab/">Now try it yourself <span aria-hidden="true">→</span></a></h2><p>Gyaani’s Desk: four one-minute tools. Runs in your browser; nothing you type leaves your device.</p></div>
+<ul><li><a href="/lab/brief/"><img src="/assets/gyaani/pose-02.webp" width="214" height="412" alt="" loading="lazy"><span><b>Brief Gyaani</b><small>Score how you ask the AI, on six checks.</small></span></a></li>
+<li><a href="/lab/safe-paste/"><img src="/assets/gyaani/pose-04.webp" width="213" height="402" alt="" loading="lazy" style="--tb:#cfe7d6"><span><b>Safe to paste?</b><small>What never goes into a chat, and what to give instead.</small></span></a></li>
+<li><a href="/lab/count-check/"><img src="/assets/gyaani/pose-05.webp" width="259" height="407" alt="" loading="lazy" style="--tb:#d6e3f3"><span><b>Jitna andar, utna bahar</b><small>Rows in, rows out. Make the totals tie.</small></span></a></li>
+<li><a href="/lab/agent/"><img src="/lab/assets/gy-sit.webp" width="131" height="240" alt="" loading="lazy" style="--tb:#e9d9f1"><span><b>Agent brief builder</b><small>Guardrails for an AI agent on your files.</small></span></a></li></ul></div></div></section>
 <section class="band" aria-labelledby="band-title"><div class="wrap band-grid"><div class="band-txt"><p class="kicker-top">Same robot, briefed well</p><h2 id="band-title">Brief him properly and he is brilliant.</h2><p>Column headings instead of client data. A script that runs on your own computer. Totals that tie, and the odd items left for a person. Then you check his chat against the file, because the chat can still be wrong.</p><img src="/assets/gyaani/pose-06.webp" width="294" height="406" alt="" loading="lazy"></div><figure class="run" id="run"><h3 class="run-h">Still on row 1? This desk is already on the exceptions.</h3><p class="run-note">Illustration on made-up practice data.</p>
 <div class="khata" aria-hidden="true"><div class="leaf">
 <div class="k-hand"><small>By hand</small><span class="k-type">Aundh Office, AOS/1613</span><small>row 1 of 358</small></div>
