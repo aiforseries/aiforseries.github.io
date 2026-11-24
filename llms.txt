@@ -69,6 +69,21 @@ AI as a tutor, not an answer machine. Study plans that survive a bad week, revis
 - [Free GSTR-2B Reconciliation Tool (Runs in Your Browser)](https://aiforseries.github.io/ai-for-cas/tools/gstr2b-reconciler.html): Reconcile GSTR-2B with your purchase register free, in your browser: nothing is uploaded. Matches on GSTIN and invoice number, ties control totals and builds the ITC bridge.
 - [AI Use Policy Template for CA Firms in India](https://aiforseries.github.io/ai-for-cas/tools/ca-firm-ai-policy-template.html): A free AI use policy template for Indian CA firms: what client data may be shared, consent, review, documentation, an engagement letter clause and an acknowledgement form.
 
+## Bhasad & Associates (comedy series prompt pages)
+
+- [Bhasad & Associates: all episodes](https://aiforseries.github.io/clay/): a claymation comedy about using AI at work, set in a fictional CA firm and its client company. Each episode page gives the habit and one free, copy-ready prompt, with what to give the AI and what to check.
+- [Episode 1: Section 420-Z (check every citation)](https://aiforseries.github.io/clay/ep1/): Ask for every section with its source, then check the source yourself.
+- [Episode 2: Poora ledger (keep company data out of the chat)](https://aiforseries.github.io/clay/ep2/): Give the AI only the column headings; the script runs on your own laptop.
+- [Episode 3: Audit kar do (brief the AI like a junior)](https://aiforseries.github.io/clay/ep3/): Say what to check, where, the condition and the output, as you would brief an article.
+- [Episode 4: Difference zero (match the counts first)](https://aiforseries.github.io/clay/ep4/): Match the count first: as many entries in as out, and the totals agree to the ledger.
+- [Episode 5: Shortcut (a checker, not a solver)](https://aiforseries.github.io/clay/ep5/): Ask the AI to quiz you and catch your mistakes, not to solve for you.
+- [Episode 6: AI ne bola (the AI didn't see your facts)](https://aiforseries.github.io/clay/ep6/): The AI gives the general rule. Ask it for the source, then apply the current law to the client's facts.
+- [Episode 7: Saaf kar do (never give an agent the originals)](https://aiforseries.github.io/clay/ep7/): A new folder with copies only. The agent never touches the originals.
+- [Episode 8: Sab fraud hai (judgement stays with you)](https://aiforseries.github.io/clay/ep8/): The script gives the list. You decide what each exception means.
+- [Episode 9: Chat se hisaab (get the formula, not the sum)](https://aiforseries.github.io/clay/ep9/): Ask the AI for the formula or the script; let Excel or the script do the maths.
+- [Episode 10: Ek client, sau client (the work scales; the review doesn't vanish)](https://aiforseries.github.io/clay/ep10/): Run one checked script across every client, then review the status table yourself.
+- [Episode 11: Purana Act, naya zamana (say which Act and which year)](https://aiforseries.github.io/clay/ep11/): Say the Act and the year first; then match the section in the new Act using the official mapping.
+
 ## More
 - [Free prompt library on GitHub](https://github.com/aiforseries/ai-prompts-for-audit-and-finance): 100 copy-ready prompts from the books, 20 per book, CC BY 4.0
 - [AI for CAs site, with its own llms.txt](https://aiforseries.github.io/ai-for-cas/llms.txt)
