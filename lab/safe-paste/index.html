@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'none'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Safe to paste? Check data before it goes to an AI chat | The AI For Series</title>
+<meta name="description" content="Paste a ledger, bank statement or email and see the PANs, GSTINs, Aadhaar and account numbers, names and amounts an AI chat would get. Get a masked copy and a headings-only prompt. Runs in your browser; nothing is uploaded.">
+<link rel="canonical" href="https://aiforseries.github.io/lab/safe-paste/">
+<meta property="og:type" content="website"><meta property="og:title" content="Safe to paste? Check data before it goes to an AI chat">
+<meta property="og:description" content="Find the PANs, GSTINs, account numbers and names in what you were about to paste, and get the safe version: only the column headings, with a ready prompt. Nothing leaves your browser.">
+<meta property="og:url" content="https://aiforseries.github.io/lab/safe-paste/"><meta property="og:site_name" content="The AI For Series"><meta property="og:image" content="https://aiforseries.github.io/og-gyaani.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40' width='30' height='30' aria-hidden='true'%3E%3Crect width='40' height='40' rx='9' fill='%237A1A2B'/%3E%3Ctext x='20' y='24' text-anchor='middle' font-family='system-ui,-apple-system,Segoe UI,sans-serif' font-size='17' font-weight='800' fill='%23fff'%3EAI%3C/text%3E%3Crect x='9' y='28.5' width='22' height='2.2' rx='1' fill='%23e9b949'/%3E%3Crect x='9' y='32.2' width='22' height='2.2' rx='1' fill='%23e9b949'/%3E%3C/svg%3E"><link rel="alternate" type="text/plain" title="llms.txt" href="https://aiforseries.github.io/llms.txt">
+<style>
+:root{--ink:#1d1a1a;--muted:#5f5757;--accent:#7A1A2B;--accent2:#5e1220;--gold:#e9b949;--soft:#f7f1ec;--line:#e6dbd2;
+--bg:#fffdfa;--good:#1d6b35;--bad:#a3141f;--sans:system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif;--mono:ui-monospace,Menlo,Consolas,monospace;
+--clay:#f4e6d4;--paper:#fff8ec;--grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font:17px/1.7 Georgia,'Noto Serif',serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:2px}a:hover{color:var(--accent2)}
+img{max-width:100%;height:auto}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.top{position:sticky;top:0;z-index:20;background:rgba(255,253,250,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:18px;min-height:58px;flex-wrap:wrap;max-width:1000px}
+.brand{display:flex;align-items:center;gap:10px;font:800 17px var(--sans);color:var(--ink);text-decoration:none;letter-spacing:-.2px;margin-right:auto}
+.brand:hover{color:var(--accent)}.brand .mark{flex:none;border-radius:9px}
+.top nav{display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+.top nav a{font:600 14px var(--sans);text-decoration:none;color:var(--ink);padding:6px 10px;border-radius:6px}
+.top nav a:hover{background:var(--soft);color:var(--accent)}
+.top nav a.buy{background:var(--accent);color:#fff}.top nav a.buy:hover{background:var(--accent2);color:#fff}
+h1,h2,h3{font-family:var(--sans);line-height:1.22;letter-spacing:-.3px}
+.skip{position:absolute;left:-999px;top:8px;z-index:50;background:var(--accent);color:#fff;padding:8px 14px;border-radius:6px;font:700 14px var(--sans)}
+.skip:focus{left:12px}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+footer .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:22px 28px;margin-bottom:22px}
+footer h4{font:700 12px var(--sans);text-transform:uppercase;letter-spacing:.7px;color:#fff;margin:0 0 8px}
+footer ul{list-style:none;padding:0;margin:0}footer li{margin:5px 0}footer .grid a{text-decoration:none;color:#e9dfe0;font-weight:500}
+footer .grid a:hover{color:#fff;text-decoration:underline}footer .legal{border-top:1px solid #ffffff1f;padding-top:14px}
+footer{background:#2a1d1f;color:#d9cdcf;margin-top:4em;font:14px/1.6 var(--sans)}
+footer .wrap{padding-top:30px;padding-bottom:40px;max-width:1000px}footer a{color:#fff}
+footer p{margin:.4em 0;color:#bfb1b3}
+@media (max-width:640px){body{font-size:16px}.top .wrap{padding-top:6px;padding-bottom:6px}.top nav a{padding:5px 7px;font-size:13px}}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* ---------- lab hero ---------- */
+.lh{position:relative;color:#fff;background:radial-gradient(120% 90% at 85% 10%,#93283c 0%,#7A1A2B 38%,#4d0f1b 100%);overflow:hidden}
+.lh::before{content:"";position:absolute;inset:0;background:var(--grain);opacity:.16;pointer-events:none;mix-blend-mode:overlay}
+.lh .wrap{position:relative;padding-top:20px;padding-bottom:30px}
+.crumbs{font:14px var(--sans);color:#ecd6da;margin:0 0 14px}.crumbs a{color:#fff;text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.kick{font:800 12.5px var(--sans);text-transform:uppercase;letter-spacing:1.1px;color:var(--gold);margin:0}
+.lh h1{color:#fff;font-size:3.1em;line-height:1.02;letter-spacing:-1.3px;margin:.12em 0 .25em}
+.lh h1 em{font-family:Georgia,'Noto Serif',serif;color:var(--gold);letter-spacing:-.5px}
+.lh-sub{font-size:1.14em;line-height:1.5;color:#f6e7ea;margin:0;max-width:36em}
+.priv{display:flex;gap:14px;align-items:center;margin:20px 0 0;max-width:780px;background:#fff8ec;color:#1d1a1a;border-radius:18px;padding:14px 18px;
+box-shadow:inset 0 -4px 0 #ecdcc4,0 14px 30px #0005}
+.priv svg{flex:none;width:40px;height:40px;padding:8px;border-radius:12px;background:var(--good);fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.priv b{display:block;font:800 18px/1.3 var(--sans);color:var(--good)}
+.priv span{display:block;font:14px/1.45 var(--sans);color:#4a4242}
+.lh-peek{position:absolute;right:max(22px,calc(50% - 560px));bottom:-6px;width:150px;filter:drop-shadow(0 -4px 10px #0005)}
+@media (max-width:860px){.lh-peek{display:none}}
+@media (max-width:640px){.lh h1{font-size:2.35em}.lh .wrap{padding-top:14px;padding-bottom:22px}.priv{align-items:flex-start;padding:12px 14px}.priv b{font-size:16.5px}.priv svg{width:34px;height:34px;padding:6px}}
+
+/* ---------- the tool ---------- */
+.tool{display:grid;gap:20px;margin-top:26px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:980px){.drop textarea{min-height:330px}.tool{grid-template-columns:minmax(0,1fr) 380px;align-items:start}}
+.res{margin-top:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 1px 0 #fff inset,0 10px 30px #7a1a2b0f}
+.inp{padding:16px 16px 14px}
+.inp-h{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:10px}
+.inp-h label{font:800 17px/1.3 var(--sans)}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.b{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:9px 16px;border-radius:12px;border:2px solid var(--accent);
+background:#fff;color:var(--accent);font:700 15px var(--sans);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:transform .12s,background .15s}
+.b:hover{background:var(--soft)}.b:active{transform:translateY(2px)}
+.b.pri{background:var(--gold);border-color:var(--gold);color:#2a1408;box-shadow:0 4px 0 #b8892a}.b.pri:hover{background:#f3c95f}.b.pri:active{box-shadow:0 1px 0 #b8892a}
+.b.ghost{border-color:var(--line);color:var(--muted)}
+.b svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.drop{position:relative;border-radius:14px}
+.drop textarea{display:block;width:100%;min-height:230px;resize:vertical;border:2px dashed #d9c8bb;border-radius:14px;background:#fffcf7;padding:14px;
+font:14px/1.55 var(--mono);color:var(--ink);tab-size:4;white-space:pre;overflow:auto}
+.drop textarea:focus{border-style:solid;border-color:var(--accent);outline:0;box-shadow:0 0 0 4px #e9b94955}
+.drop .over{position:absolute;inset:0;display:none;place-items:center;border-radius:14px;background:#7a1a2bdd;color:#fff;font:800 20px var(--sans);pointer-events:none}
+.drop.drag .over{display:grid}
+.inp-f{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:10px;font:14px/1.4 var(--sans);color:var(--muted)}
+.inp-f .b{min-height:40px;padding:7px 14px;font-size:14px}
+.note{font:13.5px/1.5 var(--sans);color:var(--muted);margin:8px 0 0}
+.note.samp{background:#fff4d6;border-radius:10px;padding:8px 12px;color:#5a4410}
+
+/* Gyaani's desk */
+.desk{overflow:hidden;scroll-margin-top:124px}
+.stage{position:relative;aspect-ratio:16/11;overflow:hidden;background:#8bab3f;isolation:isolate;border-bottom:6px solid var(--clay)}
+.stage .set{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.stage::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 66% 55%,#fff3 0%,transparent 70%),linear-gradient(transparent 55%,#0002);pointer-events:none;z-index:1}
+.dk{position:absolute;z-index:4;left:-2%;right:-2%;bottom:0;height:19%;background:var(--grain),linear-gradient(#cf8a4d 0,#cf8a4d 14%,#b06a33 15%,#9a5a2b 100%);
+background-size:160px,auto;border-top:3px solid #e3a56a;box-shadow:0 -6px 18px #0003}
+.dk .files{position:absolute;left:5%;bottom:60%;width:13%;filter:drop-shadow(0 6px 4px #0004)}
+.dk .chai{position:absolute;right:6%;bottom:72%;width:8%;filter:drop-shadow(0 6px 4px #0004)}
+.bub{position:absolute;z-index:5;left:4%;top:7%;max-width:48%;margin:0;padding:10px 13px;background:var(--paper);color:#2a1d1f;border-radius:18px;
+font:700 15px/1.3 var(--sans);box-shadow:inset 0 -4px 0 #ecdcc4,0 10px 22px #0004;min-height:3.3em;display:flex;align-items:center}
+.bub::after{content:"";position:absolute;right:-9px;bottom:14px;width:26px;height:20px;background:var(--paper);clip-path:polygon(0 0,100% 70%,30% 100%)}
+.gy{position:absolute;z-index:3;left:70%;bottom:8%;width:39%;aspect-ratio:386/516;transform:translateX(-50%)}
+.gy span,.gy img{position:absolute;display:block}
+.gy-tilt,.gy-hop,.gy-breathe{inset:0;transform-origin:50% 100%}
+.gy-head{left:0;top:0;width:100%;height:100%}
+.gy-ant{left:38.86%;top:0;width:23.32%;height:20.35%;transform-origin:50% 95%}
+.gy-eye{overflow:hidden;border-radius:50%}
+.gy-el{left:22.02%;top:33.33%;width:25.39%;height:15.5%}
+.gy-er{left:55.44%;top:33.14%;width:24.61%;height:16.28%}
+.gy-eye img{width:39.8%;height:auto;aspect-ratio:1;transition:left .35s,top .35s}
+.gy-el img{left:41.2%;top:44.25%;width:39.8%}
+.gy-er img{left:12.6%;top:43.6%;width:41.05%}
+.gy-m,.gy-blink{visibility:hidden}
+.gy-m{left:30.57%;top:54.65%;width:39.9%;height:21.32%}
+.gy-blink{left:16.06%;top:29.07%;width:70.47%;height:27.52%}
+.gy[data-m="1"] [data-m="1"],.gy[data-m="2"] [data-m="2"],.gy[data-m="3"] [data-m="3"],.gy[data-m="4"] [data-m="4"],.gy.blink .gy-blink{visibility:visible}
+.gy-hand{width:46%;opacity:0;transition:opacity .25s,transform .35s cubic-bezier(.3,1.5,.5,1);filter:drop-shadow(0 4px 5px #0005)}
+.gy-hl{left:4%;top:32%;transform:translateY(140%) rotate(165deg)}
+.gy-hr{left:50%;top:32%;transform:translateY(140%) rotate(-165deg)}
+.cheer{position:absolute;z-index:3;left:68%;bottom:9%;height:80%;width:auto;max-width:none;transform:translateX(-50%) scale(.6);opacity:0;transform-origin:50% 100%;transition:opacity .2s,transform .4s cubic-bezier(.3,1.6,.5,1)}
+.fx{position:absolute;z-index:5;right:3%;top:8%;width:17%;opacity:0;transform:scale(.3) rotate(-20deg);transition:opacity .2s,transform .4s cubic-bezier(.3,1.6,.5,1);pointer-events:none}
+.stage[data-fx="sweat"] .fx-sweat,.stage[data-fx="bang"] .fx-bang,.stage[data-fx="bulb"] .fx-bulb,.stage[data-fx="star"] .fx-star{opacity:1;transform:none}
+.stage[data-s="lots"] .gy-hand{opacity:1}
+.stage[data-s="lots"] .gy-hl{transform:rotate(160deg)}.stage[data-s="lots"] .gy-hr{transform:rotate(-160deg)}
+.stage[data-s="lots"] .gy-blink{visibility:visible}
+.stage[data-s="some"] .gy-el img{top:62%;left:18%}.stage[data-s="some"] .gy-er img{top:62%;left:5%}
+.stage[data-s="cheer"] .gy{opacity:0}.stage[data-s="cheer"] .cheer{opacity:1;transform:translateX(-50%)}
+.gy{transition:opacity .2s}
+.talk{padding:14px 18px 18px}
+.vt{font:800 1.5em/1.15 var(--sans);margin:0 0 4px;letter-spacing:-.5px}
+.vt.bad{color:var(--bad)}.vt.ok{color:var(--good)}.vt.warn{color:#8a5a00}
+.vs{margin:0;font:15px/1.5 var(--sans);color:var(--muted)}
+.chips{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:7px}
+.chips li{display:inline-flex;align-items:baseline;gap:6px;border-radius:99px;padding:5px 12px 5px 10px;font:600 14px/1.3 var(--sans);background:var(--soft);border:1px solid #0000000d}
+.chips b{font-size:17px;font-weight:800}
+.chips small{font-size:12px;opacity:.75}
+
+/* type colours (used by marks and chips) */
+.t-party{--c:#8a4b00;--k:#ffe3b8}.t-pan{--c:#7A1A2B;--k:#f8d3db}.t-gstin{--c:#5b2a86;--k:#e6d8f5}.t-aadhaar{--c:#a3141f;--k:#ffd0cc}
+.t-acct{--c:#1f4e79;--k:#d4e6f7}.t-ifsc{--c:#245a6b;--k:#d3eef2}.t-email{--c:#0f6a5a;--k:#cdeee6}.t-phone{--c:#3d5a12;--k:#e0f0c5}
+.t-amount{--c:#4f4a12;--k:#f4efc2}.t-date{--c:#555;--k:#e9e5e1}
+.chips li[class^="t-"]{background:var(--k);color:var(--c);border-color:transparent}
+mark{background:var(--k);color:var(--c);border-radius:4px;padding:0 2px;box-shadow:inset 0 -2px 0 var(--c);font-weight:700}
+mark.t-amount,mark.t-date{box-shadow:none;font-weight:600}
+
+/* results */
+.res{padding:0;overflow:hidden}
+.tabs{display:flex;gap:4px;padding:10px 10px 0;background:var(--soft);border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{flex:none;display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:8px 16px;border:0;border-radius:12px 12px 0 0;background:none;color:var(--muted);
+font:700 15px var(--sans);cursor:pointer}
+.tabs button[aria-selected="true"]{background:#fff;color:var(--ink);box-shadow:0 -2px 0 var(--accent) inset,0 0 0 1px var(--line)}
+.tabs .pill{font:800 11px var(--sans);text-transform:uppercase;letter-spacing:.6px;border-radius:99px;padding:2px 8px;background:var(--good);color:#fff}
+.tabs .pill.no{background:var(--bad)}.tabs .pill.mid{background:#b07400}
+.pane{padding:16px}
+.pane[hidden]{display:none}
+.ph{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:0 0 12px}
+.ph p{margin:0;font:15px/1.5 var(--sans);color:var(--muted);max-width:44em}
+.ph p strong{color:var(--ink)}
+.view{max-height:520px;overflow:auto;border:1px solid var(--line);border-radius:12px;background:#fffdfa}
+.view table{border-collapse:separate;border-spacing:0;font:13.5px/1.45 var(--sans);min-width:100%}
+.view th{position:sticky;top:0;background:#f4ece4;text-align:left;font-weight:800;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap;z-index:1}
+.view td{padding:6px 10px;border-bottom:1px solid #f0e7df;white-space:nowrap;vertical-align:top}
+.view td.n{color:#a39b95;font:12px var(--mono);text-align:right;user-select:none}
+.view pre{margin:0;padding:12px 14px;font:13.5px/1.6 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere}
+.more{font:13px var(--sans);color:var(--muted);margin:8px 2px 0}
+.opt{display:inline-flex;gap:8px;align-items:center;font:600 14px var(--sans);color:var(--ink);cursor:pointer}
+.opt input{width:20px;height:20px;accent-color:var(--accent)}
+.warn-box{margin:12px 0 0;padding:10px 14px;border-radius:12px;background:#fff4d6;font:14px/1.5 var(--sans);color:#5a4410}
+details.key{margin-top:12px;font:14px/1.5 var(--sans)}details.key summary{cursor:pointer;font-weight:700;color:var(--accent)}
+.empty{padding:26px 10px;text-align:center;font:15px/1.5 var(--sans);color:var(--muted)}
+/* headings only */
+.safe{display:grid;gap:16px}
+@media (min-width:860px){.safe{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}}
+.hcols{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.hcols li{display:flex;gap:10px;align-items:baseline;background:#f3faf4;border:1px solid #cfe6d4;border-radius:10px;padding:7px 12px;font:14px/1.4 var(--sans)}
+.hcols b{font-weight:800;color:#13471f}.hcols span{color:var(--muted)}
+.safe h3{font-size:1em;margin:0 0 8px;text-transform:uppercase;letter-spacing:.6px;color:var(--good)}
+.task{display:block;font:700 14px var(--sans);margin:0 0 6px}
+.task-in{width:100%;min-height:46px;border:2px solid var(--line);border-radius:12px;padding:10px 12px;font:15px/1.4 var(--sans);resize:vertical}
+.task-in:focus{border-color:var(--accent);outline:0;box-shadow:0 0 0 4px #e9b94955}
+.pbox{margin-top:12px}
+.pbox pre{margin:0;border-radius:0 0 12px 12px;background:#f4eee9;border-left:3px solid var(--good);padding:12px 14px;font:13.5px/1.55 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;max-height:420px;overflow:auto}
+.cbtn{display:flex;width:100%;align-items:center;justify-content:center;gap:8px;min-height:50px;border:0;border-radius:12px 12px 0 0;
+background:var(--good);color:#fff;font:800 16px var(--sans);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.cbtn:hover{background:#155a2b}.cbtn.ok{background:#0e4f23}
+.cbtn.alt{background:var(--accent)}.cbtn.alt:hover{background:var(--accent2)}
+.cbtn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.cb-row{display:flex;flex-wrap:wrap;gap:8px}
+.ok-band[hidden]{display:none}.ok-band{display:flex;gap:14px;align-items:center;margin:0 0 16px;padding:10px 16px;border-radius:16px;background:linear-gradient(90deg,#e3f4e6,#f3faf4);border:1px solid #cfe6d4;position:relative}
+.ok-band img{width:78px;flex:none;margin:-22px 0 -10px;filter:drop-shadow(0 6px 6px #0002)}
+.ok-band .st{position:absolute;left:58px;top:-6px;width:30px}
+.ok-band b{display:block;font:800 18px/1.25 var(--sans);color:var(--good)}.ok-band span{font:14.5px/1.45 var(--sans);color:#35513b}
+@media (prefers-reduced-motion:no-preference){.ok-band img.g{animation:gy-jump2 1.2s cubic-bezier(.3,.7,.4,1) 2}}
+@keyframes gy-jump2{0%,100%{transform:none}40%{transform:translateY(-10%) scale(.97,1.04)}70%{transform:scale(1.04,.95)}}
+/* explainer */
+.ex{max-width:1000px}
+.ex h2{font-size:1.5em;margin:2em 0 .4em}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));counter-reset:s}
+.steps li{counter-increment:s;position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px;font:15px/1.55 var(--sans);color:var(--muted)}
+.steps li::before{content:counter(s);position:absolute;top:-12px;left:16px;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font:800 14px/28px var(--sans);text-align:center}
+.steps b{display:block;color:var(--ink);font-size:16.5px;margin:4px 0 2px}
+.ep{display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-left:6px solid var(--gold);border-radius:16px;
+padding:14px 16px;margin:1.6em 0;text-decoration:none;color:var(--ink)}
+.ep:hover{border-color:var(--accent);color:var(--ink)}.ep img{width:96px;border-radius:10px}
+.ep small{display:block;font:800 11.5px var(--sans);text-transform:uppercase;letter-spacing:.6px;color:#a8802a}
+.ep strong{display:block;font:800 18px/1.3 var(--sans);color:var(--accent)}.ep span{display:block;font:14.5px/1.5 var(--sans);color:var(--muted)}
+.look{font:15px/1.6 var(--sans);columns:2 300px;column-gap:28px;padding-left:1.2em}.look li{break-inside:avoid;margin:0 0 6px}
+.fine{font:14px/1.55 var(--sans);color:var(--muted)}
+@media (max-width:640px){.wrap{padding:0 16px}.tool{margin-top:18px;gap:16px}.drop textarea{min-height:190px;font-size:13px}
+.stage{aspect-ratio:16/10}.bub{font-size:14px;max-width:52%}.vt{font-size:1.32em}.tabs button{padding:8px 12px;font-size:14px}.pane{padding:12px}
+.ep{grid-template-columns:64px 1fr}.ep img{width:64px}
+.tabs{padding:8px 8px 0;gap:2px}.tabs button{flex:1 1 0;flex-direction:column;gap:3px;padding:8px 4px;font-size:13.5px;line-height:1.2;white-space:normal;text-align:center}
+.chips{gap:6px}.chips li{font-size:13px;padding:4px 10px 4px 9px}.chips b{font-size:15px}.ok-band img{width:64px}}
+@media (prefers-reduced-motion:no-preference){
+.gy-breathe{animation:gy-breathe 3.4s ease-in-out infinite}
+.gy-ant{animation:gy-sway 2.9s ease-in-out infinite}
+.gy.hop .gy-hop{animation:gy-hop .72s cubic-bezier(.3,.7,.4,1)}
+.stage[data-s="lots"] .gy-tilt{animation:gy-shiver .18s linear 6}
+.stage[data-fx="sweat"] .fx-sweat{animation:gy-drip 1.6s ease-in-out infinite}
+.stage[data-s="cheer"] .cheer{animation:gy-jump 1.1s cubic-bezier(.3,.7,.4,1) .15s 2}
+.bub.pop{animation:gy-bub .35s cubic-bezier(.3,1.5,.5,1)}
+.chips li{animation:gy-bub .35s cubic-bezier(.3,1.5,.5,1) backwards}
+}
+@keyframes gy-breathe{0%,100%{transform:none}50%{transform:translateY(-1.2%) scaleY(1.012)}}
+@keyframes gy-sway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@keyframes gy-hop{0%{transform:none}14%{transform:scale(1.07,.9)}38%{transform:translateY(-11%) scale(.95,1.06)}62%{transform:translateY(0) scale(1.06,.92)}78%{transform:scale(.98,1.03)}100%{transform:none}}
+@keyframes gy-shiver{0%,100%{transform:none}25%{transform:translateX(-1.5%) rotate(-1deg)}75%{transform:translateX(1.5%) rotate(1deg)}}
+@keyframes gy-drip{0%,100%{transform:none}50%{transform:translateY(10%)}}
+@keyframes gy-jump{0%,100%{transform:translateX(-50%)}40%{transform:translateX(-50%) translateY(-9%) scale(.97,1.04)}70%{transform:translateX(-50%) scale(1.04,.95)}}
+@keyframes gy-bub{0%{transform:scale(.85);opacity:.4}100%{transform:none;opacity:1}}
+@media print{.top,footer,.desk,.tabs,.inp{display:none}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Safe to paste?", "url": "https://aiforseries.github.io/lab/safe-paste/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (runs in the browser)", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}, "description": "Checks pasted text or a CSV for PANs, GSTINs, Aadhaar-like numbers, IFSCs, account numbers, emails, phone numbers, names, amounts and dates, entirely in the browser. Gives a masked copy and a headings-only prompt for an AI.", "publisher": {"@type": "Organization", "name": "The AI For Series", "url": "https://aiforseries.github.io/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "The AI For Series", "item": "https://aiforseries.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Gyaani's Desk", "item": "https://aiforseries.github.io/lab/"}, {"@type": "ListItem", "position": 3, "name": "Safe to paste?", "item": "https://aiforseries.github.io/lab/safe-paste/"}]}</script>
+</head><body><a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap"><a class="brand" href="https://aiforseries.github.io/"><svg class="mark" viewBox="0 0 40 40" width="30" height="30" aria-hidden="true"><rect width="40" height="40" rx="9" fill="#7A1A2B"/><text x="20" y="24" text-anchor="middle" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="17" font-weight="800" fill="#fff">AI</text><rect x="9" y="28.5" width="22" height="2.2" rx="1" fill="#e9b949"/><rect x="9" y="32.2" width="22" height="2.2" rx="1" fill="#e9b949"/></svg><span>The AI For Series</span></a>
+<nav aria-label="Main"><a href="https://aiforseries.github.io/#books">Books</a><a href="https://aiforseries.github.io/guides/">Guides</a><a href="https://aiforseries.github.io/#free">Free tools</a>
+<a href="https://aiforseries.github.io/#skits">Skits</a><a href="https://aiforseries.github.io/#about">About</a><a class="buy" href="https://play.google.com/store/books/details?id=UogmEgAAQBAJ">Free book →</a></nav></div></header>
+<main id="main">
+<section class="lh" aria-labelledby="h1"><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="https://aiforseries.github.io/">The AI For Series</a> › <a href="https://aiforseries.github.io/lab/">Gyaani’s Desk</a> › Safe to paste?</nav>
+<p class="kick">Gyaani’s Desk · Before you paste</p>
+<h1 id="h1">Safe to <em>paste?</em></h1>
+<p class="lh-sub">Paste a ledger, a bank statement or an email you were about to give an AI chat. See the PANs, account numbers and names it would get, and the safe thing to give it instead: only the column headings.</p>
+<p class="priv"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span><b>Nothing you paste leaves your browser. There is no server.</b>
+<span>No uploads, no analytics, no cookies. This page is locked so it cannot send data anywhere. Try it with your Wi-Fi off.</span></span></p>
+<img class="lh-peek" src="/assets/gyaani/pose-08.webp" width="257" height="255" alt="">
+</div></section>
+
+<div class="wrap">
+<div class="tool">
+<section class="card inp" aria-labelledby="src-l">
+<div class="inp-h"><label id="src-l" for="src">Paste anything: rows from Excel, CSV text, an email</label>
+<div class="btns"><button type="button" class="b pri" id="sample"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l14 9-14 9z"/></svg>Try a sample</button><button type="button" class="b ghost" id="clear">Clear</button></div></div>
+<div class="drop" id="drop"><textarea id="src" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="src-n" placeholder="Date	Party Name	PAN	Amount
+01/04/2026	…
+
+Paste here, or drop a CSV file on this box."></textarea><div class="over" aria-hidden="true">Drop it. It stays on this device.</div></div>
+<div class="inp-f"><span>or</span><button type="button" class="b" id="pick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg>Choose a CSV</button><input type="file" id="file" accept=".csv,.tsv,.txt,text/csv,text/plain" hidden><span id="src-n">CSV, TSV or text. The file is read on this device only.</span></div>
+<p class="note samp" id="samp-note" hidden>Sample: a made-up creditors ledger of Kapoor Industries, the fictional company in <i>Bhasad &amp; Associates</i>. Every name, PAN, GSTIN and account number in it is invented.</p>
+</section>
+
+<section class="card desk" aria-labelledby="vt">
+<div class="stage" id="stage" data-s="idle" aria-hidden="true">
+<img class="set" src="/assets/gyaani/stage-office.webp" width="640" height="571" alt="">
+<p class="bub" id="bub">Paste kuch bhi. Main sirf dekhunga, bhejunga kuch nahi.</p>
+<div class="gy" id="gy"><span class="gy-tilt"><span class="gy-hop"><span class="gy-breathe">
+<img class="gy-head" src="/assets/gyaani/g-head.webp" width="386" height="516" alt="">
+<img class="gy-ant" src="/assets/gyaani/g-antenna.webp" width="90" height="105" alt="">
+<span class="gy-eye gy-el"><img src="/assets/gyaani/g-pupil.webp" width="39" height="39" alt=""></span>
+<span class="gy-eye gy-er"><img src="/assets/gyaani/g-pupil.webp" width="39" height="39" alt=""></span>
+<img class="gy-m" data-m="1" src="/assets/gyaani/g-m1.webp" width="154" height="110" alt="">
+<img class="gy-m" data-m="2" src="/assets/gyaani/g-m2.webp" width="154" height="110" alt="">
+<img class="gy-m" data-m="3" src="/assets/gyaani/g-m3.webp" width="154" height="110" alt="">
+<img class="gy-m" data-m="4" src="/assets/gyaani/g-m4.webp" width="154" height="110" alt="">
+<img class="gy-blink" src="/assets/gyaani/g-blink.webp" width="272" height="142" alt="">
+<img class="gy-hand gy-hl" src="/lab/assets/safe-paste/hand-l.webp" width="72" height="47" alt="">
+<img class="gy-hand gy-hr" src="/lab/assets/safe-paste/hand-r.webp" width="70" height="47" alt="">
+</span></span></span></div>
+<img class="cheer" src="/assets/gyaani/pose-03.webp" width="299" height="402" alt="">
+<img class="fx fx-sweat" src="/assets/gyaani/fx-sweat.webp" width="160" height="158" alt="">
+<img class="fx fx-bang" src="/assets/gyaani/fx-bang.webp" width="82" height="160" alt="">
+<img class="fx fx-bulb" src="/assets/gyaani/fx-bulb.webp" width="85" height="160" alt="">
+<img class="fx fx-star" src="/assets/gyaani/fx-star.webp" width="159" height="160" alt="">
+<div class="dk"><img class="files" src="/assets/gyaani/prop-files.webp" width="219" height="371" alt=""><img class="chai" src="/assets/gyaani/prop-chai.webp" width="150" height="201" alt=""></div>
+</div>
+<div class="talk">
+<h2 class="vt" id="vt">Nothing pasted yet</h2>
+<p class="vs" id="vs">Paste some rows or try the sample. Gyaani will tell you what an AI chat would see.</p>
+<ul class="chips" id="chips" aria-label="What was found"></ul>
+</div>
+<p class="vh" id="live" role="status" aria-live="polite"></p>
+</section>
+
+</div>
+<section class="card res" aria-label="Results">
+<div class="tabs" role="tablist" aria-label="Three views of your data">
+<button type="button" role="tab" id="tab-hl" aria-controls="p-hl" aria-selected="true">What the AI sees <span class="pill no" id="pill-hl" hidden>Not safe</span></button>
+<button type="button" role="tab" id="tab-mk" aria-controls="p-mk" aria-selected="false" tabindex="-1">Masked copy <span class="pill mid">Safer</span></button>
+<button type="button" role="tab" id="tab-hd" aria-controls="p-hd" aria-selected="false" tabindex="-1">Headings only <span class="pill">Safe</span></button>
+</div>
+<div class="pane" role="tabpanel" id="p-hl" aria-labelledby="tab-hl" tabindex="0">
+<div class="ph"><p>Everything highlighted would go to the AI company’s servers the moment you press send.</p></div>
+<div id="hl-view"><p class="empty">Paste something above, or press <strong>Try a sample</strong>.</p></div>
+</div>
+<div class="pane" role="tabpanel" id="p-mk" aria-labelledby="tab-mk" tabindex="0" hidden>
+<div class="ph"><p><strong>Safer, not safe.</strong> Each value gets the same token every time (PARTY_01, PAN_01…), so totals by party still work. Amounts and dates are kept unless you tick the box.</p>
+<label class="opt"><input type="checkbox" id="mask-all"> Mask amounts and dates too</label></div>
+<div class="cb-row" style="margin-bottom:12px"><button type="button" class="b" id="copy-mk"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg><span>Copy masked copy</span></button><button type="button" class="b ghost" id="dl-mk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg>Save as CSV</button></div>
+<div id="mk-view"><p class="empty">The masked copy appears here.</p></div>
+<p class="warn-box">Masking is pattern matching. It can miss a name typed in a free-text column, and figures can still identify a client. Check your firm’s policy before a masked file goes anywhere. The safe habit is the next tab.</p>
+<details class="key" id="key"><summary>The key: which token is which (keep this on your computer)</summary><div id="key-view"></div></details>
+</div>
+<div class="pane" role="tabpanel" id="p-hd" aria-labelledby="tab-hd" tabindex="0" hidden>
+<div class="ok-band" id="ok-band" hidden><img class="g" src="/assets/gyaani/pose-03.webp" width="299" height="402" alt=""><img class="st" src="/assets/gyaani/fx-star.webp" width="159" height="160" alt=""><div><b>Sirf headings? Shabaash!</b><span>This is the safe thing to give an AI: the shape of your file, not its contents.</span></div></div>
+<div id="hd-view"><p class="empty">The headings appear here.</p></div>
+</div>
+</section>
+
+<section class="ex" aria-labelledby="how">
+<h2 id="how">The habit, in three steps</h2>
+<ol class="steps"><li><b>Look before you paste</b>Anything in a chat box goes to the AI company’s servers. Ledgers, statements and emails are full of PANs, account numbers and names.</li>
+<li><b>Give only the headings</b>Date, Party Name, PAN, Amount. That is all the AI needs to write a script for your file. Not one data row.</li>
+<li><b>Run it on your computer</b>The script reads the real file on your laptop and prints only counts and totals. Check rows in equal rows out, and that the totals agree.</li></ol>
+<a class="ep" href="https://aiforseries.github.io/clay/ep2/"><img src="/assets/gyaani/pose-02.webp" width="214" height="412" alt="" loading="lazy" style="width:auto;height:96px;justify-self:center"><div><small>Bhasad &amp; Associates · Episode 2</small><strong>Poora ledger: keep company data out of the chat</strong><span>The skit, and the one-line prompt to add to any request that touches company data.</span></div></a>
+<h2>What it looks for</h2>
+<ul class="look"><li><b>PAN</b>: five letters, four digits, one letter (AAAAA9999A)</li><li><b>GSTIN</b>: the 15-character pattern (state code, PAN, entity, Z, check)</li>
+<li><b>Aadhaar-like numbers</b>: 12 digits in groups of four, or 12 digits that pass the Aadhaar check digit</li><li><b>IFSC</b>: four letters, a zero, six letters or digits</li>
+<li><b>Account-like numbers</b>: runs of 9 to 18 digits, and any long number in an Account column</li><li><b>Emails and phone numbers</b>: Indian mobiles (with or without +91) and landlines</li>
+<li><b>Names</b>: whole cells in Name, Party, Vendor, Customer, Payee or Employee columns, and business or person names inside Narration and Particulars</li><li><b>Amounts and dates</b>: 1,23,456.00, ₹ and Rs. amounts, Dr/Cr, and the common date formats</li></ul>
+<p class="fine">This is pattern matching in your browser, not a guarantee. It can miss things and flag harmless ones; you stay the reviewer. The page makes no network requests once loaded: its security policy blocks them, and there is nothing to send them to.</p>
+</section>
+</div>
+</main><footer><div class="wrap"><nav class="grid" aria-label="Footer"><div><h4>Books</h4><ul><li><a href="https://aiforseries.github.io/which-ai-which-plan/">Which AI, Which Plan? (free)</a></li><li><a href="https://aiforseries.github.io/ai-for-cas/">AI for CAs</a></li><li><a href="https://aiforseries.github.io/ai-for-internal-auditors/">AI for Internal Auditors</a></li><li><a href="https://aiforseries.github.io/excel-ai-for-finance/">Excel + AI for Finance Teams</a></li><li><a href="https://aiforseries.github.io/ai-for-tax-practitioners/">AI for Tax Practitioners</a></li><li><a href="https://aiforseries.github.io/ai-for-ca-students/">AI for CA Students</a></li></ul></div>
+<div><h4>Gyaani’s Desk</h4><ul><li><a href="https://aiforseries.github.io/lab/">All the desk tools</a></li><li><a href="https://aiforseries.github.io/lab/safe-paste/">Safe to paste?</a></li><li><a href="https://aiforseries.github.io/lab/count-check/">Jitna andar, utna bahar</a></li></ul></div>
+<div><h4>Bhasad &amp; Associates</h4><ul><li><a href="https://aiforseries.github.io/clay/">All episodes and prompts</a></li><li>Instagram and YouTube: @theaiforseries</li></ul></div>
+<div><h4>Free</h4><ul><li><a href="https://github.com/aiforseries/ai-prompts-for-audit-and-finance">Free prompt library (GitHub)</a></li><li><a href="https://aiforseries.github.io/guides/">Free guides</a></li><li><a href="https://aiforseries.github.io/tools/form-3cd-to-form-26-crosswalk.html">Form 3CD to Form 26 crosswalk</a></li></ul></div></nav>
+<p class="legal">Educational, not professional advice. Pattern checks can miss things; you remain responsible for what you share.<br>
+Kapoor Industries and every name and number in the sample are fictional. © 2026 The AI For Series.
+Independent publications, not affiliated with or endorsed by any AI company or professional body. Updated 2026-11-24.</p></div></footer>
+<script src="/lab/assets/safe-paste/safe-paste.js" defer></script>
+<script src="/assets/gyaani/corner.js" defer></script></body></html>
