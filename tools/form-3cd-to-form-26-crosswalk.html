@@ -306,4 +306,4 @@ function f(){var s=q.value.toLowerCase().trim(),k=0;rows.forEach(function(r){var
 r.hidden=!ok;if(ok)k++});grps.forEach(function(g){var v=g.querySelectorAll('.row:not([hidden])').length;g.hidden=!v;g.querySelector('.gc').textContent=v});
 n.textContent=k;empty.style.display=k?'none':'block'}
 q.addEventListener('input',f);tiles.forEach(function(t){t.onclick=function(){on=(on===t.dataset.t)?'':t.dataset.t;
-tiles.forEach(function(x){x.setAttribute('aria-pressed',String(x.dataset.t===on))});f()}});f()})()</script></body></html>
+tiles.forEach(function(x){x.setAttribute('aria-pressed',String(x.dataset.t===on))});f()}});f()})()</script><script src="/assets/gyaani/corner.js" defer></script></body></html>
