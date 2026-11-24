@@ -69,7 +69,29 @@ AI as a tutor, not an answer machine. Study plans that survive a bad week, revis
 - [Free GSTR-2B Reconciliation Tool (Runs in Your Browser)](https://aiforseries.github.io/ai-for-cas/tools/gstr2b-reconciler.html): Reconcile GSTR-2B with your purchase register free, in your browser: nothing is uploaded. Matches on GSTIN and invoice number, ties control totals and builds the ITC bridge.
 - [AI Use Policy Template for CA Firms in India](https://aiforseries.github.io/ai-for-cas/tools/ca-firm-ai-policy-template.html): A free AI use policy template for Indian CA firms: what client data may be shared, consent, review, documentation, an engagement letter clause and an acknowledgement form.
 
+## Bhasad & Associates (comedy series prompt pages)
+
+- [Bhasad & Associates: all episodes](https://aiforseries.github.io/clay/): a claymation comedy about using AI at work, set in a fictional CA firm and its client company. Each episode page gives the habit and one free, copy-ready prompt, with what to give the AI and what to check.
+- [Episode 1: Section 420-Z (check every citation)](https://aiforseries.github.io/clay/ep1/): Ask for every section with its source, then check the source yourself.
+- [Episode 2: Poora ledger (keep company data out of the chat)](https://aiforseries.github.io/clay/ep2/): Only the column headings go to the AI; run the script on your own laptop.
+- [Episode 3: Audit kar do (brief the AI like a junior)](https://aiforseries.github.io/clay/ep3/): Give a scoped brief: match the big bank payments to the voucher register; the unmatched ones go into Excel.
+- [Episode 4: Difference zero (match the count and the totals first)](https://aiforseries.github.io/clay/ep4/): Match the count and the totals first: as much in as out, before you trust the difference.
+- [Episode 5: Shortcut (a checker, not a solver)](https://aiforseries.github.io/clay/ep5/): Ask the AI to quiz you and catch your mistakes, not to solve for you.
+- [Episode 6: AI ne bola (the AI didn't see your facts)](https://aiforseries.github.io/clay/ep6/): The AI's answer isn't final: check the source and the facts, both.
+- [Episode 7: Saaf kar do (never the originals: backup first, copies only)](https://aiforseries.github.io/clay/ep7/): Never the originals: take a backup, then work only on copies.
+- [Episode 8: Sab fraud hai (judgement stays with you)](https://aiforseries.github.io/clay/ep8/): The script finds exceptions; we make the findings.
+- [Episode 9: Chat se hisaab (the formula from AI, the total from Excel)](https://aiforseries.github.io/clay/ep9/): Get the formula from the AI; get the total from Excel.
+- [Episode 10: Ek client, sau client (the work scales; the review doesn't vanish)](https://aiforseries.github.io/clay/ep10/): Test on one, run the batch, check rows and totals for every client, review the exceptions. The sign-off stays yours.
+- [Episode 11: Purana Act, naya zamana (tax year first, then the Act, then the section)](https://aiforseries.github.io/clay/ep11/): Check the tax year first, then the Act, then the section.
+
 ## More
 - [Free prompt library on GitHub](https://github.com/aiforseries/ai-prompts-for-audit-and-finance): 100 copy-ready prompts from the books, 20 per book, CC BY 4.0
 - [AI for CAs site, with its own llms.txt](https://aiforseries.github.io/ai-for-cas/llms.txt)
 - [Author page on Amazon](https://www.amazon.com/author/chandan-gupta)
+
+## Gyaani's Desk (hands-on tools, run in the browser)
+- [Gyaani's Desk](https://aiforseries.github.io/lab/): five one-minute tools for finance work: brief an AI like a junior, check what is safe to paste, match counts and totals, write a safe brief for an AI agent, and spot Gyaani's mistake. Nothing typed leaves the browser.
+- [Brief Gyaani](https://aiforseries.github.io/lab/brief/): pick a finance task (bank reco, ledger scrutiny, GSTR-2B match, TDS check, vouching sample, AR ageing, notice citations, exam study, duplicate payments, bank narrations) and score a brief to an AI on six visible checks: the task, the data and where it is (headings only), the rule, the output, the checks, and safety and judgement. Includes a strong example brief for each task.
+- [Agent brief builder](https://aiforseries.github.io/lab/agent/): pick a job for an AI agent working on files and switch on eight guardrails (copies, backup, never delete or overwrite originals, plan first, change log, stop on errors, counts and totals, deletions as a list only) to get a copyable, tool-neutral brief.
+- [Safe to paste?](https://aiforseries.github.io/lab/safe-paste/): paste a ledger, bank statement or email, or drop a CSV, and see the PANs, GSTINs, Aadhaar-like and account numbers, IFSCs, emails, phone numbers, names, amounts and dates an AI chat would get. Gives a masked copy with consistent tokens (PARTY_01, PAN_01) and the safe alternative: only the column headings, with a ready prompt for a script that runs on your own computer. Runs in the browser; nothing is uploaded.
+- [Jitna andar, utna bahar (count check)](https://aiforseries.github.io/lab/count-check/): drop a source export (for example a bank statement) and an AI's result (for example its reconciliation) to compare rows in vs rows out, totals in vs out, the difference, duplicates, rows missing from the result, and blank, heading or subtotal rows that inflate counts. Reads Indian number formats, Dr/Cr and Withdrawal/Deposit columns. Includes a prompt for a script that prints these control totals. Runs in the browser; nothing is uploaded.

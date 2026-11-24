@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'none'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Jitna andar, utna bahar: check rows and totals of an AI reconciliation | The AI For Series</title>
+<meta name="description" content="Drop a bank statement and the AI’s reconciliation. See rows in vs rows out, totals, the difference, duplicates, missing rows and subtotal rows that inflate counts. Indian number formats and Dr/Cr. Runs in your browser; nothing is uploaded.">
+<link rel="canonical" href="https://aiforseries.github.io/lab/count-check/">
+<meta property="og:type" content="website"><meta property="og:title" content="Jitna andar, utna bahar: does your AI reconciliation add up?">
+<meta property="og:description" content="Rows in vs rows out, totals in vs out, duplicates and missing rows, before you trust a “difference zero”. Free, in your browser, nothing uploaded.">
+<meta property="og:url" content="https://aiforseries.github.io/lab/count-check/"><meta property="og:site_name" content="The AI For Series"><meta property="og:image" content="https://aiforseries.github.io/og-gyaani.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40' width='30' height='30' aria-hidden='true'%3E%3Crect width='40' height='40' rx='9' fill='%237A1A2B'/%3E%3Ctext x='20' y='24' text-anchor='middle' font-family='system-ui,-apple-system,Segoe UI,sans-serif' font-size='17' font-weight='800' fill='%23fff'%3EAI%3C/text%3E%3Crect x='9' y='28.5' width='22' height='2.2' rx='1' fill='%23e9b949'/%3E%3Crect x='9' y='32.2' width='22' height='2.2' rx='1' fill='%23e9b949'/%3E%3C/svg%3E"><link rel="alternate" type="text/plain" title="llms.txt" href="https://aiforseries.github.io/llms.txt">
+<style>
+:root{--ink:#1d1a1a;--muted:#5f5757;--accent:#7A1A2B;--accent2:#5e1220;--gold:#e9b949;--soft:#f7f1ec;--line:#e6dbd2;
+--bg:#fffdfa;--good:#1d6b35;--bad:#a3141f;--sans:system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif;--mono:ui-monospace,Menlo,Consolas,monospace;
+--clay:#f4e6d4;--paper:#fff8ec;--grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font:17px/1.7 Georgia,'Noto Serif',serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:2px}a:hover{color:var(--accent2)}
+img{max-width:100%;height:auto}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.top{position:sticky;top:0;z-index:20;background:rgba(255,253,250,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:18px;min-height:58px;flex-wrap:wrap;max-width:1000px}
+.brand{display:flex;align-items:center;gap:10px;font:800 17px var(--sans);color:var(--ink);text-decoration:none;letter-spacing:-.2px;margin-right:auto}
+.brand:hover{color:var(--accent)}.brand .mark{flex:none;border-radius:9px}
+.top nav{display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+.top nav a{font:600 14px var(--sans);text-decoration:none;color:var(--ink);padding:6px 10px;border-radius:6px}
+.top nav a:hover{background:var(--soft);color:var(--accent)}
+.top nav a.buy{background:var(--accent);color:#fff}.top nav a.buy:hover{background:var(--accent2);color:#fff}
+h1,h2,h3{font-family:var(--sans);line-height:1.22;letter-spacing:-.3px}
+.skip{position:absolute;left:-999px;top:8px;z-index:50;background:var(--accent);color:#fff;padding:8px 14px;border-radius:6px;font:700 14px var(--sans)}
+.skip:focus{left:12px}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+footer .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:22px 28px;margin-bottom:22px}
+footer h4{font:700 12px var(--sans);text-transform:uppercase;letter-spacing:.7px;color:#fff;margin:0 0 8px}
+footer ul{list-style:none;padding:0;margin:0}footer li{margin:5px 0}footer .grid a{text-decoration:none;color:#e9dfe0;font-weight:500}
+footer .grid a:hover{color:#fff;text-decoration:underline}footer .legal{border-top:1px solid #ffffff1f;padding-top:14px}
+footer{background:#2a1d1f;color:#d9cdcf;margin-top:4em;font:14px/1.6 var(--sans)}
+footer .wrap{padding-top:30px;padding-bottom:40px;max-width:1000px}footer a{color:#fff}
+footer p{margin:.4em 0;color:#bfb1b3}
+@media (max-width:640px){body{font-size:16px}.top .wrap{padding-top:6px;padding-bottom:6px}.top nav a{padding:5px 7px;font-size:13px}}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* ---------- lab hero ---------- */
+.lh{position:relative;color:#fff;background:radial-gradient(120% 90% at 85% 10%,#93283c 0%,#7A1A2B 38%,#4d0f1b 100%);overflow:hidden}
+.lh::before{content:"";position:absolute;inset:0;background:var(--grain);opacity:.16;pointer-events:none;mix-blend-mode:overlay}
+.lh .wrap{position:relative;padding-top:20px;padding-bottom:30px}
+.crumbs{font:14px var(--sans);color:#ecd6da;margin:0 0 14px}.crumbs a{color:#fff;text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.kick{font:800 12.5px var(--sans);text-transform:uppercase;letter-spacing:1.1px;color:var(--gold);margin:0}
+.lh h1{color:#fff;font-size:3.1em;line-height:1.02;letter-spacing:-1.3px;margin:.12em 0 .25em}
+.lh h1 em{font-family:Georgia,'Noto Serif',serif;color:var(--gold);letter-spacing:-.5px}
+.lh-sub{font-size:1.14em;line-height:1.5;color:#f6e7ea;margin:0;max-width:36em}
+.priv{display:flex;gap:14px;align-items:center;margin:20px 0 0;max-width:780px;background:#fff8ec;color:#1d1a1a;border-radius:18px;padding:14px 18px;
+box-shadow:inset 0 -4px 0 #ecdcc4,0 14px 30px #0005}
+.priv svg{flex:none;width:40px;height:40px;padding:8px;border-radius:12px;background:var(--good);fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.priv b{display:block;font:800 18px/1.3 var(--sans);color:var(--good)}
+.priv span{display:block;font:14px/1.45 var(--sans);color:#4a4242}
+.lh-peek{position:absolute;right:max(22px,calc(50% - 560px));bottom:-6px;width:150px;filter:drop-shadow(0 -4px 10px #0005)}
+@media (max-width:860px){.lh-peek{display:none}}
+@media (max-width:640px){.lh h1{font-size:2.35em}.lh .wrap{padding-top:14px;padding-bottom:22px}.priv{align-items:flex-start;padding:12px 14px}.priv b{font-size:16.5px}.priv svg{width:34px;height:34px;padding:6px}}
+
+/* ---------- the tool ---------- */
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:26px 0 14px}
+.bar h2{font-size:1.35em;margin:0}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.b{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:9px 16px;border-radius:12px;border:2px solid var(--accent);
+background:#fff;color:var(--accent);font:700 15px var(--sans);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:transform .12s,background .15s}
+.b:hover{background:var(--soft)}.b:active{transform:translateY(2px)}
+.b.pri{background:var(--gold);border-color:var(--gold);color:#2a1408;box-shadow:0 4px 0 #b8892a}.b.pri:hover{background:#f3c95f}.b.pri:active{box-shadow:0 1px 0 #b8892a}
+.b.ghost{border-color:var(--line);color:var(--muted)}.b.ok{background:var(--good);border-color:var(--good);color:#fff}
+.b.sm{min-height:38px;padding:6px 12px;font-size:13.5px}
+.b svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.note{font:13.5px/1.5 var(--sans);margin:0 0 14px;background:#fff4d6;border-radius:10px;padding:8px 12px;color:#5a4410}
+.note button{font:700 13.5px var(--sans);color:var(--accent);background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
+.files{display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:860px){.files{grid-template-columns:1fr 1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 1px 0 #fff inset,0 10px 30px #7a1a2b0f}
+.zone{position:relative;padding:16px}
+.zh{display:flex;gap:12px;align-items:center;margin:0 0 12px}
+.zh .num{flex:none;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font:800 16px var(--sans)}
+.zh b{display:block;font:800 17px/1.25 var(--sans)}.zh small{display:block;font:13.5px/1.35 var(--sans);color:var(--muted)}
+.dz{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;min-height:132px;padding:16px;border:2px dashed #d9c8bb;border-radius:16px;background:#fffcf7;
+color:var(--ink);font:700 16px var(--sans);cursor:pointer;transition:background .15s,border-color .15s}
+.dz:hover{border-color:var(--accent);background:#fff7ef}
+.dz svg{width:34px;height:34px;fill:none;stroke:var(--accent);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.dz span{font:13.5px var(--sans);color:var(--muted)}
+.zone.drag .dz{background:#7a1a2b;border-color:#7a1a2b;color:#fff}.zone.drag .dz span{color:#f3dfe3}.zone.drag .dz svg{stroke:#fff}
+.zone.has .dz{min-height:0;flex-direction:row;padding:10px 14px;font-size:14px;border-style:solid;border-color:#cfe6d4;background:#f3faf4}
+.zone.has .dz svg{width:22px;height:22px;stroke:var(--good)}.zone.has .dz span{display:none}
+.zone details{margin-top:8px;font:14px var(--sans)}.zone summary{cursor:pointer;color:var(--accent);font-weight:700;padding:4px 0}
+.zone textarea{width:100%;min-height:110px;margin:6px 0;border:2px solid var(--line);border-radius:12px;padding:10px;font:13px/1.5 var(--mono);white-space:pre;resize:vertical}
+.fn{margin:12px 0 8px;font:14px/1.45 var(--sans);color:var(--muted)}.fn b{display:block;color:var(--ink);font-size:15px;overflow-wrap:anywhere}
+.fn em{font-style:normal;color:#8a5a00;font-weight:700}
+.sel{display:grid;gap:10px;grid-template-columns:1fr 1fr}
+@media (max-width:480px){.sel{grid-template-columns:1fr}}
+.sel label{display:block;font:700 13px var(--sans);color:var(--muted)}.sel small{font-weight:400}
+.sel select{display:block;width:100%;margin-top:4px;min-height:44px;border:2px solid var(--line);border-radius:10px;padding:6px 10px;font:600 14px var(--sans);color:var(--ink);background:#fff}
+.fl{margin:8px 0 0;font:13px/1.45 var(--sans);color:#5a4410;background:#fff4d6;border-radius:8px;padding:6px 10px}
+
+/* verdict */
+.verdict{margin-top:20px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr);scroll-margin-top:124px}
+@media (min-width:860px){.verdict{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}}
+.vtx{padding:22px 24px 22px;display:flex;flex-direction:column;justify-content:center;border-top:8px solid var(--line)}
+@media (min-width:860px){.vtx{border-top:0;border-left:8px solid var(--line)}}
+.verdict.bad .vtx{border-color:var(--bad);background:linear-gradient(180deg,#fff5f4,#fff)}.verdict.ok .vtx{border-color:var(--good);background:linear-gradient(180deg,#f1faf3,#fff)}
+.verdict.warn .vtx{border-color:#c98a00;background:linear-gradient(180deg,#fff9ea,#fff)}
+.vk{font:800 12px var(--sans);text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:0 0 6px}
+.verdict.bad .vk{color:var(--bad)}.verdict.ok .vk{color:var(--good)}.verdict.warn .vk{color:#8a5a00}
+.vt{font:800 2em/1.1 var(--sans);letter-spacing:-.8px;margin:0 0 10px;text-wrap:balance}
+.verdict.bad .vt{color:var(--bad)}.verdict.ok .vt{color:var(--good)}.verdict.warn .vt{color:#7a4e00}
+.vs{margin:0;font:16px/1.55 var(--sans);color:#4a4242}
+
+.stage{position:relative;min-height:280px;aspect-ratio:16/12;overflow:hidden;background:#8bab3f;isolation:isolate}
+.stage .set{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.stage::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 62% 55%,#fff3 0%,transparent 70%),linear-gradient(transparent 55%,#0002);pointer-events:none;z-index:1}
+.dk{position:absolute;z-index:6;left:-2%;right:-2%;bottom:0;height:15%;background:var(--grain),linear-gradient(#cf8a4d 0,#cf8a4d 16%,#b06a33 17%,#9a5a2b 100%);
+background-size:160px,auto;border-top:3px solid #e3a56a;box-shadow:0 -6px 18px #0003}
+.bub{position:absolute;z-index:8;left:4%;top:6%;max-width:50%;margin:0;padding:10px 14px;background:var(--paper);color:#2a1d1f;border-radius:18px;
+font:700 16px/1.3 var(--sans);box-shadow:inset 0 -4px 0 #ecdcc4,0 10px 22px #0004;min-height:3.2em;display:flex;align-items:center}
+.bub::after{content:"";position:absolute;right:-9px;bottom:14px;width:26px;height:20px;background:var(--paper);clip-path:polygon(0 0,100% 70%,30% 100%)}
+.pose{position:absolute;z-index:3;left:68%;bottom:12%;height:66%;width:auto;max-width:none;transform:translateX(-50%) scale(.7);opacity:0;transform-origin:50% 100%;
+transition:opacity .25s,transform .45s cubic-bezier(.3,1.5,.5,1);filter:drop-shadow(0 8px 8px #0003)}
+.stage[data-s="wait"] .p-wait,.stage[data-s="think"] .p-wait,.stage[data-s="cheer"] .p-cheer{opacity:1;transform:translateX(-50%)}
+.p-bur{position:absolute;z-index:4;left:66%;bottom:31%;width:30%;transform:translate(-50%,40%);opacity:0;transition:opacity .2s,transform .6s cubic-bezier(.3,1.4,.5,1) .5s}
+.stage[data-s="buried"] .p-bur{opacity:1;transform:translateX(-50%)}
+.stk{position:absolute;z-index:5;bottom:13%;width:17%;opacity:0;transition:opacity .2s,transform .5s cubic-bezier(.3,1.4,.5,1);filter:drop-shadow(0 6px 5px #0004)}
+.stk.a{left:40%;transform:translateY(-60%) rotate(-8deg)}.stk.b{left:80%;transform:translateY(-60%) rotate(7deg);width:15%}.stk.c{left:8%;width:14%;transform:translateY(-60%) rotate(-3deg)}
+.stage[data-s="buried"] .stk{opacity:1}
+.stage[data-s="buried"] .stk.a{transform:rotate(-8deg)}.stage[data-s="buried"] .stk.b{transform:rotate(7deg)}.stage[data-s="buried"] .stk.c{transform:rotate(-3deg)}
+#pile{position:absolute;z-index:5;left:30%;right:0;bottom:13%;height:34%}
+.sheet{position:absolute;left:var(--x);bottom:var(--y);width:30%;aspect-ratio:4/3;border-radius:3px;opacity:0;
+background:repeating-linear-gradient(#0000 0 9px,#c9d6e6 9px 10px) 0 12px/100% calc(100% - 18px) no-repeat,#fffaf0;
+box-shadow:0 1px 0 #e9dcc6,0 6px 10px #0003;transform:translate(-50%,-260%) rotate(var(--r));transition:transform .55s cubic-bezier(.3,1.2,.5,1) var(--d),opacity .2s var(--d)}
+.sheet::before{content:"";position:absolute;left:12%;top:8px;width:40%;height:4px;border-radius:2px;background:#7a1a2b55}
+.stage[data-s="buried"] .sheet{opacity:1;transform:translate(-50%,0) rotate(var(--r))}
+.fx{position:absolute;z-index:7;right:5%;top:8%;width:13%;opacity:0;transform:scale(.3) rotate(-20deg);transition:opacity .2s,transform .4s cubic-bezier(.3,1.6,.5,1);pointer-events:none}
+.stage[data-fx="sweat"] .fx-sweat,.stage[data-fx="bang"] .fx-bang,.stage[data-fx="bulb"] .fx-bulb,.stage[data-fx="star"] .fx-star{opacity:1;transform:none}
+.stage[data-s="buried"] .fx-sweat{right:12%;top:24%}
+
+.metrics{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.m{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:2px;border-top:5px solid var(--good)}
+.m.bad{border-top-color:var(--bad)}
+.ml{font:800 12px var(--sans);text-transform:uppercase;letter-spacing:.7px;color:var(--muted)}
+.mv{font:800 22px/1.25 var(--sans);letter-spacing:-.4px;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px;font-variant-numeric:tabular-nums}
+.mv i{font-style:normal;color:#b3a79e;font-weight:600}.mv small{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:0}
+.mn{font:600 14px/1.4 var(--sans);color:var(--good)}.m.bad .mn{color:var(--bad)}
+.details{margin-top:14px;display:grid;gap:10px}
+.dl{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.dl summary{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;cursor:pointer;font:700 15.5px var(--sans);list-style:none;min-height:48px}
+.dl summary::-webkit-details-marker{display:none}
+.dl summary::before{content:"";flex:none;width:9px;height:9px;border-right:2.5px solid var(--accent);border-bottom:2.5px solid var(--accent);transform:rotate(-45deg);transition:transform .2s;margin-right:4px}
+.dl[open] summary::before{transform:rotate(45deg)}
+.dl summary span{flex:1}.dl summary b{font:800 14px var(--sans);background:var(--soft);border-radius:99px;padding:2px 10px}
+.dl-b{padding:0 16px 16px}
+.tw{max-height:360px;overflow:auto;border:1px solid var(--line);border-radius:12px;margin-top:10px}
+.tw table{border-collapse:separate;border-spacing:0;font:13px/1.45 var(--sans);min-width:100%}
+.tw th{position:sticky;top:0;background:#f4ece4;text-align:left;font-weight:800;padding:7px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+.tw td{padding:6px 10px;border-bottom:1px solid #f0e7df;white-space:nowrap}.tw td.ln{color:#a39b95;font:12px var(--mono);text-align:right}
+.more{font:13px var(--sans);color:var(--muted);margin:8px 2px 0}
+
+/* explainer */
+.ex{max-width:1000px}
+.ex h2{font-size:1.5em;margin:2em 0 .5em}
+.why{list-style:none;margin:0;padding:0;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.why li{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;font:15px/1.55 var(--sans);color:var(--muted)}
+.why b{display:block;color:var(--ink);font-size:16.5px;margin-bottom:2px}
+.why .ic{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--soft);color:var(--accent);font:800 17px var(--sans);margin-bottom:8px}
+.pbox{margin-top:10px}
+.pbox pre{margin:0;border-radius:0 0 12px 12px;background:#f4eee9;border-left:3px solid var(--accent);padding:12px 14px;font:13.5px/1.55 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere}
+.cbtn{display:flex;width:100%;align-items:center;justify-content:center;gap:8px;min-height:50px;border:0;border-radius:12px 12px 0 0;
+background:var(--accent);color:#fff;font:800 16px var(--sans);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.cbtn:hover{background:var(--accent2)}.cbtn.ok{background:var(--good)}
+.cbtn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.ep{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-left:6px solid var(--gold);border-radius:16px;
+padding:12px 16px 12px 12px;margin:1.6em 0;text-decoration:none;color:var(--ink)}
+.ep:hover{border-color:var(--accent);color:var(--ink)}.ep img{width:120px;border-radius:10px}
+.ep small{display:block;font:800 11.5px var(--sans);text-transform:uppercase;letter-spacing:.6px;color:#a8802a}
+.ep strong{display:block;font:800 18px/1.3 var(--sans);color:var(--accent)}.ep span{display:block;font:14.5px/1.5 var(--sans);color:var(--muted)}
+.fine{font:14px/1.55 var(--sans);color:var(--muted)}
+@media (max-width:640px){.p-bur{bottom:36%;width:31%}#pile{height:30%}.wrap{padding:0 16px}.vt{font-size:1.55em}.vtx{padding:18px 18px}.vs{font-size:15px}.stage{min-height:0;aspect-ratio:16/11}.bub{font-size:14px;max-width:56%}
+.mv{font-size:19px}.ep{grid-template-columns:76px 1fr}.ep img{width:76px}.metrics{grid-template-columns:1fr 1fr;gap:10px}.m{padding:12px}.metrics .m:first-child,.metrics .m:nth-child(2){grid-column:1/-1}}
+@media (prefers-reduced-motion:no-preference){
+.bub.pop{animation:gy-bub .35s cubic-bezier(.3,1.5,.5,1)}
+.stage[data-fx="sweat"] .fx-sweat{animation:gy-drip 1.6s ease-in-out infinite}
+.stage[data-s="cheer"] .p-cheer{animation:gy-jump 1.1s cubic-bezier(.3,.7,.4,1) .3s 2}
+.stage[data-s="buried"] .p-bur{animation:gy-wob 2.6s ease-in-out 1.4s infinite}
+.stage[data-s="wait"] .p-wait{animation:gy-breathe 3.4s ease-in-out infinite}
+}
+@media (prefers-reduced-motion:reduce){.pose,.p-bur,.stk,.sheet,.fx{transition:none!important}}
+@keyframes gy-breathe{0%,100%{transform:translateX(-50%)}50%{transform:translateX(-50%) translateY(-1.2%) scaleY(1.012)}}
+@keyframes gy-drip{0%,100%{transform:none}50%{transform:translateY(10%)}}
+@keyframes gy-jump{0%,100%{transform:translateX(-50%)}40%{transform:translateX(-50%) translateY(-9%) scale(.97,1.04)}70%{transform:translateX(-50%) scale(1.04,.95)}}
+@keyframes gy-wob{0%,100%{transform:translateX(-50%)}50%{transform:translateX(-50%) rotate(-3deg) translateY(-3%)}}
+@keyframes gy-bub{0%{transform:scale(.85);opacity:.4}100%{transform:none;opacity:1}}
+@media print{.top,footer,.stage,.zone details{display:none}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Jitna andar, utna bahar (count check)", "url": "https://aiforseries.github.io/lab/count-check/", "applicationCategory": "FinanceApplication", "operatingSystem": "Any (runs in the browser)", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}, "description": "Compares a source export and a result file in the browser: rows in and out, totals in and out, the difference, duplicates, missing rows and subtotal or blank rows. Reads Indian number formats and Dr/Cr.", "publisher": {"@type": "Organization", "name": "The AI For Series", "url": "https://aiforseries.github.io/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "The AI For Series", "item": "https://aiforseries.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Gyaani's Desk", "item": "https://aiforseries.github.io/lab/"}, {"@type": "ListItem", "position": 3, "name": "Jitna andar, utna bahar", "item": "https://aiforseries.github.io/lab/count-check/"}]}</script>
+</head><body><a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap"><a class="brand" href="https://aiforseries.github.io/"><svg class="mark" viewBox="0 0 40 40" width="30" height="30" aria-hidden="true"><rect width="40" height="40" rx="9" fill="#7A1A2B"/><text x="20" y="24" text-anchor="middle" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="17" font-weight="800" fill="#fff">AI</text><rect x="9" y="28.5" width="22" height="2.2" rx="1" fill="#e9b949"/><rect x="9" y="32.2" width="22" height="2.2" rx="1" fill="#e9b949"/></svg><span>The AI For Series</span></a>
+<nav aria-label="Main"><a href="https://aiforseries.github.io/#books">Books</a><a href="https://aiforseries.github.io/guides/">Guides</a><a href="https://aiforseries.github.io/#free">Free tools</a>
+<a href="https://aiforseries.github.io/#skits">Skits</a><a href="https://aiforseries.github.io/#about">About</a><a class="buy" href="https://play.google.com/store/books/details?id=UogmEgAAQBAJ">Free book →</a></nav></div></header>
+<main id="main">
+<section class="lh" aria-labelledby="h1"><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="https://aiforseries.github.io/">The AI For Series</a> › <a href="https://aiforseries.github.io/lab/">Gyaani’s Desk</a> › Jitna andar, utna bahar</nav>
+<p class="kick">Gyaani’s Desk · Control totals</p>
+<h1 id="h1">Jitna andar, <em>utna bahar</em></h1>
+<p class="lh-sub">As many rows out as went in. Drop the source export and the AI’s result, and check that the rows and the totals agree before you trust a “difference zero”.</p>
+<p class="priv"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span><b>Nothing you drop leaves your browser. There is no server.</b>
+<span>No uploads, no analytics, no cookies. The files are read on this device, and the page is locked so it cannot send data anywhere.</span></span></p>
+<img class="lh-peek" src="/assets/gyaani/pose-08.webp" width="257" height="255" alt="">
+</div></section>
+
+<div class="wrap">
+<div class="bar"><h2>Your two files</h2>
+<div class="btns"><button type="button" class="b pri" id="sample"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l14 9-14 9z"/></svg>Try the sample</button><button type="button" class="b ghost" id="clear">Clear</button></div></div>
+<p class="note" id="samp-note" hidden>Sample: a made-up bank statement of Kapoor Industries, the fictional company in <i>Bhasad &amp; Associates</i> (3,000 entries), and an AI’s “reconciliation” of it. Everything is generated in your browser. <button type="button" id="dl-sample">Save both sample files</button> to try them elsewhere.</p>
+<div class="files">
+<section class="card zone" id="z-src" aria-labelledby="zt-src">
+<div class="zh"><span class="num" aria-hidden="true">1</span><div><b id="zt-src">Source export: what went in</b><small>For example the bank statement CSV</small></div></div>
+<button type="button" class="dz" id="b-src"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M12 18v-6m-3 3l3-3 3 3"/></svg>Drop the source CSV or choose a file<span>CSV or TSV · read on this device only</span></button>
+<input type="file" id="i-src" accept=".csv,.tsv,.txt,text/csv,text/plain" hidden>
+<details><summary>Or paste the rows</summary><label class="vh" for="t-src">Source rows</label><textarea id="t-src" spellcheck="false" placeholder="Date,Narration,Withdrawal,Deposit"></textarea><button type="button" class="b sm" id="u-src">Use these rows</button></details>
+<div id="f-src"></div>
+</section>
+<section class="card zone" id="z-res" aria-labelledby="zt-res">
+<div class="zh"><span class="num" aria-hidden="true">2</span><div><b id="zt-res">Result: what came out</b><small>For example the AI’s reconciliation CSV</small></div></div>
+<button type="button" class="dz" id="b-res"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M12 18v-6m-3 3l3-3 3 3"/></svg>Drop the result CSV or choose a file<span>CSV or TSV · read on this device only</span></button>
+<input type="file" id="i-res" accept=".csv,.tsv,.txt,text/csv,text/plain" hidden>
+<details><summary>Or paste the rows</summary><label class="vh" for="t-res">Result rows</label><textarea id="t-res" spellcheck="false" placeholder="Ref No,Date,Amount,Status"></textarea><button type="button" class="b sm" id="u-res">Use these rows</button></details>
+<div id="f-res"></div>
+</section>
+</div>
+
+<section class="card verdict" id="verdict" aria-labelledby="vt">
+<div class="stage" id="stage" data-s="wait" data-fx="bulb" aria-hidden="true">
+<img class="set" src="/assets/gyaani/stage-office.webp" width="640" height="571" alt="">
+<p class="bub" id="bub">Pehle dono files do. Phir ginti karte hain.</p>
+<img class="pose p-wait" src="/assets/gyaani/pose-04.webp" width="213" height="402" alt="">
+<img class="pose p-cheer" src="/assets/gyaani/pose-03.webp" width="299" height="402" alt="">
+<img class="p-bur" src="/assets/gyaani/pose-08.webp" width="257" height="255" alt="">
+<img class="stk c" src="/assets/gyaani/prop-files.webp" width="219" height="371" alt="">
+<img class="stk a" src="/assets/gyaani/prop-files.webp" width="219" height="371" alt="">
+<img class="stk b" src="/assets/gyaani/prop-files.webp" width="219" height="371" alt="">
+<div id="pile"></div>
+<img class="fx fx-sweat" src="/assets/gyaani/fx-sweat.webp" width="160" height="158" alt="">
+<img class="fx fx-bang" src="/assets/gyaani/fx-bang.webp" width="82" height="160" alt="">
+<img class="fx fx-bulb" src="/assets/gyaani/fx-bulb.webp" width="85" height="160" alt="">
+<img class="fx fx-star" src="/assets/gyaani/fx-star.webp" width="159" height="160" alt="">
+<div class="dk"></div>
+</div>
+<div class="vtx"><p class="vk">The verdict</p><h2 class="vt" id="vt">Drop both files to check them</h2><p class="vs" id="vs">Or press Try the sample: a made-up bank statement of 3,000 entries and an AI’s reconciliation of it.</p></div>
+</section>
+<p class="vh" id="live" role="status" aria-live="polite"></p>
+<ul class="metrics" id="metrics" aria-label="Control totals"></ul>
+<div class="details" id="details"></div>
+
+<section class="ex" aria-labelledby="why">
+<h2 id="why">Why counts and totals?</h2>
+<ul class="why">
+<li><span class="ic" aria-hidden="true">0</span><b>Zero says nothing about missing rows</b>A difference of zero only means the rows that made it in agree with each other. It is silent about the rows that never made it in.</li>
+<li><span class="ic" aria-hidden="true">=</span><b>Counts catch drops, totals catch changes</b>Rows in equal rows out shows nothing was dropped or doubled. Totals that agree show nothing changed on the way.</li>
+<li><span class="ic" aria-hidden="true">Σ</span><b>Count only real entries</b>Subtotals, blank lines and repeated headings inflate a count. Leave them out, then review every exception yourself.</li>
+</ul>
+<h2>Ask the AI for a script that prints these</h2>
+<p class="fine" style="margin-top:0">Give it only the column headings (the prompt fills them in from your files once you drop them). The script runs on your computer and prints the control totals, not your data.</p>
+<div class="pbox"><button type="button" class="cbtn" id="copy-prompt"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg><span>Copy the prompt</span></button><pre id="copyp"></pre></div>
+<a class="ep" href="https://aiforseries.github.io/clay/ep4/"><img src="/assets/gyaani/scene-zero.webp" width="880" height="550" alt=""><div><small>Bhasad &amp; Associates · Episode 4</small><strong>Difference zero: match the count and the totals first</strong><span>Kapoor is thrilled with a two-second bank reco. 3,000 entries went in; 300 came out. The skit and its prompt.</span></div></a>
+<h2>What it reads</h2>
+<ul class="fine"><li>CSV or TSV, with commas or tabs, quoted fields, a byte-order mark, and title lines above the headings.</li>
+<li>Indian amounts like 1,23,456.00, ₹ and Rs., brackets or a minus for negatives, Dr and Cr after the amount or in their own column, and separate Withdrawal and Deposit columns.</li>
+<li>Rows it leaves out of the count: blank rows, repeated heading rows, and total, subtotal, page total, opening and closing balance rows. Each one is listed so you can check.</li>
+<li>Matching: by a key column such as a reference number when both files have one, otherwise by date and amount.</li></ul>
+<p class="fine">Totals are added in paise, so there is no rounding drift. This checks completeness, not correctness: a matching count and total do not prove each match is right.</p>
+</section>
+</div>
+</main>
+<footer><div class="wrap"><nav class="grid" aria-label="Footer"><div><h4>Books</h4><ul><li><a href="https://aiforseries.github.io/which-ai-which-plan/">Which AI, Which Plan? (free)</a></li><li><a href="https://aiforseries.github.io/ai-for-cas/">AI for CAs</a></li><li><a href="https://aiforseries.github.io/ai-for-internal-auditors/">AI for Internal Auditors</a></li><li><a href="https://aiforseries.github.io/excel-ai-for-finance/">Excel + AI for Finance Teams</a></li><li><a href="https://aiforseries.github.io/ai-for-tax-practitioners/">AI for Tax Practitioners</a></li><li><a href="https://aiforseries.github.io/ai-for-ca-students/">AI for CA Students</a></li></ul></div>
+<div><h4>Gyaani’s Desk</h4><ul><li><a href="https://aiforseries.github.io/lab/">All the desk tools</a></li><li><a href="https://aiforseries.github.io/lab/safe-paste/">Safe to paste?</a></li><li><a href="https://aiforseries.github.io/lab/count-check/">Jitna andar, utna bahar</a></li></ul></div>
+<div><h4>Bhasad &amp; Associates</h4><ul><li><a href="https://aiforseries.github.io/clay/">All episodes and prompts</a></li><li>Instagram and YouTube: @theaiforseries</li></ul></div>
+<div><h4>Free</h4><ul><li><a href="https://github.com/aiforseries/ai-prompts-for-audit-and-finance">Free prompt library (GitHub)</a></li><li><a href="https://aiforseries.github.io/guides/">Free guides</a></li><li><a href="https://aiforseries.github.io/tools/form-3cd-to-form-26-crosswalk.html">Form 3CD to Form 26 crosswalk</a></li></ul></div></nav>
+<p class="legal">Educational, not professional advice. A matching count and total are a first check, not an audit opinion.<br>
+Kapoor Industries and every entry in the sample are fictional. © 2026 The AI For Series.
+Independent publications, not affiliated with or endorsed by any AI company or professional body. Updated 2026-11-24.</p></div></footer>
+<script src="/lab/assets/count-check/count-check.js" defer></script>
+<script src="/assets/gyaani/corner.js" defer></script></body></html>
