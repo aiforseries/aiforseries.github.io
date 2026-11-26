@@ -1,6 +1,6 @@
 # The AI For Series
 
-> Practical AI books for internal auditors, finance teams, Chartered Accountants, tax practitioners and CA students: tested walkthroughs on practice files, answer keys, ready prompts and routines for keeping client and company data on your own computer. Written by Chandan Gupta, CA, CIA. Sold as ebooks on Google Play Books and Amazon Kindle.
+> Practical AI books for internal auditors, finance teams, Chartered Accountants, tax practitioners and CA students: tested walkthroughs on practice files, answer keys, ready prompts and routines for keeping client and company data on your own computer. Written by Chandan Gupta. Sold as ebooks on Google Play Books and Amazon Kindle.
 
 ## Books
 - [Which AI, Which Plan?](https://aiforseries.github.io/which-ai-which-plan/): How AI chat tools work, and how to choose one, in everyday analogies. Audience: Anyone who uses AI chat tools at work. 65 pages. Google Play (free).
@@ -29,7 +29,7 @@ The whole internal audit lifecycle with Claude Code: risk assessment, planning, 
 - Do I need to know how to code? No. Claude Code writes and runs the scripts; the book shows you how to ask for them, read the result and check it against control totals.
 - What about company data and confidentiality? Chapter 1 explains what an AI tool actually sends and what stays on your laptop. The method keeps the data local: the AI sees column headers and results, and the analysis runs on your machine.
 - What do I need to follow along? A Windows or Mac laptop and a paid Claude plan, since Claude Code is not in the free plan. The book links to its practice files and answer keys.
-- Is it affiliated with Anthropic or The IIA? No. It is an independent book by a Chartered Accountant and Certified Internal Auditor.
+- Is it affiliated with Anthropic or The IIA? No. It is an independent book by Chandan Gupta, author of The AI For Series.
 
 ### Excel + AI for Finance Teams
 Claude for Excel and Claude Code on real finance work: cleaning ERP exports, bank and intercompany reconciliations, month-end close, budgets, forecasts and 13-week cash, auditing an inherited model, and management reporting packs. When to use the Excel add-in, when to use Claude Code, and how to keep every workbook auditable.
@@ -72,15 +72,15 @@ AI as a tutor, not an answer machine. Study plans that survive a bad week, revis
 ## Bhasad & Associates (comedy series prompt pages)
 
 - [Bhasad & Associates: all episodes](https://aiforseries.github.io/clay/): a claymation comedy about using AI at work, set in a fictional CA firm and its client company. Each episode page gives the habit and one free, copy-ready prompt, with what to give the AI and what to check.
-- [Episode 1: Section 420-Z (check every citation)](https://aiforseries.github.io/clay/ep1/): Ask for every section with its source, then check the source yourself.
-- [Episode 2: Poora ledger (keep company data out of the chat)](https://aiforseries.github.io/clay/ep2/): Only the column headings go to the AI; run the script on your own laptop.
-- [Episode 3: Audit kar do (brief the AI like a junior)](https://aiforseries.github.io/clay/ep3/): Give a scoped brief: match the big bank payments to the voucher register; the unmatched ones go into Excel.
-- [Episode 4: Difference zero (match the count and the totals first)](https://aiforseries.github.io/clay/ep4/): Match the count and the totals first: as much in as out, before you trust the difference.
-- [Episode 5: Shortcut (a checker, not a solver)](https://aiforseries.github.io/clay/ep5/): Ask the AI to quiz you and catch your mistakes, not to solve for you.
-- [Episode 6: AI ne bola (the AI didn't see your facts)](https://aiforseries.github.io/clay/ep6/): The AI's answer isn't final: check the source and the facts, both.
-- [Episode 7: Saaf kar do (never the originals: backup first, copies only)](https://aiforseries.github.io/clay/ep7/): Never the originals: take a backup, then work only on copies.
-- [Episode 8: Sab fraud hai (judgement stays with you)](https://aiforseries.github.io/clay/ep8/): The script finds exceptions; we make the findings.
-- [Episode 9: Chat se hisaab (the formula from AI, the total from Excel)](https://aiforseries.github.io/clay/ep9/): Get the formula from the AI; get the total from Excel.
+- [Episode 1: Section 420½ (check every citation)](https://aiforseries.github.io/clay/ep1/): Ask for every section with its source, then check the source yourself.
+- [Episode 2: Difference zero (match the count and the totals first)](https://aiforseries.github.io/clay/ep2/): Match the count and the totals first: as much in as out, before you trust the difference.
+- [Episode 3: Poora ledger (keep company data out of the chat)](https://aiforseries.github.io/clay/ep3/): Only the column headings go to the AI; run the script on your own laptop.
+- [Episode 4: Audit kar do (brief the AI like a junior)](https://aiforseries.github.io/clay/ep4/): Give a scoped brief: match the big bank payments to the voucher register; the unmatched ones go into Excel.
+- [Episode 5: Saaf kar do (never the originals: backup first, copies only)](https://aiforseries.github.io/clay/ep5/): Never the originals: take a backup, then work only on copies.
+- [Episode 6: Chat se hisaab (the formula from AI, the total from Excel)](https://aiforseries.github.io/clay/ep6/): Get the formula from the AI; get the total from Excel.
+- [Episode 7: AI ne bola (the AI didn't see your facts)](https://aiforseries.github.io/clay/ep7/): The AI's answer isn't final: check the source and the facts, both.
+- [Episode 8: Shortcut (a checker, not a solver)](https://aiforseries.github.io/clay/ep8/): Ask the AI to quiz you and catch your mistakes, not to solve for you.
+- [Episode 9: Sab fraud hai (judgement stays with you)](https://aiforseries.github.io/clay/ep9/): The script finds exceptions; we make the findings.
 - [Episode 10: Ek client, sau client (the work scales; the review doesn't vanish)](https://aiforseries.github.io/clay/ep10/): Test on one, run the batch, check rows and totals for every client, review the exceptions. The sign-off stays yours.
 - [Episode 11: Purana Act, naya zamana (tax year first, then the Act, then the section)](https://aiforseries.github.io/clay/ep11/): Check the tax year first, then the Act, then the section.
 
