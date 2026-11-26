@@ -31,6 +31,7 @@
     ];
     var i = 0, clicks = [], typing = 0, flap = 0, touched = false;
     // his recorded lines: {hero: [{f, t, en, w: [[start, end] per word]}], game: {round title: line}}
+    var ctx = null;  // one AudioContext, made on the first tap (browsers allow audio only after a gesture)
     var V = null; try { V = JSON.parse($('#gy-lines').textContent); } catch (e) {}
     var snd = $('#gy-snd'), en = $('#gy-en'), audio = null, md = 0, vi = 0, armed = false, muted = false;
     try { muted = localStorage.getItem('gyaani-sound') === 'off'; } catch (e) {}
@@ -40,15 +41,37 @@
       stop();
       if (muted || !l) return;
       audio = new Audio(A + 'voice/' + l.f);
-      var a = audio, last = 0;
+      var a = audio, last = 0, an = null, buf = null, lvl = 0;
+      // Lip sync from the sound itself: the mouth opens with the loudness of each moment (Web Audio), so it shuts in pauses
+      // and between syllables. Browsers without Web Audio fall back to the word timings.
+      if (withMouth && !reduce) {
+        try {
+          ctx = ctx || new (window.AudioContext || window.webkitAudioContext)();
+          if (ctx.state === 'suspended') ctx.resume();
+          var src = ctx.createMediaElementSource(a);
+          an = ctx.createAnalyser(); an.fftSize = 1024; an.smoothingTimeConstant = 0;
+          src.connect(an); an.connect(ctx.destination);
+          buf = new Float32Array(an.fftSize);
+        } catch (e) { an = null; }
+      }
       a.play().then(function () {
         armed = true;
         if (!withMouth || reduce) return;
         clearTimeout(flap);
         (function drive() {
           if (a !== audio || a.paused || a.ended) { mouth(0); return; }
-          var t = a.currentTime, on = l.w.some(function (x) { return t >= x[0] - .03 && t <= x[1]; });
-          if (on) { var m = [2, 3, 4, 1][Math.floor(t * 11) % 4]; if (m === last) m = m % 4 + 1; last = m; mouth(m); } else mouth(0);
+          var m = 0;
+          if (an) {
+            an.getFloatTimeDomainData(buf);
+            var s = 0; for (var k = 0; k < buf.length; k++) s += buf[k] * buf[k];
+            var rms = Math.sqrt(s / buf.length);
+            lvl = rms > lvl ? rms : lvl * 0.6 + rms * 0.4;  // opens at once, closes a little softer
+            m = lvl < 0.02 ? 0 : lvl < 0.05 ? 1 : lvl < 0.1 ? 2 : 3;  // g-m1 slight, g-m2 half, g-m3 wide (g-m4 is the small "oo")
+          } else {
+            var t = a.currentTime, on = l.w.some(function (x) { return t >= x[0] - .03 && t <= x[1]; });
+            if (on) { m = [2, 3, 4, 1][Math.floor(t * 11) % 4]; if (m === last) m = m % 4 + 1; }
+          }
+          last = m; mouth(m);
           md = requestAnimationFrame(drive);
         })();
       }).catch(function () {});
