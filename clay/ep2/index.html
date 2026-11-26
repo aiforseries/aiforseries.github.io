@@ -123,54 +123,121 @@ font:700 14px var(--sans);color:var(--ink);background:#fff;cursor:pointer;-webki
 .top .mtog[open]~nav a.buy{justify-content:center;border-radius:10px;background:var(--gold);color:#2a1408}}
 @media (max-width:440px){.brand span{max-width:5.6em;font-size:14px;line-height:1.08}.top .mtog~nav a.buy{padding:0 12px}.mtog summary{padding:0 11px}}
 /*/menu*/
-.ep-k{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font:700 13px var(--sans);color:var(--muted);margin-top:14px}
-.tag{display:inline-block;font:700 11px var(--sans);letter-spacing:.7px;text-transform:uppercase;border-radius:99px;padding:3px 10px}
+/* episode pages (clay and chat): hero, cards, prompt card, hubs. skit_pages.py inherits all of this from the built clay/ep1 page. */
+main.ep{max-width:none;padding:0}
+.eh{background:radial-gradient(90% 120% at 88% 0%,#9b2c41 0%,#9b2c4100 60%),linear-gradient(135deg,#7A1A2B 0%,#4d0f1b 100%);color:#fff;overflow:hidden}
+.eh-in{max-width:1000px;margin:0 auto;padding:16px 22px 46px}
+.eh .crumbs{color:#ecd6da;margin:0 0 22px}.eh .crumbs a{color:#fff}
+.eh-grid{display:grid;gap:30px;align-items:center}
+.eh-k{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin:0 0 14px;font:700 13px var(--sans);color:#f3e3e6}
+.badge{font:800 11px/1 var(--sans);letter-spacing:.8px;text-transform:uppercase;background:var(--gold);color:#2a1408;border-radius:99px;padding:6px 11px}
+.tag{display:inline-block;font:700 11px/1 var(--sans);letter-spacing:.7px;text-transform:uppercase;border-radius:99px;padding:5px 10px}
 .tag.firm{background:#f6e6e9;color:var(--accent)}.tag.company{background:#e6eef6;color:#1f4e79}
-h1 .en{display:block;font-size:.55em;font-weight:600;color:var(--muted);letter-spacing:0;margin-top:.25em}
-.hook{font:italic 1.15em/1.4 Georgia,'Noto Serif',serif;color:var(--accent);margin:.4em 0 1em}
-.mh{display:grid;gap:10px;margin:1em 0 1.4em}
-.mh div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px}
-.mh b{display:block;font:700 12px var(--sans);text-transform:uppercase;letter-spacing:.6px;margin-bottom:2px}
-.mh .no b{color:var(--bad)}.mh .yes b{color:var(--good)}.mh .yes{border-left:4px solid var(--good)}.mh .no{border-left:4px solid var(--bad)}
-.mh p{margin:0;line-height:1.5}
-main.article h2{font-size:1.25em;margin-top:1.8em}
-.pbox{margin:.8em 0 .4em}
-.pbox pre{margin:0;border-radius:0 0 8px 8px;font-size:14.5px;-webkit-user-select:text;user-select:text;overflow-wrap:anywhere}
-.cbtn{display:flex;width:100%;align-items:center;justify-content:center;gap:8px;min-height:48px;border:0;border-radius:8px 8px 0 0;
-background:var(--accent);color:#fff;font:700 16px var(--sans);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.eh h1{color:#fff;font-size:clamp(2.1em,7vw,3.1em);margin:0;overflow-wrap:break-word}
+.eh h1 .en{display:block;font-size:.48em;font-weight:600;color:#f3e3e6;letter-spacing:0;margin-top:.4em;line-height:1.3}
+.eh .hook{font:italic 1.35em/1.4 Georgia,'Noto Serif',serif;color:var(--gold);margin:.55em 0 0}
+.eh .sub{font-size:1.12em;line-height:1.55;color:#f3e3e6;margin:.7em 0 0;max-width:36em}
+.eh-when{display:flex;align-items:center;gap:9px;font:600 14.5px var(--sans);color:#f3e3e6;margin:1em 0 0}
+.eh-when::before{content:"";flex:none;width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px #e9b94933}
+.eh-when.out::before{background:#5fd38a;box-shadow:0 0 0 4px #5fd38a33}
+.eh-act{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.b{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 18px;border-radius:10px;font:700 15px var(--sans);
+text-decoration:none;border:2px solid transparent;transition:background .15s,transform .15s}
+.b:hover{transform:translateY(-1px)}.b:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.b.gold{background:var(--gold);color:#2a1408}.b.gold:hover{background:#f3c95f;color:#2a1408}
+.b.line{border-color:#ffffff8c;color:#fff}.b.line:hover{background:#ffffff1a;color:#fff}
+.b.red{background:var(--accent);color:#fff}.b.red:hover{background:var(--accent2);color:#fff}
+.eh-fine{font:13px/1.5 var(--sans);color:#e2c9ce;margin:16px 0 0}
+.eh-media{margin:0 auto;width:min(250px,68vw);position:relative}
+.eh-media>img,.eh-media iframe,.vf{display:block;width:100%;height:auto;aspect-ratio:9/16;border-radius:16px;border:0;background:#2a1d1f;box-shadow:0 18px 40px #0008}
+.eh-media>img{transform:rotate(-1.5deg)}
+.vf{position:relative;overflow:hidden;color:#fff;text-decoration:none}
+.vf img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .25s}.vf:hover img{transform:scale(1.03)}
+.vf .play{position:absolute;left:50%;top:50%;width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;background:#fffffff2;box-shadow:0 8px 24px #0006;transition:transform .15s}
+.vf .play::after{content:"";position:absolute;left:29px;top:22px;border-style:solid;border-width:15px 0 15px 25px;border-color:transparent transparent transparent var(--accent)}
+.vf:hover .play{transform:scale(1.08)}.vf:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.vf .vl{position:absolute;left:0;right:0;bottom:0;padding:34px 12px 12px;background:linear-gradient(#0000,#000b);font:700 13px var(--sans);text-align:center}
+.ribbon{position:absolute;z-index:1;top:16px;left:-8px;background:var(--gold);color:#2a1408;font:800 12.5px/1 var(--sans);padding:8px 13px;border-radius:0 8px 8px 0;box-shadow:0 4px 12px #0005}
+.ribbon.out{background:#1d6b35;color:#fff}
+.eh-cast{margin:0 auto;max-width:440px}.eh-cast img{display:block;width:100%;height:auto;border-radius:16px;border:4px solid #fff;box-shadow:0 18px 40px #0008;transform:rotate(1.5deg)}
+.ep-body{max-width:760px;margin:0 auto;padding:0 22px}
+.ep-body>h2{font-size:1.3em;margin-top:2em;border-bottom:2px solid var(--line);padding-bottom:.25em}
+.mh{display:grid;gap:14px;margin:30px 0 0}
+.mh>div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px 16px 58px;position:relative;box-shadow:0 1px 2px #0000000a}
+.mh>div::before{position:absolute;left:16px;top:16px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font:800 15px/1 var(--sans);color:#fff}
+.mh .no::before{content:"✕";background:var(--bad)}.mh .yes::before{content:"✓";background:var(--good)}
+.mh b{display:block;font:800 12px var(--sans);text-transform:uppercase;letter-spacing:.7px;margin:4px 0 4px}
+.mh .no b{color:var(--bad)}.mh .yes b{color:var(--good)}.mh p{margin:0;line-height:1.55}
+.pcard{background:#fff;border:1px solid var(--line);border-radius:16px;margin:2.2em 0 1em;box-shadow:0 12px 32px #7a1a2b17;overflow:hidden;scroll-margin-top:76px}
+.pc-head{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;justify-content:space-between;padding:16px 18px;background:var(--soft);border-bottom:1px solid var(--line)}
+.pc-head small{display:block;font:800 11.5px var(--sans);letter-spacing:.8px;text-transform:uppercase;color:#8a6516}
+.pc-head h2{margin:2px 0 0;font-size:1.2em;border:0;padding:0}
+.cbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border:0;border-radius:10px;
+background:var(--accent);color:#fff;font:700 15.5px var(--sans);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .cbtn:hover{background:var(--accent2)}.cbtn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .cbtn.ok{background:var(--good)}.cbtn.sel{background:#7a5a12}
 .cbtn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-.when,.credit{font:14px/1.55 var(--sans);color:var(--muted);margin:.5em 0}
-.credit{font-size:13px}
-ul.chk{padding-left:1.2em}ul.chk li{margin:.35em 0}
-.every{font:14.5px/1.55 var(--sans);background:var(--soft);border-radius:10px;padding:10px 14px;margin:1em 0}
-.bk{display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);
-border-left:6px solid var(--gold);border-radius:12px;padding:14px;margin:1.6em 0;text-decoration:none;color:var(--ink)}
-.bk:hover{border-color:var(--accent)}.bk img{width:72px;border-radius:3px;box-shadow:0 4px 10px #0003}
-.bk small{display:block;font:700 11.5px var(--sans);text-transform:uppercase;letter-spacing:.6px;color:#a8802a}
-.bk strong{display:block;font:700 17px/1.3 var(--sans);color:var(--accent)}.bk span{display:block;font:14px/1.5 var(--sans);color:var(--muted)}
-.links{list-style:none;padding:0;margin:1.2em 0;display:grid;gap:8px;font:15px var(--sans)}
+.pc-when{margin:0;padding:14px 18px 0;font:15px/1.55 var(--sans);color:var(--muted)}
+.pc-note{margin:10px 18px 0;padding:10px 14px;border-radius:10px;background:#fbf3e2;border:1px solid #efdcae;font:14.5px/1.55 var(--sans);color:#4a3a1a}
+.pcard pre{margin:14px 18px 0;border-radius:10px;border-left:0;background:#f6f0ea;font-size:14.5px;padding:14px 16px;-webkit-user-select:text;user-select:text;overflow-wrap:anywhere}
+.pcard .credit{margin:0;padding:12px 18px 16px}
+.when,.credit{font:14px/1.55 var(--sans);color:var(--muted);margin:.5em 0}.credit{font-size:13px}
+.info2{display:grid;gap:14px;margin:1.6em 0}
+.info2>section{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.info2 h2{font-size:1.08em;margin:0 0 .45em;border:0;padding:0;display:flex;align-items:center;gap:9px}
+.info2 h2 i{flex:none;width:26px;height:26px;border-radius:8px;background:var(--soft);color:var(--accent);display:grid;place-items:center;font:800 14px/1 var(--sans);font-style:normal}
+.info2 p{margin:0 0 .6em;font-size:16px;line-height:1.6}.info2 p:last-child{margin-bottom:0}
+.info2 .when{font-size:14px}
+ul.chk{list-style:none;padding:0;margin:1em 0;display:grid;gap:10px}
+ul.chk li{position:relative;padding:12px 16px 12px 46px;background:#fff;border:1px solid var(--line);border-radius:12px;line-height:1.55}
+ul.chk li::before{content:"";position:absolute;left:16px;top:16px;width:16px;height:16px;border:2px solid var(--good);border-radius:5px}
+ul.chk li::after{content:"";position:absolute;left:21px;top:18px;width:5px;height:9px;border:solid var(--good);border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+.every{font:14.5px/1.55 var(--sans);background:var(--soft);border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:12px 16px;margin:1.2em 0}
+.bk{display:grid;grid-template-columns:84px 1fr;gap:18px;align-items:center;background:linear-gradient(135deg,#fff 0%,#fbf4ea 100%);border:1px solid var(--line);
+border-radius:16px;padding:18px;margin:2em 0;text-decoration:none;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+.bk:hover{border-color:var(--accent);box-shadow:0 10px 26px #7a1a2b1f;color:var(--ink)}.bk img{width:84px;border-radius:4px;box-shadow:0 8px 18px #0004;transform:rotate(-2deg)}
+.bk small{display:block;font:800 11.5px var(--sans);text-transform:uppercase;letter-spacing:.7px;color:#8a6516}
+.bk strong{display:block;font:800 19px/1.3 var(--sans);color:var(--accent);margin:2px 0}.bk span{display:block;font:14.5px/1.5 var(--sans);color:var(--muted)}
+.bk em{display:inline-block;margin-top:10px;font:700 14px var(--sans);font-style:normal;color:var(--accent)}
+.links{list-style:none;padding:0;margin:1.2em 0;display:flex;flex-wrap:wrap;gap:8px 18px;font:15px var(--sans)}
 .links a{font-weight:600}
-.pn a{min-height:48px}
-.eps{list-style:none;padding:0;margin:1.2em 0;display:grid;gap:12px}
-.eps a{display:grid;grid-template-columns:44px 1fr;gap:4px 14px;background:#fff;border:1px solid var(--line);border-radius:12px;
-padding:14px 16px;text-decoration:none;color:var(--ink);transition:border-color .15s,box-shadow .15s}
-.eps a:hover{border-color:var(--accent);box-shadow:0 6px 18px #7a1a2b14}
-.eps .n{grid-row:span 3;width:44px;height:44px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font:800 18px var(--sans)}
-.eps .t{font:700 16px/1.35 var(--sans);display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
-.eps .h{font:italic 15.5px/1.4 Georgia,serif;color:var(--accent)}
-.eps .w{font:14.5px/1.5 var(--sans);color:var(--muted)}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:2.2em 0}
+.pn a{display:flex;align-items:center;gap:12px;min-height:64px;border:1px solid var(--line);border-radius:12px;padding:10px 14px;text-decoration:none;
+font:700 15px/1.35 var(--sans);background:#fff;color:var(--accent)}
+.pn a:hover{border-color:var(--accent);box-shadow:0 6px 18px #7a1a2b14}
+.pn img{flex:none;width:40px;height:auto;aspect-ratio:9/16;object-fit:cover;border-radius:6px}
+.pn small{display:block;color:var(--muted);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.6px}
+.pn .next{grid-column:2;flex-direction:row-reverse;text-align:right}
 .lede{font-size:1.15em;color:var(--muted);margin:.2em 0 .8em}
-.ep-act{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 1.2em}
-.ep-act a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border-radius:12px;font:700 14.5px var(--sans);text-decoration:none}
-.ep-yt{background:var(--accent);color:#fff}.ep-yt:hover{background:var(--accent2);color:#fff}
-.ep-ig{border:2px solid var(--accent);color:var(--accent);background:#fff}
-.ep-bk{flex:1 1 100%;background:#fff;border:1px solid var(--line);border-left:5px solid var(--gold);color:var(--ink)!important;font-weight:500!important;padding:6px 12px!important}
-.ep-bk img{width:30px;height:auto;border-radius:2px;box-shadow:0 2px 6px #0003}.ep-bk b{color:var(--accent)}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.jump a{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:0 14px;border-radius:99px;background:#ffffff1f;border:1px solid #ffffff40;color:#fff;font:700 14px var(--sans);text-decoration:none}
+.jump a:hover{background:#ffffff33;color:#fff}.jump b{background:var(--gold);color:#2a1408;border-radius:99px;padding:1px 8px;font-size:12px}
+.fan{position:relative;height:300px;max-width:330px;margin:0 auto;width:100%}
+.fan img{position:absolute;top:10px;width:150px;height:auto;aspect-ratio:9/16;object-fit:cover;border-radius:12px;box-shadow:0 14px 30px #0008;border:3px solid #fff2}
+.fan img:nth-child(1){left:0;transform:rotate(-8deg)}.fan img:nth-child(2){left:calc(50% - 75px);top:0;z-index:2}.fan img:nth-child(3){right:0;transform:rotate(8deg)}
+.hub-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px;margin-top:2.2em;border-bottom:2px solid var(--line);padding-bottom:.3em}
+.hub-h h2{margin:0;font-size:1.45em}.hub-h a{font:700 14.5px var(--sans)}
+.hub-p{color:var(--muted);margin:.7em 0 0}
+.eps{list-style:none;padding:0;margin:1.3em 0 1.6em;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:22px 14px}
+.eps a{display:flex;flex-direction:column;height:100%;text-decoration:none;color:var(--ink)}
+.eps .th{position:relative;display:block;aspect-ratio:9/16;border-radius:14px;overflow:hidden;background:linear-gradient(135deg,#7A1A2B,#4d0f1b);box-shadow:0 6px 18px #2a1d1f26;transition:transform .15s,box-shadow .15s}
+.eps a:hover .th{transform:translateY(-3px);box-shadow:0 14px 30px #7a1a2b40}.eps a:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:14px}
+.eps .th img{display:block;width:100%;height:100%;object-fit:cover}
+.chip{position:absolute;left:8px;top:8px;font:800 11px/1 var(--sans);letter-spacing:.2px;background:#fffffff2;color:var(--accent);border-radius:99px;padding:6px 9px;box-shadow:0 2px 8px #0003}
+.chip.out{background:#1d6b35;color:#fff}
+.eps .n{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:11px;font:800 11.5px var(--sans);text-transform:uppercase;letter-spacing:.6px;color:var(--muted)}
+.eps .n .tag{font-size:10px;padding:4px 8px}
+.eps .t{font:800 16.5px/1.28 var(--sans);color:var(--accent);margin-top:4px}
+.eps .t small{display:block;font:600 13.5px/1.35 var(--sans);color:var(--ink);margin-top:2px}
+.eps .h{font:italic 15px/1.4 Georgia,serif;color:var(--muted);margin-top:4px}
+.eps .w{font:14px/1.45 var(--sans);color:var(--muted);margin-top:4px}
+.ep-body.wide{max-width:1000px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .totop{font:600 15px var(--sans);margin:.4em 0 0}.totop a{display:inline-flex;align-items:center;min-height:44px}
-@media (min-width:700px){.mh{grid-template-columns:1fr 1fr}.eps{grid-template-columns:1fr 1fr}}
-@media (max-width:640px){main.article h2{font-size:1.15em}.pn{grid-template-columns:1fr}.pn .next{grid-column:1}}
+@media (min-width:700px){.mh,.info2{grid-template-columns:1fr 1fr}.eps{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:28px 20px}}
+@media (min-width:780px){.eh-grid{grid-template-columns:1fr 260px;gap:54px}.eh-grid.wide{grid-template-columns:1fr 380px}.eh-in{padding:20px 22px 56px}.eh-media{width:260px}}
+@media (max-width:640px){.ep-body>h2{font-size:1.15em}.pn{grid-template-columns:1fr}.pn .next{grid-column:1}.cbtn{width:100%}.eh-act .b{flex:1 1 auto}
+.eh-media{width:min(210px,58vw)}.fan{height:232px;max-width:290px}.fan img{width:118px}.fan img:nth-child(2){left:calc(50% - 59px)}.eh-in{padding-bottom:36px}}
 
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "The AI For Series", "item": "https://aiforseries.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Bhasad & Associates", "item": "https://aiforseries.github.io/clay/"}, {"@type": "ListItem", "position": 3, "name": "Episode 2", "item": "https://aiforseries.github.io/clay/ep2/"}]}</script>
@@ -178,37 +245,77 @@ padding:14px 16px;text-decoration:none;color:var(--ink);transition:border-color 
 <header class="top"><div class="wrap"><a class="brand" href="https://aiforseries.github.io/"><svg class="mark" viewBox="0 0 40 40" width="30" height="30" aria-hidden="true"><rect width="40" height="40" rx="9" fill="#7A1A2B"/><text x="20" y="24" text-anchor="middle" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="17" font-weight="800" fill="#fff">AI</text><rect x="9" y="28.5" width="22" height="2.2" rx="1" fill="#e9b949"/><rect x="9" y="32.2" width="22" height="2.2" rx="1" fill="#e9b949"/></svg><span>The AI For Series</span></a>
 <details class="mtog"><summary>Menu</summary></details>
 <nav aria-label="Main"><a href="https://aiforseries.github.io/skits/">Episodes</a><a href="https://aiforseries.github.io/lab/">Gyaani’s Desk</a><a href="https://github.com/aiforseries/ai-prompts-for-audit-and-finance">Free prompts</a>
-<a href="https://aiforseries.github.io/#books">Books</a><a href="https://aiforseries.github.io/guides/">Free guides</a><a href="https://aiforseries.github.io/#about">About</a><a class="buy" href="https://play.google.com/store/books/details?id=UogmEgAAQBAJ" data-goatcounter-click="free-book">Free book →</a></nav></div></header><main id="main" class="article"><nav class="crumbs" aria-label="Breadcrumb"><a href="https://aiforseries.github.io/">The AI For Series</a> › <a href="https://aiforseries.github.io/clay/">Bhasad &amp; Associates</a> › Episode 2</nav>
-<p class="ep-k">Episode 2 <span class="tag company">Company</span></p>
-<h1>Difference zero<span class="en">Match the count and the totals first</span></h1>
-<p class="hook">“Reco ho gaya? Gino.”</p>
-<div class="ep-act"><a class="ep-yt" href="https://www.youtube.com/@theaiforseries">Watch the series on YouTube</a><a class="ep-ig" href="https://www.instagram.com/theaiforseries/">Instagram</a>
-<a class="ep-bk" href="https://aiforseries.github.io/excel-ai-for-finance/"><img src="https://aiforseries.github.io/covers/excel-ai-for-finance.jpg" alt="" width="30" height="48">Get the book for this habit: <b>Excel + AI for Finance Teams</b></a></div>
+<a href="https://aiforseries.github.io/#books">Books</a><a href="https://aiforseries.github.io/guides/">Free guides</a><a href="https://aiforseries.github.io/#about">About</a><a class="buy" href="https://play.google.com/store/books/details?id=UogmEgAAQBAJ" data-goatcounter-click="free-book">Free book →</a></nav></div></header><main id="main" class="ep"><section class="eh"><div class="eh-in">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="https://aiforseries.github.io/">The AI For Series</a> › <a href="https://aiforseries.github.io/clay/">Bhasad &amp; Associates</a> › Episode 2</nav>
+<div class="eh-grid"><div class="eh-txt">
+<p class="eh-k"><span class="badge">Bhasad &amp; Associates · clay</span><span>Episode 2</span><span class="tag company">Company</span></p>
+<h1><span lang="hi-Latn">Difference zero</span><span class="en">Match the count and the totals first</span></h1>
+<p class="hook" lang="hi-Latn">“Reco ho gaya? Gino.”</p>
+<p class="eh-when" data-at="2027-01-02T19:00:00+05:30" data-out="Out now on YouTube and Instagram">Airs Sat 2 Jan at 7 pm</p>
+<div class="eh-act"><a class="b gold" href="#the-prompt">Get the free prompt</a><a class="b line" href="https://www.youtube.com/@theaiforseries">Watch on YouTube</a><a class="b line" href="https://www.instagram.com/theaiforseries/">Instagram</a></div>
+<p class="eh-fine">A fictional office. Voices are AI-generated.</p>
+</div><figure class="eh-media"><span class="ribbon" data-at="2027-01-02T19:00:00+05:30" data-out="Out now">Sat 2 Jan at 7 pm</span><img src="/assets/thumbs/clay-ep2-560.webp" alt="Cover of episode 2: Difference zero" width="560" height="996" fetchpriority="high"></figure></div></div></section>
+<div class="ep-body">
 <div class="mh"><div class="no"><b>The mistake</b><p>Accepting a bank reco that says &quot;difference zero&quot; without counting the entries.</p></div><div class="yes"><b>The habit</b><p>Match the count and the totals first: as much in as out, before you trust the difference.</p></div></div>
-<h2>What to give the AI</h2>
-<p>The two file names and their column headings. Don&#x27;t paste the statement or the ledger into a chat: a long paste can be cut off without any warning. The file names, account and day windows in the prompt are examples; use yours.</p>
-<p class="when"><strong>Never paste client or company data into a chat.</strong> Give the headings and the structure; the work runs on your own computer.</p>
-<h2 id="the-prompt">The prompt</h2>
-<p class="when"><strong>When to use:</strong> A monthly bank reconciliation in a standard layout, matched in rounds.</p>
-<div class="pbox"><button type="button" class="cbtn" id="copy" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg><span>Copy prompt</span></button>
-<pre id="prompt">Bank_Jun26_4471.csv is the operating account statement and NS_Cash_Jun26.xlsx is GL account 1010 for June. Write a script that matches them in rounds (exact amount and date; amount with dates within 3 days; one bank deposit equal to the sum of several GL receipts on the same or previous day) and builds Bank_Rec_Jun26.xlsx with the standard layout: balance per bank, deposits in transit, outstanding checks, other reconciling items, balance per books, and a difference cell that must be zero. Show me only the rec page.</pre></div>
+<section class="pcard" id="the-prompt" aria-labelledby="pc-t"><div class="pc-head"><div><small>The free prompt</small><h2 id="pc-t">Monthly bank rec, standard layout</h2></div>
+<button type="button" class="cbtn" id="copy" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg><span>Copy prompt</span></button></div>
+<p class="pc-when"><strong>When to use:</strong> A monthly bank reconciliation in a standard layout, matched in rounds.</p>
+<pre id="prompt">Bank_Jun26_4471.csv is the operating account statement and NS_Cash_Jun26.xlsx is GL account 1010 for June. Write a script that matches them in rounds (exact amount and date; amount with dates within 3 days; one bank deposit equal to the sum of several GL receipts on the same or previous day) and builds Bank_Rec_Jun26.xlsx with the standard layout: balance per bank, deposits in transit, outstanding checks, other reconciling items, balance per books, and a difference cell that must be zero. Show me only the rec page.</pre>
+<p class="credit">Prompt: “Monthly bank rec, standard layout”, from the <a href="https://github.com/aiforseries/ai-prompts-for-audit-and-finance/blob/main/excel-finance.md">free prompt library</a> by The AI For Series, Chandan Gupta. Licence: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Replace the example file names and figures with your own.</p></section>
 <p class="sr" id="copy-status" role="status" aria-live="polite" style="position:absolute;left:-9999px"></p>
-<p class="credit">Prompt: “Monthly bank rec, standard layout”, from the <a href="https://github.com/aiforseries/ai-prompts-for-audit-and-finance/blob/main/excel-finance.md">free prompt library</a> by The AI For Series, Chandan Gupta. Licence: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Replace the example file names and figures with your own.</p>
-<h2>What you get back</h2>
-<p>A script that runs on your computer and a reconciliation workbook in the standard layout, with a difference cell. On screen, only the rec page.</p>
+<div class="info2"><section><h2><i aria-hidden="true">→</i>What to give the AI</h2><p>The two file names and their column headings. Don&#x27;t paste the statement or the ledger into a chat: a long paste can be cut off without any warning. The file names, account and day windows in the prompt are examples; use yours.</p>
+<p class="when"><strong>Never paste client or company data into a chat.</strong> Give the headings and the structure; the work runs on your own computer.</p></section>
+<section><h2><i aria-hidden="true">←</i>What you get back</h2><p>A script that runs on your computer and a reconciliation workbook in the standard layout, with a difference cell. On screen, only the rec page.</p></section></div>
 <h2>Check before you rely on it</h2>
 <ul class="chk"><li>The difference cell is zero, and the balance per bank and balance per books agree to the statement and the GL.</li><li>Before you look at the difference: rows in the bank statement equal matched plus unmatched bank rows; the same for the ledger.</li><li>A zero difference with missing rows is not a reconciliation.</li></ul>
 <p class="every"><strong>Every time:</strong> the control totals agree, rows in equal rows out, the law is checked in the official source, and the judgement stays with you.</p>
-<a class="bk" href="https://aiforseries.github.io/excel-ai-for-finance/"><img src="https://aiforseries.github.io/covers/excel-ai-for-finance.jpg" alt="" width="72" height="115" loading="lazy"><div><small>The book for this habit</small><strong>Excel + AI for Finance Teams</strong><span>Clean, reconcile, close and model in Excel, and keep every workbook auditable.</span></div></a>
+<a class="bk" href="https://aiforseries.github.io/excel-ai-for-finance/"><img src="/covers/excel-ai-for-finance.jpg" alt="" width="84" height="134" loading="lazy"><div><small>The book for this habit</small><strong>Excel + AI for Finance Teams</strong><span>Clean, reconcile, close and model in Excel, and keep every workbook auditable.</span><em>See the book →</em></div></a>
 <ul class="links"><li><a href="https://aiforseries.github.io/clay/">All episodes of Bhasad &amp; Associates</a></li><li><a href="https://github.com/aiforseries/ai-prompts-for-audit-and-finance">The free prompt library on GitHub</a> <small>(100 prompts, CC BY 4.0)</small></li></ul>
-<nav class="pn" aria-label="Episodes"><a class="prev" href="https://aiforseries.github.io/clay/ep1/"><small>← Episode 1</small>Section 420½</a><a class="next" href="https://aiforseries.github.io/clay/ep3/"><small>Episode 3 →</small>Poora ledger</a></nav>
-<p class="totop"><a href="#main">Back to top</a></p>
-</main><footer><div class="wrap"><nav class="grid" aria-label="Footer"><div><h4>Books</h4><ul><li><a href="https://aiforseries.github.io/which-ai-which-plan/">Which AI, Which Plan? (free)</a></li><li><a href="https://aiforseries.github.io/ai-for-cas/">AI for CAs</a></li><li><a href="https://aiforseries.github.io/ai-for-internal-auditors/">AI for Internal Auditors</a></li><li><a href="https://aiforseries.github.io/excel-ai-for-finance/">Excel + AI for Finance Teams</a></li><li><a href="https://aiforseries.github.io/ai-for-tax-practitioners/">AI for Tax Practitioners</a></li><li><a href="https://aiforseries.github.io/ai-for-ca-students/">AI for CA Students</a></li></ul></div>
-<div><h4>Bhasad &amp; Associates</h4><ul><li><a href="https://aiforseries.github.io/clay/">All episodes and prompts</a></li><li>Instagram and YouTube: @theaiforseries</li></ul></div>
-<div><h4>Free</h4><ul><li><a href="https://github.com/aiforseries/ai-prompts-for-audit-and-finance">Free prompt library (GitHub)</a></li><li><a href="https://aiforseries.github.io/guides/">Free guides</a></li><li><a href="https://aiforseries.github.io/tools/form-3cd-to-form-26-crosswalk.html">Form 3CD to Form 26 crosswalk</a></li></ul></div></nav>
-<p class="legal">Educational, not professional advice. Check the current law.<br>
-Bhasad &amp; Associates and Kapoor Industries are fictional; every character, name and figure is made up. © 2026 The AI For Series.
-Independent publications, not affiliated with or endorsed by any AI company or professional body. Updated 2026-11-24.</p></div></footer>
+<nav class="pn" aria-label="Episodes"><a class="prev" href="https://aiforseries.github.io/clay/ep9/"><img src="/assets/thumbs/clay-ep9.webp" alt="" width="40" height="71" loading="lazy"><span><small>← Previous · Episode 9</small><span lang="hi-Latn">Sab fraud hai</span></span></a></nav>
+</div></main><footer><style>footer:has(.ft){background:#2b1418;color:#e9dcdc;margin-top:5em;font:14.5px/1.55 var(--sans,system-ui,sans-serif);position:relative}
+footer .ft-edge{position:absolute;left:0;right:0;top:-17px;height:18px;background:radial-gradient(circle at 12px 18px,#2b1418 11.5px,transparent 12px) 0 0/24px 18px repeat-x}
+footer .ft-gy{position:absolute;top:-78px;left:max(16px,calc(50% - 560px));width:62px;height:auto;filter:drop-shadow(0 6px 8px #0005)}
+footer .ft{display:grid;gap:28px 40px;padding-top:44px;padding-bottom:26px;max-width:1160px}
+footer .ft-brand p{margin:12px 0 16px;color:#d9c9ca;max-width:30em}
+footer .ft-logo{display:inline-flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font:800 18px var(--sans,system-ui,sans-serif);letter-spacing:-.2px}
+footer .ft-logo .mark{width:36px;height:36px}
+footer .ft-soc{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+footer .ft-soc a{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:#ffffff12;border:1px solid #ffffff22;color:#fff;transition:background .15s,transform .15s,color .15s}
+footer .ft-soc a:hover{background:#e9b949;color:#2a1408;transform:translateY(-2px)}
+footer .ft-soc svg{width:20px;height:20px;fill:currentColor}
+footer .ft-g{border:0;margin:0;padding:0}
+footer .ft-g summary{list-style:none;display:flex;align-items:center;justify-content:space-between;font:800 14px var(--sans,system-ui,sans-serif);color:#e9b949;letter-spacing:.2px;padding:0 0 10px;min-height:0;cursor:default}
+footer .ft-g summary::-webkit-details-marker{display:none}
+footer .ft-g summary svg{display:none;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;transition:transform .2s}
+footer .ft-g ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+footer .ft-g a{display:flex;align-items:center;gap:10px;min-height:36px;color:#f1e6e6;text-decoration:none;font-weight:500;border-radius:8px}
+footer .ft-g a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+footer .ft-g svg.ti{width:18px;height:18px;flex:none;fill:none;stroke:#e9b949;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+footer .sp{flex:none;width:6px;height:22px;border-radius:2px;background:var(--c,#e9b949);box-shadow:inset -2px 0 0 #0003}
+footer .tag{font:800 11px var(--sans,system-ui,sans-serif);color:#2a1408;background:#e9b949;border-radius:99px;padding:1px 8px;margin-left:2px}
+footer .ft-g a.all{color:#e9b949;font-weight:700}
+footer .ft-mach{display:flex;flex-wrap:wrap;gap:4px 18px;padding-top:0;padding-bottom:18px;font-size:13px;max-width:1160px}
+footer .ft-mach a{color:#b9a7a9;text-decoration:none}footer .ft-mach a:hover{color:#fff;text-decoration:underline}
+footer .ft-bar{background:#1e0e11;border-top:1px solid #ffffff14}
+footer .ft-bar .wrap{display:flex;flex-wrap:wrap;gap:4px 28px;justify-content:space-between;padding-top:14px;padding-bottom:18px;max-width:1160px;font-size:12.5px;color:#b9a7a9}
+footer .ft-bar p{margin:0;color:#b9a7a9;max-width:62em}
+@media (min-width:901px){footer .ft{grid-template-columns:minmax(0,1.25fr) minmax(0,1.1fr) minmax(0,.95fr) minmax(0,1.15fr)}footer .ft-g summary{pointer-events:none}}
+@media (min-width:600px) and (max-width:900px){footer .ft{grid-template-columns:1fr 1fr}footer .ft-brand{grid-column:1/-1}footer .ft-g summary{pointer-events:none}}
+@media (max-width:599px){footer .ft{gap:0;padding-top:34px}footer .ft-brand{padding-bottom:22px}
+footer .ft-g{border-top:1px solid #ffffff1f}footer .ft-g summary{cursor:pointer;min-height:52px;padding:0;font-size:15px}footer .ft-g summary svg{display:block}
+footer .ft-g[open] summary svg{transform:rotate(90deg)}footer .ft-g ul{padding:0 0 14px}footer .ft-g a{min-height:44px}
+footer .ft-mach{padding-top:14px;border-top:1px solid #ffffff1f}footer .ft-gy{width:52px;top:-66px}}
+@media (prefers-reduced-motion:reduce){footer .ft-soc a,footer .ft-g summary svg{transition:none}}
+</style><div class="ft-edge" aria-hidden="true"></div>
+<img class="ft-gy" src="/assets/gyaani/pose-05.webp" width="259" height="407" alt="" loading="lazy">
+<div class="wrap ft"><div class="ft-brand"><a class="ft-logo" href="https://aiforseries.github.io/"><svg class="mark" viewBox="0 0 40 40" width="36" height="36" aria-hidden="true"><rect width="40" height="40" rx="9" fill="#7A1A2B"/><text x="20" y="24" text-anchor="middle" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="17" font-weight="800" fill="#fff">AI</text><rect x="9" y="28.5" width="22" height="2.2" rx="1" fill="#e9b949"/><rect x="9" y="32.2" width="22" height="2.2" rx="1" fill="#e9b949"/></svg><span>The AI For Series</span></a>
+<p>Practical AI books for accountants, auditors, tax practitioners, finance teams and CA students. Tested on practice files, with client data kept on your own computer.</p>
+<ul class="ft-soc"><li><a href="https://www.youtube.com/@theaiforseries" aria-label="YouTube" title="YouTube"><svg class="ico bi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21.6 7.2a2.8 2.8 0 0 0-2-2C17.9 4.8 12 4.8 12 4.8s-5.9 0-7.6.4a2.8 2.8 0 0 0-2 2A29 29 0 0 0 2 12a29 29 0 0 0 .4 4.8 2.8 2.8 0 0 0 2 2c1.7.4 7.6.4 7.6.4s5.9 0 7.6-.4a2.8 2.8 0 0 0 2-2A29 29 0 0 0 22 12a29 29 0 0 0-.4-4.8zM10 15.2V8.8l5.2 3.2z"/></svg></a></li><li><a href="https://www.instagram.com/theaiforseries/" aria-label="Instagram" title="Instagram"><svg class="ico bi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm5 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm5.3-4a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg></a></li><li><a href="https://www.linkedin.com/in/chandan-gupta-b8a108192/" aria-label="LinkedIn" title="LinkedIn"><svg class="ico bi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.8h4V21H3zM9.6 9.8h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.7 2.6 4.7 6V21h-4v-5.1c0-1.3 0-2.9-1.8-2.9s-2.1 1.4-2.1 2.8V21h-4z"/></svg></a></li><li><a href="https://github.com/aiforseries/ai-prompts-for-audit-and-finance" aria-label="GitHub: free prompts" title="GitHub: free prompts"><svg class="ico bi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 1.5a10.5 10.5 0 0 0-3.3 20.5c.5.1.7-.2.7-.5v-1.9c-2.9.6-3.5-1.3-3.5-1.3-.5-1.2-1.2-1.5-1.2-1.5-.9-.7.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.5 1.1 3.1.9.1-.7.4-1.1.7-1.4-2.3-.3-4.8-1.2-4.8-5.2 0-1.1.4-2.1 1.1-2.8-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 2.9 1.1a10 10 0 0 1 5.3 0c2-1.4 2.9-1.1 2.9-1.1.6 1.4.2 2.5.1 2.8.7.7 1.1 1.7 1.1 2.8 0 4-2.5 4.9-4.8 5.2.4.3.7 1 .7 2v3c0 .3.2.6.7.5A10.5 10.5 0 0 0 12 1.5z"/></svg></a></li><li><a href="https://www.amazon.com/author/chandan-gupta" aria-label="Amazon author page" title="Amazon author page"><svg class="ico bi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13.6 9.1c-2.7.1-6 .8-6 3.9 0 2 1.3 3.1 3 3.1 1.5 0 2.4-.6 3.2-1.5.4.6.5.9 1.2 1.4.2.1.4.1.5 0l1.6-1.4c.2-.1.1-.4 0-.5-.4-.5-.8-1-.8-2V8.8c0-1.4.1-2.6-.9-3.6C14.6 4.4 13.4 4 12.2 4 10 4 7.7 4.9 7.2 7.4c0 .3.1.4.3.5l2.1.2c.2 0 .3-.2.4-.4.2-.9.9-1.3 1.7-1.3.5 0 1 .2 1.3.5.3.4.3 1 .3 1.5v.7zm0 2.9c0 .7 0 1.3-.4 1.9-.3.5-.8.8-1.3.8-.7 0-1.2-.5-1.2-1.4 0-1.7 1.5-2 2.9-2v.7z"/><path d="M3.2 17.3c4.9 2.9 11.5 3.2 16.7.3.4-.2.7.2.3.5-4.7 3.3-12.6 3.3-17.3-.4-.3-.2 0-.6.3-.4z"/><path d="M19.4 16.4c.9-.1 2.3.1 2.5.4.2.3-.1 2-.9 2.9-.1.1-.3.1-.2-.1.3-.7.8-2 .5-2.3-.3-.3-1.6-.2-2.2-.1-.2 0-.2-.2.3-.8z"/></svg></a></li></ul></div>
+<details class="ft-g" open><summary>Books<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></summary><ul><li><a href="https://aiforseries.github.io/which-ai-which-plan/"><i class="sp" style="--c:#e9b949" aria-hidden="true"></i>Which AI, Which Plan? <span class=tag>Free</span></a></li><li><a href="https://aiforseries.github.io/ai-for-cas/"><i class="sp" style="--c:#d0573f" aria-hidden="true"></i>AI for CAs</a></li><li><a href="https://aiforseries.github.io/ai-for-internal-auditors/"><i class="sp" style="--c:#3f9a8a" aria-hidden="true"></i>AI for Internal Auditors</a></li><li><a href="https://aiforseries.github.io/excel-ai-for-finance/"><i class="sp" style="--c:#4f9a5c" aria-hidden="true"></i>Excel + AI for Finance Teams</a></li><li><a href="https://aiforseries.github.io/ai-for-tax-practitioners/"><i class="sp" style="--c:#5b86b8" aria-hidden="true"></i>AI for Tax Practitioners</a></li><li><a href="https://aiforseries.github.io/ai-for-ca-students/"><i class="sp" style="--c:#f0a93a" aria-hidden="true"></i>AI for CA Students</a></li></ul></details><details class="ft-g" open><summary>Free tools<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></summary><ul><li><a href="https://aiforseries.github.io/tools/form-3cd-to-form-26-crosswalk.html"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9.5h18M3 15h18M9.5 4v16"/></svg>Form 3CD to Form 26 crosswalk</a></li><li><a href="https://aiforseries.github.io/ai-for-cas/tools/gstr2b-reconciler.html"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><path d="M13.5 17.2h7.5M17.2 13.5V21"/></svg>GSTR-2B reconciler</a></li><li><a href="https://aiforseries.github.io/ai-for-cas/tools/ca-firm-ai-policy-template.html"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>AI policy template for CA firms</a></li><li><a href="https://aiforseries.github.io/lab/"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3.5 17.5a2.1 2.1 0 0 0 3 3l5.8-5.8a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg>Gyaani’s Desk: four quick tools</a></li></ul></details><details class="ft-g" open><summary>Free guides<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></summary><ul><li><a href="https://aiforseries.github.io/guides/bank-reconciliation-with-ai.html">Bank Reconciliation with AI</a></li><li><a href="https://aiforseries.github.io/guides/duplicate-payment-testing-with-ai.html">Duplicate Payment Testing with AI</a></li><li><a href="https://aiforseries.github.io/guides/claude-for-excel-vs-claude-code.html">Claude for Excel vs Claude Code for Finance Teams</a></li><li><a href="https://aiforseries.github.io/ai-for-cas/guides/gstr2b-reconciliation-with-ai.html">GSTR-2B vs purchase register reconciliation</a></li><li><a class="all" href="https://aiforseries.github.io/guides/">All free guides</a></li></ul></details></div>
+<div class="wrap ft-mach"><a href="https://github.com/aiforseries/ai-prompts-for-audit-and-finance">100 free prompts on GitHub</a><a href="https://aiforseries.github.io/clay/">Episode prompts</a><a href="https://aiforseries.github.io/sitemap.xml">sitemap.xml</a><a href="https://aiforseries.github.io/llms.txt">llms.txt</a></div>
+<div class="ft-bar"><div class="wrap"><p class="ft-note" style="opacity:.85">Bhasad &amp; Associates and Kapoor Industries are fictional; every character, name and figure is made up. Voices are AI-generated. Educational, not professional advice; check the current law.</p><p>© 2026 The AI For Series. Written by Chandan Gupta. Updated 2026-11-26.</p>
+<p>Independent publications, not affiliated with or endorsed by Anthropic, ICAI or the IIA. Claude and Claude Code are trademarks of Anthropic, PBC. Nothing here is professional advice.</p></div></div>
+<script>(function(){if(matchMedia('(max-width:599px)').matches)[].forEach.call(document.querySelectorAll('footer .ft-g'),function(d){d.open=false})})()</script></footer>
 <script>
 (function(){
 var b=document.getElementById('copy'),p=document.getElementById('prompt'),st=document.getElementById('copy-status'),lab=b.querySelector('span'),t0=lab.textContent,timer;
@@ -227,4 +334,6 @@ if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t)
 else{fallback(t);}});
 })();
 </script>
+<script>/*airs*/(function(){var t=Date.now();[].forEach.call(document.querySelectorAll('[data-at]'),function(x){
+if(t>=Date.parse(x.getAttribute('data-at'))){x.textContent=x.getAttribute('data-out');x.classList.add('out');}});})();</script>
 <script src="/assets/gyaani/corner.js" defer></script></body></html>

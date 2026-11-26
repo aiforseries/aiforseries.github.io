@@ -1,0 +1,99 @@
+/* Gyaani's Desk: the pieces every /lab/ page shares (hero art, trust badge, "learn the full method", more tools), loaded after each page's own CSS.
+   build_lab.py copies this to /lab/desk.css and links it from all five pages. Local only: no fonts, no external files. Classes start with gd- so they never meet the tools' own names. */
+:root{--gd-ink:#1d1a1a;--gd-muted:#5f5757;--gd-accent:#7A1A2B;--gd-accent2:#5e1220;--gd-gold:#e9b949;--gd-good:#1d6b35;--gd-line:#e6dbd2;--gd-sans:system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif}
+
+/* one width for header, content and footer */
+.wrap{max-width:1200px}
+.top .wrap,footer .wrap{max-width:1200px}
+.top nav a.on{color:var(--gd-accent);box-shadow:inset 0 -2px 0 var(--gd-accent);border-radius:0}
+.lh .crumbs a{color:#FFD875}.lh .crumbs a:hover{color:#fff}
+
+/* ---------- tool hero: text left, the tool's Gyaani tile right (same art as its card on /lab/) ---------- */
+.gd-art{position:relative;display:block;overflow:hidden;aspect-ratio:16/10;border-radius:22px;background:var(--tb,#f3d9a6);
+box-shadow:inset 0 -14px 0 var(--tf,#e3c58b),0 0 0 6px #fff8ec,0 18px 40px #0006}
+.gd-art::before{content:"";position:absolute;inset:0;background:var(--grain,none);opacity:.22;mix-blend-mode:overlay;pointer-events:none}
+.gd-art img{position:absolute;height:auto;max-width:none;filter:drop-shadow(0 5px 4px #0003)}
+.gd-art .gd-g{height:84%;width:auto;bottom:9%;left:56%}
+.gd-art .gd-a{bottom:10%}.gd-art .gd-fx{width:11%;top:10%;left:80%}
+.gd-art .gd-tag{position:absolute;left:12px;top:12px;background:#2a1d1f;color:var(--gd-gold);font:800 11.5px/1 var(--gd-sans);letter-spacing:.8px;text-transform:uppercase;padding:7px 10px;border-radius:8px;box-shadow:0 2px 0 #0005}
+.gd-brief{--tb:#f6dca8;--tf:#e7bd73}.gd-brief .gd-a{left:22%;width:17%;transform:rotate(-10deg)}
+.gd-safe{--tb:#cfe7d6;--tf:#9fcdae}.gd-safe .gd-a{left:15%;width:30%;transform:rotate(8deg)}.gd-safe .gd-fx{left:79%;width:7%}
+.gd-count{--tb:#d6e3f3;--tf:#a9c0e0}.gd-count .gd-a{left:12%;width:20%}.gd-count .gd-b{left:33%;width:14%;bottom:10%}.gd-count .gd-g{left:60%}
+.gd-agent{--tb:#e9d9f1;--tf:#c8aed8}.gd-agent .gd-b{left:9%;width:15%;bottom:10%}.gd-agent .gd-a{left:30%;width:24%;bottom:8%}.gd-agent .gd-g{height:74%;left:60%}.gd-agent .gd-fx{left:57%;top:4%;width:16%}
+@media (prefers-reduced-motion:no-preference){.gd-art .gd-g{animation:gd-bob 4.5s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes gd-bob{0%,100%{transform:none}50%{transform:translateY(-2.5%) rotate(-1.5deg)}}}
+@media (min-width:901px){
+.lh:not(.hub-hero)>.wrap{min-height:330px;padding-right:calc(22px + min(34%,400px) + 36px)}
+.lh:not(.hub-hero)>.wrap>.gd-art{position:absolute;right:22px;top:50%;width:min(34%,400px);transform:translateY(-50%) rotate(1.2deg)}
+}
+@media (max-width:900px){.gd-art{aspect-ratio:16/7;margin-top:20px;max-width:560px;box-shadow:inset 0 -10px 0 var(--tf,#e3c58b),0 0 0 5px #fff8ec,0 12px 28px #0005}
+.gd-art .gd-g{height:90%;bottom:7%}.gd-agent .gd-g{height:80%}}
+.lh-peek{display:none!important}
+
+/* ---------- trust badge (same look on every tool page) ---------- */
+.gd-trust{display:flex;gap:14px;align-items:center;margin:20px 0 0;max-width:720px;background:#fff8ec;color:var(--gd-ink);border-radius:18px;padding:14px 18px;
+box-shadow:inset 0 -4px 0 #ecdcc4,0 14px 30px #0005}
+.gd-trust svg{flex:none;width:40px;height:40px;padding:8px;border-radius:12px;background:var(--gd-good);fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.gd-trust b{display:block;font:800 17px/1.3 var(--gd-sans);color:var(--gd-good)}
+.gd-trust small{display:block;font:14px/1.45 var(--gd-sans);color:#4a4242}
+@media (max-width:640px){.gd-trust{align-items:flex-start;padding:12px 14px}.gd-trust b{font-size:16px}.gd-trust svg{width:34px;height:34px;padding:6px}}
+
+/* ---------- controls: 44 px targets everywhere ---------- */
+.cta,.cta.sm,.b,.b.sm,.inp-f .b{min-height:44px}
+.cta.sm{padding-top:9px;padding-bottom:9px}
+.zone details>summary{padding:10px 0;min-height:44px}
+.mini{min-height:44px;padding:11px 14px}
+@media (max-width:640px){.acts .cta{flex:1 1 auto;justify-content:center}}
+
+/* ---------- method cards: no orphans ---------- */
+@media (min-width:760px){.method.m3{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:1100px){.method.m5{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media (min-width:760px) and (max-width:1099px){.method.m5{grid-template-columns:repeat(6,minmax(0,1fr))}.method.m5 li{grid-column:span 2}.method.m5 li:nth-child(n+4){grid-column:span 3}}
+
+/* hand-built pages: the explainer uses the full width, long text keeps a reading measure */
+.ex{max-width:none}.ex>p,.ex>.fine,.ex>ul.fine{max-width:62em}.ex .ep{max-width:860px}
+
+/* ---------- the end of every tool: learn the full method, then the other tools ---------- */
+.gd-end{margin-top:56px;padding:46px 0 10px;background:linear-gradient(#f7ede2,#f3e5d6);border-top:1px solid var(--gd-line)}
+/* the end section runs on under the footer, so the 100 px that corner.js keeps above the footer on phones (for the peeping Gyaani) shows the same colour; .gd-end is not positioned, so the footer paints over that strip when it has no margin */
+.gd-end{margin-bottom:-100px;padding-bottom:100px}
+main:has(.gd-end:last-child)+footer{margin-top:0}
+.gd-endw{display:grid;grid-template-columns:minmax(0,1fr);gap:34px;padding-bottom:46px!important}
+.gd-learn .gd-k,.gd-k{font:800 12.5px var(--gd-sans);text-transform:uppercase;letter-spacing:1.1px;color:#9a6b12;margin:0 0 4px}
+.gd-learn{display:grid;grid-template-columns:150px minmax(0,1fr);gap:26px;align-items:center;background:#fff;border-radius:26px;padding:24px 28px;
+box-shadow:0 2px 0 #fff inset,0 24px 60px #7a1a2b1f,0 0 0 1px var(--gd-line)}
+.gd-cover{display:block;border-radius:6px 12px 12px 6px;overflow:hidden;box-shadow:0 14px 26px #2a140840,0 0 0 1px #0001;transform:rotate(-2.5deg);transition:transform .25s}
+.gd-cover:hover{transform:rotate(0) translateY(-3px)}
+.gd-cover img{display:block;width:100%;height:auto}
+.gd-learn h2{font:800 1.6em/1.15 var(--gd-sans);letter-spacing:-.6px;margin:0 0 .3em;color:var(--gd-ink)}
+.gd-learn p{margin:0;font:16px/1.55 var(--gd-sans);color:var(--gd-muted);max-width:40em}
+.gd-acts{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin-top:16px!important}
+.gd-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 20px;border-radius:12px;background:var(--gd-accent);color:#fff!important;text-decoration:none;
+font:800 15.5px var(--gd-sans);box-shadow:0 4px 0 #4d0f1b;transition:transform .12s,background .15s}
+.gd-btn:hover{background:var(--gd-accent2);transform:translateY(-1px)}.gd-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #4d0f1b}
+.gd-also{font:600 15px/1.5 var(--gd-sans);color:var(--gd-muted)}.gd-also a{display:inline-block;padding:12px 0;font-weight:700}
+.gd-next h2{font:800 1.35em/1.2 var(--gd-sans);letter-spacing:-.4px;margin:0 0 14px;color:var(--gd-ink)}
+.gd-tools{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.gd-tools a{display:grid;grid-template-columns:118px minmax(0,1fr);gap:14px;align-items:center;height:100%;background:#fff;border-radius:20px;padding:10px 16px 10px 10px;text-decoration:none;color:var(--gd-ink);
+box-shadow:0 2px 0 #fff inset,0 10px 26px #7a1a2b14,0 0 0 1px var(--gd-line);transition:transform .2s,box-shadow .2s}
+.gd-tools a:hover{transform:translateY(-3px);box-shadow:0 2px 0 #fff inset,0 16px 32px #7a1a2b26,0 0 0 2px var(--gd-accent);color:var(--gd-ink)}
+.gd-tools .gd-art{aspect-ratio:4/3;border-radius:14px;box-shadow:inset 0 -8px 0 var(--tf,#e3c58b);margin:0;max-width:none}
+.gd-tools .gd-art .gd-fx,.gd-tools .gd-art .gd-tag{display:none}
+.gd-tools .gd-art .gd-g{animation:none}
+.gd-tools strong{display:block;font:800 17px/1.25 var(--gd-sans);color:var(--gd-accent)}
+.gd-tools span.t{display:block;font:14px/1.45 var(--gd-sans);color:var(--gd-muted);margin-top:2px}
+.gd-all{margin:14px 0 0;font:700 15px var(--gd-sans)}.gd-all a{display:inline-block;padding:12px 0}
+@media (max-width:640px){.gd-end{margin-top:40px;padding-top:30px}.gd-learn{grid-template-columns:minmax(0,1fr);gap:18px;padding:20px 18px;border-radius:20px}.gd-cover{width:108px}
+.gd-learn h2{font-size:1.3em}.gd-learn p{font-size:15px}.gd-tools a{grid-template-columns:96px minmax(0,1fr)}}
+
+/* ---------- hub: the books, under "learn the full method" ---------- */
+.gd-books{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (min-width:980px){.gd-books{grid-template-columns:repeat(6,minmax(0,1fr))}}
+.gd-books a{display:flex;flex-direction:column;gap:10px;height:100%;background:#fff;border-radius:18px;padding:12px;text-decoration:none;color:var(--gd-ink);
+box-shadow:0 0 0 1px var(--gd-line),0 8px 20px #7a1a2b12;transition:transform .2s,box-shadow .2s}
+.gd-books a:hover{transform:translateY(-3px);box-shadow:0 0 0 2px var(--gd-accent),0 14px 28px #7a1a2b22;color:var(--gd-ink)}
+.gd-books img{display:block;width:100%;height:auto;border-radius:4px 8px 8px 4px;box-shadow:0 6px 14px #2a140833}
+.gd-books strong{font:800 15px/1.25 var(--gd-sans);color:var(--gd-accent)}
+.gd-books span{font:13.5px/1.4 var(--gd-sans);color:var(--gd-muted);margin-top:-6px}
+@media (max-width:640px){.gd-books{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}
+.books-sub{margin:.2em 0 0;font:16px/1.55 var(--gd-sans);color:var(--gd-muted);max-width:44em}
