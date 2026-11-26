@@ -1,4 +1,6 @@
-/* Gyaani on the homepage: the living hero and the "Spot Gyaani's mistake" game. No tracking, no storage, no requests beyond the images. */
+/* Gyaani on the homepage: the living hero and the "Spot Gyaani's mistake" game. Tap him to hear one of his own lines from the
+   episodes (already-recorded AI voice, assets/gyaani/voice/, listed in #gy-lines). Never autoplays; the sound on/off choice is kept
+   in localStorage when the browser allows it. The game plays a line only after the visitor has heard him or turned sound on. */
 (function () {
   'use strict';
   var A = '/assets/gyaani/';
@@ -28,6 +30,38 @@
       ['Brief achha doge, toh kaam achha milega.', 'heart']
     ];
     var i = 0, clicks = [], typing = 0, flap = 0, touched = false;
+    // his recorded lines: {hero: [{f, t, en, w: [[start, end] per word]}], game: {round title: line}}
+    var V = null; try { V = JSON.parse($('#gy-lines').textContent); } catch (e) {}
+    var snd = $('#gy-snd'), en = $('#gy-en'), audio = null, md = 0, vi = 0, armed = false, muted = false;
+    try { muted = localStorage.getItem('gyaani-sound') === 'off'; } catch (e) {}
+    function showSnd() { if (!snd) return; snd.setAttribute('aria-pressed', String(!muted)); snd.querySelector('span').textContent = muted ? 'Sound off' : 'Sound on'; }
+    function stop() { cancelAnimationFrame(md); if (audio) { audio.pause(); audio = null; } }
+    function play(l, withMouth) {
+      stop();
+      if (muted || !l) return;
+      audio = new Audio(A + 'voice/' + l.f);
+      var a = audio, last = 0;
+      a.play().then(function () {
+        armed = true;
+        if (!withMouth || reduce) return;
+        clearTimeout(flap);
+        (function drive() {
+          if (a !== audio || a.paused || a.ended) { mouth(0); return; }
+          var t = a.currentTime, on = l.w.some(function (x) { return t >= x[0] - .03 && t <= x[1]; });
+          if (on) { var m = [2, 3, 4, 1][Math.floor(t * 11) % 4]; if (m === last) m = m % 4 + 1; last = m; mouth(m); } else mouth(0);
+          md = requestAnimationFrame(drive);
+        })();
+      }).catch(function () {});
+    }
+    if (snd) {
+      showSnd(); snd.hidden = !V;
+      snd.addEventListener('click', function () {
+        muted = !muted; if (!muted) armed = true; else stop();
+        try { localStorage.setItem('gyaani-sound', muted ? 'off' : 'on'); } catch (e) {}
+        showSnd();
+      });
+    }
+    window.gyVoice = { game: function (title) { if (V && armed && !muted) play(V.game[title], false); } };
 
     function mouth(m) { if (m) gy.setAttribute('data-m', m); else gy.removeAttribute('data-m'); }
     function talk(ms) {
@@ -41,7 +75,7 @@
         flap = setTimeout(step, rnd(70, 120));
       })();
     }
-    function speak(text, fxName) {
+    function speak(text, fxName, voiced) {
       live.textContent = text;
       clearInterval(typing);
       if (fxName) {
@@ -55,20 +89,28 @@
         n += 1; say.textContent = text.slice(0, n);
         if (n >= text.length) clearInterval(typing);
       }, 26);
-      talk(text.length * 26 + 250);
+      if (!voiced) talk(text.length * 26 + 250);  // a recorded line moves his mouth from its word timings instead
     }
     function poke() {
-      touched = true; hint.classList.remove('on');
+      touched = true; if (hint) hint.classList.remove('on');
       var now = Date.now();
       clicks = clicks.filter(function (t) { return now - t < 2500; }); clicks.push(now);
       if (!reduce) replay(gy, 'hop');
-      if (clicks.length >= 5) { clicks = []; speak('Arre! Gudgudi hoti hai!', 'spiral'); return; }
+      if (clicks.length >= 5) { clicks = []; stop(); speak('Arre! Gudgudi hoti hai!', 'spiral'); return; }
+      if (V && V.hero.length) {
+        var v = V.hero[vi++ % V.hero.length], fxs = ['bulb', 'star', 'star', 'spiral', 'bang', 'sweat'];
+        speak(v.t, fxs[(vi - 1) % fxs.length], !muted);
+        if (en) en.textContent = v.en ? '“' + v.en + '”' : '';
+        live.textContent = v.t + (v.en ? ' (' + v.en + ')' : '');
+        play(v, true);
+        return;
+      }
       var l = LINES[i++ % LINES.length]; speak(l[0], l[1]);
     }
     gy.addEventListener('click', poke);
     gy.addEventListener('animationend', function (e) { if (e.animationName === 'gy-hop') gy.classList.remove('hop'); });
-    hint.textContent = coarse ? 'Psst. Tap him.' : 'Psst. Click him.';
-    setTimeout(function () { if (!touched) hint.classList.add('on'); }, 3800);
+    if (hint && !hint.hidden) hint.textContent = coarse ? 'Psst. Tap him.' : 'Psst. Click him.';
+    if (hint && !hint.hidden) setTimeout(function () { if (!touched) hint.classList.add('on'); }, 3800);
     if (reduce) return;
 
     // blinking
@@ -203,6 +245,7 @@
     if (right) { gp.src = A + 'pose-04.webp'; fxShow('sweat'); line(r.caught); }
     else { gp.src = A + 'pose-03.webp'; fxShow('star'); line(r.missed); }
     if (!reduce) replay(gp, 'bump');
+    if (window.gyVoice) window.gyVoice.game(r.title);
     var last = n === R.length - 1;
     $('.g-fbwrap', panel).innerHTML = '<div class="g-fb ' + (right ? 'ok' : 'no') + '"><h3 tabindex="-1">' +
       (right ? 'Caught him.' : 'Gyaani got that one past you.') + '</h3>' +
@@ -223,7 +266,7 @@
     var head = score === R.length ? 'All five caught. Senior reviewer material.' : score >= 3 ? 'Sharp eyes. ' + (R.length - score) + ' slipped past.' : 'Gyaani is very convincing.';
     panel.innerHTML = '<div class="g-end"><span class="g-score">You caught ' + score + ' of ' + R.length + '</span>' + dots() .replace('g-dots', 'g-dots vh2') +
       '<h3 tabindex="-1">' + head + '</h3><p>Every round is one habit: headings, not data. Count before you trust. A source for every section. Totals from Excel. Copies, never originals. Each one comes with a free prompt you can use at work tomorrow.</p>' +
-      '<div class="g-act"><a class="cta" href="/clay/">Get the prompts</a><button type="button" class="cta alt g-card">Make my card</button><a class="cta alt" href="#books">Meet the books</a><button type="button" class="cta alt g-again">Play again</button></div>' +
+      '<div class="g-act"><a class="cta" href="/clay/">Get the prompts</a><button type="button" class="cta alt g-card">Make my card</button><a class="cta alt" href="#pick">Find your book</a><button type="button" class="cta alt g-again">Play again</button></div>' +
       '<p style="font:14px var(--sans);color:var(--muted);margin-top:14px">Want more? <a href="https://github.com/aiforseries/ai-prompts-for-audit-and-finance">100 free prompts for audit and finance</a>, each with a check to run before you rely on the result.</p></div>';
     $('.g-end h3', panel).focus({ preventScroll: true });
     cardJs();
