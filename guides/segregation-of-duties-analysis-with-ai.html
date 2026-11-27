@@ -433,5 +433,6 @@ footer .ft-mach{padding-top:14px;border-top:1px solid #ffffff1f}footer .ft-gy{wi
 <p>Independent publications, not affiliated with or endorsed by Anthropic, ICAI or the IIA. Claude and Claude Code are trademarks of Anthropic, PBC. Nothing here is professional advice.</p></div></div>
 <script>(function(){if(matchMedia('(max-width:599px)').matches)[].forEach.call(document.querySelectorAll('footer .ft-g'),function(d){d.open=false})})()</script></footer><script>(function(){[].forEach.call(document.querySelectorAll('.prompt .cp'),function(b){b.hidden=false;b.addEventListener('click',function(){
 var t=b.parentNode.querySelector('blockquote').innerText.trim();function ok(){b.textContent='Copied';b.classList.add('ok');setTimeout(function(){b.textContent='Copy';b.classList.remove('ok')},1600)}
-if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,function(){});else{var a=document.createElement('textarea');a.value=t;
-a.style.cssText='position:fixed;top:0;left:0;opacity:0';document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){}a.remove()}})})})()</script><script src="/assets/gyaani/corner.js" defer></script></body></html>
+function fb(){var a=document.createElement('textarea');a.value=t;a.style.cssText='position:fixed;top:0;left:0;opacity:0';document.body.appendChild(a);a.select();
+try{if(document.execCommand('copy'))ok();else b.textContent='Select and copy'}catch(e){b.textContent='Select and copy'}a.remove()}
+if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,fb);else fb()})})})()</script><script src="/assets/gyaani/corner.js" defer></script></body></html>
