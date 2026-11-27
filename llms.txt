@@ -85,7 +85,7 @@ AI as a tutor, not an answer machine. Study plans that survive a bad week, revis
 - [Episode 11: Purana Act, naya zamana (tax year first, then the Act, then the section)](https://aiforseries.github.io/clay/ep11/): Check the tax year first, then the Act, then the section.
 
 ## More
-- [Free prompt library on GitHub](https://github.com/aiforseries/ai-prompts-for-audit-and-finance): 100 copy-ready prompts from the books, 20 per book, CC BY 4.0
+- [Free prompt library](https://aiforseries.github.io/prompts/): 100 copy-ready prompts from the books, 20 per book, each with when to use it and a check, CC BY 4.0 (also on GitHub: https://github.com/aiforseries/ai-prompts-for-audit-and-finance)
 - [AI for CAs site, with its own llms.txt](https://aiforseries.github.io/ai-for-cas/llms.txt)
 - [Author page on Amazon](https://www.amazon.com/author/chandan-gupta)
 
