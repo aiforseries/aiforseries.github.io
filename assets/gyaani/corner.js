@@ -6,14 +6,14 @@
   if (document.getElementById('gyc')) return;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var TIPS = [
-    ['Data nahi, sirf headings.', 'Give the AI the column headings. It writes a script that runs on your own computer.', 6],
-    ['Rows in = rows out.', 'Count the entries and match the totals before you trust a “difference zero”.', 11],
+    ['Data nahi, sirf headings.', 'Give the AI the column headings. It writes a script that runs on your own computer.', 11],
+    ['Rows in = rows out.', 'Count the entries and match the totals before you trust a “difference zero”.', 10],
     ['Source kahan hai?', 'Ask for every section with its source, then read the official text yourself.', 1],
     ['Formula from me, total from Excel.', 'Never take a total from a chat. Get the formula and let the spreadsheet add.', 2],
-    ['Originals ko haath nahi.', 'Take a backup, work on copies, and approve the plan before anything is deleted.', 8],
+    ['Originals ko haath nahi.', 'Take a backup, work on copies, and approve the plan before anything is deleted.', 7],
     ['Brief me like a new article.', 'Say which file, what to match, what the output looks like, and what to leave for a person.', 4],
-    ['Script finds, you decide.', 'Exceptions are not findings. The judgement stays with you.', 10],
-    ['Quiz me, don’t copy me.', 'Studying? Ask the AI to test you and catch your mistakes, not to write your answers.', 9]
+    ['Script finds, you decide.', 'Exceptions are not findings. The judgement stays with you.', 9],
+    ['Quiz me, don’t copy me.', 'Studying? Ask the AI to test you and catch your mistakes, not to write your answers.', 8]
   ];
   var css = '#gyc{position:fixed;right:max(14px,env(safe-area-inset-right));bottom:0;z-index:40;font:15px/1.45 system-ui,-apple-system,"Segoe UI","Noto Sans",sans-serif;pointer-events:none}' +
     '#gyc .gyc-b{pointer-events:auto;display:block;width:78px;height:77px;padding:0;margin:0;border:0;background:none;cursor:pointer;overflow:hidden;border-radius:40px 40px 0 0;-webkit-tap-highlight-color:transparent;transform:translateY(100%);transition:transform .45s cubic-bezier(.3,1.5,.5,1)}' +

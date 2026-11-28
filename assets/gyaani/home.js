@@ -182,7 +182,7 @@
   var game = $('#game');
   if (!game) return;
   var R = [
-    { scene: 'ledger', pose: '02', ep: 6, title: 'Poora ledger',
+    { scene: 'ledger', pose: '02', ep: 11, title: 'Poora ledger',
       alt: 'Clay scene: Varun from Kapoor Industries carries a huge stack of ledgers towards Gyaani in the meeting room.',
       bubble: 'Poora ledger daal do! Bank statement bhi. Main sab sambhal lunga.',
       setup: '<b>Varun</b>, in accounts at Kapoor Industries, is in a hurry. He feeds Gyaani the company’s whole ledger and bank statement.',
@@ -191,7 +191,7 @@
       mistake: 'Pasting the company’s ledger and bank statement into an AI chat. That data has now left the building.',
       habit: 'Only the column headings go to the AI. It writes a script, and the script runs on your own laptop.',
       caught: 'Achha… sirf headings. Script aapke laptop pe chalega.', missed: 'Dekha? Sab sambhal liya!' },
-    { scene: 'zero', pose: '03', ep: 11, title: 'Difference zero',
+    { scene: 'zero', pose: '03', ep: 10, title: 'Difference zero',
       alt: 'Clay scene: Kapoor, the managing director, gives two thumbs up in the office corridor.',
       bubble: 'Bank reco done! Difference zero!', chips: ['Bank statement: <b>3,000</b> entries', 'In the reco: <b>300</b>'],
       setup: '<b>Kapoor</b>, the MD, is thrilled. The bank reconciliation took two seconds.',
@@ -218,7 +218,7 @@
       mistake: 'Asking a chat to add up a trial balance. It can sound exact and still be wrong.',
       habit: 'Get the formula from the AI and the total from Excel. Debits equal credits, exactly.',
       caught: 'Theek hai, formula deta hoon. Total Excel karega.', missed: 'Lagbhag sahi hai na?' },
-    { scene: 'udado', pose: '01', ep: 8, title: 'Saaf kar do',
+    { scene: 'udado', pose: '01', ep: 7, title: 'Saaf kar do',
       alt: 'Clay scene: Kapoor holds out a small box in the server room, next to a waste-paper bin.',
       bubble: 'Ho gaya! Jo extra tha, sab uda diya. Originals bhi!',
       setup: '<b>Kapoor</b> let an AI agent loose on the shared drive: “Jo extra hai, uda do!” (Delete whatever is extra.)',
