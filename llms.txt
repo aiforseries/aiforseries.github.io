@@ -69,6 +69,10 @@ AI as a tutor, not an answer machine. Study plans that survive a bad week, revis
 - [Free GSTR-2B Reconciliation Tool (Runs in Your Browser)](https://aiforseries.github.io/ai-for-cas/tools/gstr2b-reconciler.html): Reconcile GSTR-2B with your purchase register free, in your browser: nothing is uploaded. Matches on GSTIN and invoice number, ties control totals and builds the ITC bridge.
 - [AI Use Policy Template for CA Firms in India](https://aiforseries.github.io/ai-for-cas/tools/ca-firm-ai-policy-template.html): A free AI use policy template for Indian CA firms: what client data may be shared, consent, review, documentation, an engagement letter clause and an acknowledgement form.
 
+## AI For You (everyday AI at home and at work, free)
+
+- [AI For You](https://aiforseries.github.io/ai-for-you/): the free side of the series for anyone who uses AI: comedy videos set in the fictional Bhasad & Associates office, each with copy-ready prompts and a checklist, plus hands-on tools. AI drafts, you check.
+
 ## Bhasad & Associates (comedy series prompt pages)
 
 - [Bhasad & Associates: all episodes](https://aiforseries.github.io/clay/): a claymation comedy about using AI at work, set in a fictional CA firm and its client company. Each episode page gives the habit and one free, copy-ready prompt, with what to give the AI and what to check.
@@ -83,6 +87,12 @@ AI as a tutor, not an answer machine. Study plans that survive a bad week, revis
 - [Episode 9: Sab fraud hai (judgement stays with you)](https://aiforseries.github.io/clay/ep9/): The script finds exceptions; we make the findings.
 - [Episode 10: Difference zero (match the count and the totals first)](https://aiforseries.github.io/clay/ep10/): Match the count and the totals first: as much in as out, before you trust the difference.
 - [Episode 11: Poora ledger (keep company data out of the chat)](https://aiforseries.github.io/clay/ep11/): Only the column headings go to the AI; run the script on your own laptop.
+
+## Bhasad Case Files (long-form videos: free prompts and checklists)
+
+- [Bhasad Case Files: all case files](https://aiforseries.github.io/case-files/): long YouTube videos on using AI at home and at work, set in the fictional Bhasad & Associates office. Each case file page gives the prompts shown in the video, copy-ready, and a printable checklist.
+- [Case File 01: Shaadi ka speech (a wedding speech that sounds like you)](https://aiforseries.github.io/case-files/01/): Vicky asked AI for a wedding speech in one line and got "the beautiful tapestry of love".
+- [Case File 02: Perfect email (a work email that promises only what you decided)](https://aiforseries.github.io/case-files/02/): Boss asked AI for a "very sorry" email to a client, and it offered a full refund that nobody approved.
 
 ## More
 - [Free prompt library](https://aiforseries.github.io/prompts/): 100 copy-ready prompts from the books, 20 per book, each with when to use it and a check, CC BY 4.0 (also on GitHub: https://github.com/aiforseries/ai-prompts-for-audit-and-finance)
